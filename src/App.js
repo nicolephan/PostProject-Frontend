@@ -4,7 +4,7 @@
 
 // const USER_TYPES = {
 //   PUBLIC: 'Public User',
-//   NORMAL_USER:"Normal User", 
+//   NORMAL_USER:"Normal User",
 //   ADMIN_USER:"Admin User"
 // }
 // const CURRENT_USER_TYPE = USER_TYPES.PUBLIC
@@ -12,13 +12,13 @@
 // function App(){
 //   return(
 //     <div>
-//       <div style={{ 
-//         display: "flex", 
-//         gap:12, 
+//       <div style={{
+//         display: "flex",
+//         gap:12,
 //         padding: 8,
 //         backgroundColor: "rgb(110, 110, 210)",
-//         borderBottom: "1px solid red", 
-//         color: "white:", 
+//         borderBottom: "1px solid red",
+//         color: "white:",
 //         maginBottom: 8,
 //         }}
 //       >
@@ -26,7 +26,7 @@
 //           Home
 //         </Link>
 
-//         {CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER || 
+//         {CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER ||
 //           CURRENT_USER_TYPE === USER_TYPES.NORMAL_USER?(<>
 //           <Link style={{color:"white"}} to={"/user"}>
 //             User
@@ -42,7 +42,7 @@
 //           <Link style={{color:"white"}} to={"/admin"}>Admin</Link>
 //         </>
 //         ) : null}
-        
+
 //         <div>You are Logged in as: {CURRENT_USER_TYPE}</div>
 //       </div>
 //       <AppRoutes />
@@ -54,8 +54,8 @@
 //   return (
 //     <div>
 //       <Routes>
-//         <Route 
-//           path="/" 
+//         <Route
+//           path="/"
 //           element={
 //             <PublicElement>
 //               <Home />
@@ -104,24 +104,51 @@
 
 // export default App;
 
-import React from 'react';
-import Navbar from './components/Navbar/Navbar';
-import Home from './pages/Home';
-import Ship from './pages/Ship';
-import About from './pages/About';
-import Login from './pages/Login';
-import { Route, Routes } from "react-router-dom";
+import React from "react";
+import { Route, Routes, Link, Navigate } from "react-router-dom";
 
-export default function App(){
-  return(
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./pages/Home";
+import Ship from "./pages/Ship";
+import About from "./pages/About";
+import Login from "./pages/Login";
+
+import AdminLayout from "./layouts/Admin.js";
+import routes from "./routes.js";
+
+// Function to return all route from routes.js
+const getRoutes = (routes, layout) => {
+  return routes.map((prop, key) => {
+    if (prop.layout === layout) {
+      return (
+        <Route
+          path={prop.layout + prop.path}
+          element={<prop.component />}
+          key={key}
+        />
+      );
+    } else {
+      return null;
+    }
+  });
+};
+
+export default function App() {
+  return (
     <>
-      <Navbar />
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/ship" element={<Ship />}></Route>
           <Route path="/about" element={<About />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route
+            path="/admin"
+            element={<Navigate replace to="/admin/neworder" />}
+          />
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route>{getRoutes(routes, "/admin")}</Route>
+          </Route>
         </Routes>
       </div>
     </>
