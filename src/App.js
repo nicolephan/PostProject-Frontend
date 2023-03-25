@@ -136,6 +136,7 @@ const getRoutes = (routes, layout) => {
 export default function App() {
   return (
     <>
+      <Navbar />
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />}></Route>
