@@ -1,0 +1,19 @@
+*{
+    /* border: 1px solid red; */
+}
+
+.hTrackPackage{
+    font-family: var(--font-family);
+    justify-content: center;
+    padding: 2rem;
+    display: inline-flexbox;
+    /* inline-size: 70%; */
+    flex-direction: column;
+}
+
+form {
+    /* background-color: aqua; */
+    display: inline-block;
+    padding-top: 0;
+    width: 70%;
+}
