@@ -1,12 +1,12 @@
 // import REACT from 'react';
-import "./Styles.css";
+import "./Home.css";
 
 export default function Home(){
     return(
-            <div className="hTrackPackage">
-                <h1>Track A Package</h1>
-                <SearchBar />
-            </div>
+        <div className="hTrackPackage">
+            <h1>Track A Package</h1>
+            <SearchBar />
+        </div>
     );
 }
 
@@ -17,7 +17,7 @@ function SearchBar(){
             <input
                 type="text"
                 id="header-search"
-                placeholder="Track A Package"
+                placeholder="Package #ID"
                 name="s"
             />
             <button type="submit">Enter</button>

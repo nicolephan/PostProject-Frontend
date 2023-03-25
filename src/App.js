@@ -107,11 +107,11 @@
 import React from "react";
 import { Route, Routes, Link, Navigate } from "react-router-dom";
 
-import Navbar from "./components/Navbar/Navbar";
-import Home from "./pages/Home";
+import Navbar from "./components/NavbarPublic/Navbar";
+import Home from "./pages/Home/Home";
 import Ship from "./pages/Ship";
-import About from "./pages/About";
-import Login from "./pages/Login";
+import About from "./pages/About/About";
+import Login from "./pages/Login/Login";
 
 import AdminLayout from "./layouts/Admin.js";
 import routes from "./routes.js";

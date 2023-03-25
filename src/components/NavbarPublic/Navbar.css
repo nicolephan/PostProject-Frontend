@@ -1,15 +1,16 @@
-*{
+/* *{
     box-sizing: border-box;
-}
+} */
 
 body{
     margin: 0;
-    background: #E4D0D0;
+    /* background: #E4D0D0; */
+    background: #acbfcc;
 }
 
 .nav{
     font-family: var(--font-family);
-    background-color: #2b3a55;
+    background-color: #051923;
     color: white;
     display: flex;
     justify-content: space-between;
@@ -30,7 +31,7 @@ body{
     gap: 1rem;
 }
 .nav a{
-    color: #f2e5e5;
+    color: #DCDCDD;
     text-decoration: none;
     height: 100%;
     display: flex;
@@ -38,10 +39,10 @@ body{
     padding: .25rem;
 }
 .nav li.active{
-    background-color: #34517e;
+    background-color: #4C5C68;
     height: 100%;
 }
 .nav li:hover{
-    background-color: #465672;
+    background-color: #646E78;
     height: 100%;
 }
