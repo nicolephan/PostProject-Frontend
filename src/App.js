@@ -105,11 +105,11 @@
 // export default App;
 
 import React from 'react';
-import Navbar from './components/Navbar/Navbar';
-import Home from './pages/Home';
+import Navbar from './components/NavbarPublic/Navbar';
+import Home from './pages/Home/Home';
 import Ship from './pages/Ship';
-import About from './pages/About';
-import Login from './pages/Login';
+import About from './pages/About/About';
+import Login from './pages/Login/Login';
 import { Route, Routes } from "react-router-dom";
 
 export default function App(){
