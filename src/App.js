@@ -151,14 +151,14 @@ export default function App() {
           <Route path="/about" element={<About />}></Route>
           <Route path="/login" element={<Login />}></Route>
 
-          {/* ADMIN ROUTES */}
           <Route path="/admin" element={<Admin />}></Route>
-
-          {/* CUSTOMER ROUTE */}
-          <Route path="/customer" element={<Customer />}></Route>
-          <Route path="/track" element={<Track />}></Route>
         </Route>
 
+        {/* CUSTOMER ROUTE */}
+        <Route path="/customer" element={<Customer />}></Route>
+        <Route path="/track" element={<Track />}></Route>
+
+        {/* ADMIN ROUTES */}
         <Route
           path="/admin"
           element={<Navigate replace to="/admin/neworder" />}
