@@ -141,8 +141,8 @@ export default function App() {
   return (
     <>
       {/* <Navbar />
-      Moved NavBar to a layout component 
-      as the component takes effect for the whole site. 
+      Moved NavBar to Public.js layout component 
+      as the NavBar component takes effect for the whole site. 
       <div className="container">*/}
       <Routes>
         <Route path="/" element={<PublicLayout />}>
