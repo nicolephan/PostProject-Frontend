@@ -104,14 +104,17 @@
 
 // export default App;
 
-import React from "react";
+import React, { useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 
-//import Navbar from "./components/NavbarPublic/Navbar";
+//import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import Ship from "./pages/Ship";
 import About from "./pages/About/About";
 import Login from "./pages/Login/Login";
+import Admin from "./pages/AdminPage";
+import Customer from "./pages/CustomerPage";
+import Track from "./pages/IDTrack/IDTracking";
 
 import AdminLayout from "./layouts/Admin.js";
 import PublicLayout from "./layouts/Public.js";
@@ -147,6 +150,13 @@ export default function App() {
           <Route path="/ship" element={<Ship />}></Route>
           <Route path="/about" element={<About />}></Route>
           <Route path="/login" element={<Login />}></Route>
+
+          {/* ADMIN ROUTES */}
+          <Route path="/admin" element={<Admin />}></Route>
+
+          {/* CUSTOMER ROUTE */}
+          <Route path="/customer" element={<Customer />}></Route>
+          <Route path="/track" element={<Track />}></Route>
         </Route>
 
         <Route

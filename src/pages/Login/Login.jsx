@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import ReactDOM from "react-dom";
+import React, {useState, useRef, useEffect} from "react";
+// import ReactDOM from "react-dom";
 import "./Login.css"
 
 export default function Login(){
@@ -17,7 +17,92 @@ export default function Login(){
     );
 }
 
+//LOGIN REGISTER FORM 3.0
+// const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
+// const PWD_REGEX = />(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8-24}$/;
+
+// const LoginForm = () =>{
+//     return(
+//         <div>Login</div>
+//     );
+// }
+// const RegisterForm = () => {
+//     const userRef = useRef();
+//     const errRef = useRef();
+
+//     const [firstName, setFirstName] = useState('');
+//     const [validFName, setValidFName] = useState(false);
+//     const [fNameFocus, setFNameFocus] = useState(false);
+//     const [lastName, setLastName] = useState('');
+//     const [validLName, setValidLName] = useState(false);
+//     const [lNameFocus, setLNameFocus] = useState(false);
+//     const [email, setEmail] = useState('');
+//     const [validEmail, setValidEmail] = useState(false);
+//     const [emailFocus, setEmailFocus] = useState(false);
+//     const [password, setPass] = useState('');
+//     const [validpass, setValidPass] = useState(false);
+//     const [passFocus, setPassFocus] = useState(false);
+
+//     const [matchPass, setMatchPass] = useState('');
+//     const [validMatch, setValidMatch] = useState(false);
+//     const [matchFocus, setMatchFocus] = useState(false);
+
+//     const [errMsg, setErrMsg] = useState('');
+//     const [success, setSuccess] = useState(false);
+
+//     useEffect(() => {
+//         userRef.current.focus();
+//     })
+//     useEffect(() => {
+//         setErrMsg('');
+//     }, [firstName, password, matchPass])
+//     useEffect(() =>{
+//         const result = USER_REGEX.text(firstName);
+//         console.log(result);
+//         console.log(firstName);
+//         setValidFName(result);
+//     }, [firstName])
+//     useEffect(() =>{
+//         const result = PWD_REGEX.text(password);
+//         console.log(result);
+//         console.log(password);
+//         setValidPass(result);
+//         const match = password === matchPass;
+//         setValidMatch(match);
+//     }, [password, matchPass])
+
+//     return(
+//         <section>
+//             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}
+//                 aria-live="assertive">{errMsg}</p>
+//             <h1>Register</h1>
+//             <form>
+//                 <label htmlFor="firstname">First Name: </label>
+//                 <input
+//                     type="text"
+//                     id="username"
+//                     ref={userRef}
+//                     autoComplete="off"
+//                     onChange={(e) => setFirstName(e.target.value)}
+//                     required
+//                     aria-invalid={validFName ? "false" : "true"}
+//                     aria-describedby="uidnote"
+//                     onFocus={() => setFNameFocus(true)}
+//                     onBlur={() => setFNameFocus(false)}
+//                 />
+//                 <p id="uidnote" className={fNameFocus && firstName && !validFName ? "instructions" : "offscreen"}>
+//                     4 to 24 characters.
+//                 </p>
+//             </form>
+//         </section>
+//     );
+// }
+
+
+//LOGIN REGISTER FORM 2.0
 const LoginForm = () =>{
+    const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
+const PWD_REGEX = />(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8-24}$/;
     const [email, setEmail] = useState('');
     const [password, setPass] = useState('');
 
