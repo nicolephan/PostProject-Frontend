@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/NavbarPublic/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 
 // Front page layout with components:
 // Navbar
