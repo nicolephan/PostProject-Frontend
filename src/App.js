@@ -105,15 +105,16 @@
 // export default App;
 
 import React from "react";
-import { Route, Routes, Link, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 
-import Navbar from "./components/NavbarPublic/Navbar";
+//import Navbar from "./components/NavbarPublic/Navbar";
 import Home from "./pages/Home/Home";
 import Ship from "./pages/Ship";
 import About from "./pages/About/About";
 import Login from "./pages/Login/Login";
 
 import AdminLayout from "./layouts/Admin.js";
+import PublicLayout from "./layouts/Public.js";
 import routes from "./routes.js";
 
 // Function to return all route from routes.js
@@ -136,22 +137,27 @@ const getRoutes = (routes, layout) => {
 export default function App() {
   return (
     <>
-      <Navbar />
-      <div className="container">
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
+      {/* <Navbar />
+      Moved NavBar to a layout component 
+      as the component takes effect for the whole site. 
+      <div className="container">*/}
+      <Routes>
+        <Route path="/" element={<PublicLayout />}>
+          <Route index element={<Home />}></Route>
           <Route path="/ship" element={<Ship />}></Route>
           <Route path="/about" element={<About />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route
-            path="/admin"
-            element={<Navigate replace to="/admin/neworder" />}
-          />
-          <Route path="/admin" element={<AdminLayout />}>
-            <Route>{getRoutes(routes, "/admin")}</Route>
-          </Route>
-        </Routes>
-      </div>
+        </Route>
+
+        <Route
+          path="/admin"
+          element={<Navigate replace to="/admin/neworder" />}
+        />
+        {/* Return all routes from routes.js list */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route>{getRoutes(routes, "/admin")}</Route>
+        </Route>
+      </Routes>
     </>
   );
 }
