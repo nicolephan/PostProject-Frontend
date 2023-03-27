@@ -4,7 +4,7 @@ import "./Login.css"
 
 export default function Login(){
     return(
-        <div className="container-signin">
+        <div className="container-forms">
             <div className="login">
                 <h2>Login</h2>
                 <LoginForm />
@@ -101,8 +101,6 @@ export default function Login(){
 
 //LOGIN REGISTER FORM 2.0
 const LoginForm = () =>{
-    const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
-const PWD_REGEX = />(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8-24}$/;
     const [email, setEmail] = useState('');
     const [password, setPass] = useState('');
 

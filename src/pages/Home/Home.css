@@ -1,19 +1,18 @@
-*{
-    /* border: 1px solid red; */
-}
-
 .hTrackPackage{
     font-family: var(--font-family);
-    justify-content: center;
-    padding: 2rem;
-    display: inline-flexbox;
-    /* inline-size: 70%; */
+    margin: 2rem;
+    display:flex;
+    align-items: center;
     flex-direction: column;
 }
+.container-search{
 
-form {
-    /* background-color: aqua; */
-    display: inline-block;
-    padding-top: 0;
+    display:flex;
+    flex-direction: row;
     width: 70%;
+}
+button{
+    cursor:crosshair;
+    margin-left: 1rem;
+    width: 5rem;
 }

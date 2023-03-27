@@ -1,11 +1,14 @@
-/* *{
+*{
     box-sizing: border-box;
-} */
+}
 
 body{
     margin: 0;
-    /* background: #E4D0D0; */
     background: #b9cad5;
+}
+
+.page-container{
+    background-color: purple;
 }
 
 .nav{
