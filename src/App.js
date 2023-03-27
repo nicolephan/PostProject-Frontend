@@ -105,15 +105,10 @@
 // export default App;
 
 import React, {useState} from 'react';
-import Navbar from './components/Navbar/Navbar';
-import Home from './pages/Home/Home';
-import Ship from './pages/Ship';
-import About from './pages/About/About';
-import Login from './pages/Login/Login';
-import Admin from './pages/AdminPage';
-import Customer from './pages/CustomerPage';
-import Track from './pages/IDTrack/IDTracking';
 import { Route, Routes } from "react-router-dom";
+import Navbar from './components/Navbar/Navbar';
+import * as Pages from './pages';
+import './App.css';
 
 export default function App(){
 
@@ -123,17 +118,17 @@ export default function App(){
       <div className="container">
         <Routes>
           {/* PUBLIC ROUTES */}
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/ship" element={<Ship />}></Route>
-          <Route path="/about" element={<About />}></Route>
-          <Route path="/login" element={<Login />}></Route>
+          <Route path="/" element={<Pages.Home />}></Route>
+          <Route path="/ship" element={<Pages.Ship />}></Route>
+          <Route path="/about" element={<Pages.About />}></Route>
+          <Route path="/login" element={<Pages.Login />}></Route>
 
           {/* ADMIN ROUTES */}
-          <Route path="/admin" element={<Admin />}></Route>
+          <Route path="/admin" element={<Pages.Admin />}></Route>
 
           {/* CUSTOMER ROUTE */}
-          <Route path="/customer" element={<Customer />}></Route>
-          <Route path="/track" element={<Track />}></Route>
+          <Route path="/customer" element={<Pages.Customer />}></Route>
+          <Route path="/track" element={<Pages.Track />}></Route>
         </Routes>
       </div>
     </>
