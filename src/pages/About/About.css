@@ -1,0 +1,23 @@
+.container-about{
+    font-family: var(--font-family);
+    color: #051923;
+    text-align: center;
+}
+.team-members{
+    display: flex;
+}
+.description-txt{
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+}
+.img{
+    align-self:first baseline;
+    margin: 2rem;
+    width: 10rem;
+    border-radius: 8px;
+}
+.description-txt{
+    margin: 0;
+    padding: 20px;
+}

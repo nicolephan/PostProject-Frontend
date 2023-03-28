@@ -1,5 +1,5 @@
-import "./Navbar.css"
-import {Link, useMatch, useResolvedPath} from "react-router-dom"
+import "./Navbar.css";
+import {Link, useMatch, useResolvedPath} from "react-router-dom";
 
 export default function Navbar(){
     return(
@@ -9,7 +9,13 @@ export default function Navbar(){
                 <ul>
                     <CustomLink to="/ship">Ship</CustomLink>
                     <CustomLink to="/about">About</CustomLink>
+
+                    {/* PUBLIC */}
                     <CustomLink to="/login">Sign In</CustomLink>
+                    {/* ADMIN */}
+                    {/* <CustomLink to="/admin">Admin</CustomLink> */}
+                    {/* CUSTOMER */}
+                    {/* <CustomLink to="/customer">Customer</CustomLink> */}
                 </ul>
             </nav>
         </div>

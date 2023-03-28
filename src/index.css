@@ -13,13 +13,12 @@ code {
 } */
 
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
-
 :root {
   --font-family: 'Manrope', sans-serif;
 
   /* --gradient-text: linear-gradient(89.97deg, #AE67FA 1.84%, #F49867 102.67%);
   --gradient-bar: linear-gradient(103.22deg, #AE67FA -13.86%, #F49867 99.55%); */
-  /* --color-bg: linear-gradient(90deg, #37306B 0%, #9E4784 100%);  */
+  --color-bg: linear-gradient(41deg, #867070 0%, #E4D0D0 100%);
   /* --color-bg: #040C18; */
   /* --color-bg: linear-gradient(124deg, #1971ff, #00D1FF, #b7edff, #d0f5fe); */
   /* --color-footer : #031B34;
