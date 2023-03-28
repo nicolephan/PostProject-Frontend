@@ -11,6 +11,7 @@ package-lock.json
 
 # production
 /build
+setupProxy.js
 
 # misc
 .DS_Store
