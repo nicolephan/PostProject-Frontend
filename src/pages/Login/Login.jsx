@@ -31,8 +31,8 @@ function LoginForm() {
     
         const options = {
           method: "POST",
-          url: 'https://postoffice-api.herokuapp.com/api/login',
-        //   url: "/api/login", // for dev
+        //   url: 'https://postoffice-api.herokuapp.com/api/login',
+          url: "/api/login", // for dev
           headers: {
             "Content-Type": "application/json",
           },
