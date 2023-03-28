@@ -49,10 +49,10 @@ export default function Home() {
 
       <div>
         {result && (
-          <p>
+          <div>
             API response:
             <pre>{JSON.stringify(result, null, 2)}</pre>
-          </p>
+          </div>
         )}
       </div>
     </div>
