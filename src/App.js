@@ -110,6 +110,7 @@ import Navbar from './components/Navbar/Navbar';
 import * as Pages from './pages';
 import './App.css';
 
+//todo remove this
 const USER_TYPES = {
   PUBLIC: 'Public',
   CUSTOMER_USER: 'Customer',

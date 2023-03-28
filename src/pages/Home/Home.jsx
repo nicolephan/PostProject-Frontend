@@ -1,30 +1,47 @@
-import REACT, {useRef} from 'react';
-import "./Home.css";
+// import REACT, {useRef} from 'react';
+// import "./Home.css";
 
-export default function Home(){
-    return(
-        <div className="hTrackPackage">
-            <h1>Track A Package</h1>
-            <SearchBar />
-        </div>
-    );
-}
-
-
-// function SearchBar(){
+// export default function Home(){
 //     return(
-//         <form action="/" method="get">
-//             <label htmlFor="header-search"></label>
-//             <input
-//                 type="text"
-//                 id="header-search"
-//                 placeholder="Package #ID"
-//                 name="s"
-//             />
-//             <button type="submit">Enter</button>
-//         </form>
+//         <div className="hTrackPackage">
+//             <h1>Track A Package</h1>
+//             <SearchBar />
+//         </div>
 //     );
 // }
+
+import React, { useRef, useState } from 'react';
+import './Home.css';
+
+export default function Home() {
+  const [inputValue, setInputValue] = useState('');
+  const inputRef = useRef();
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    setInputValue(inputRef.current.value.trim());
+  };
+
+  return (
+    <div className="hTrackPackage">
+      <h1>Track A Package</h1>
+
+      
+      <form onSubmit={handleFormSubmit}>
+        <div className='input-group'>
+            <input type="text" ref={inputRef} />
+            <button type="submit">Submit</button>
+        </div>
+      </form>
+      
+
+
+      <div>
+      {inputValue && <p>You entered: {inputValue}</p>}
+      </div>
+    </div>
+  );
+}
 
 function SearchBar(props){
     const query = useRef();
