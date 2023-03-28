@@ -31,7 +31,8 @@ function LoginForm() {
     
         const options = {
           method: "POST",
-          url: "/api/login",
+          url: 'https://postoffice-api.herokuapp.com/api/login',
+        //   url: "/api/login", // for dev
           headers: {
             "Content-Type": "application/json",
           },
@@ -70,7 +71,7 @@ function LoginForm() {
                     <input 
                         value={email} 
                         onChange={(e) => setEmail(e.target.value)} 
-                        type="email" id="email" name="email" 
+                        type="email"
                         required
                     />
                 </label>
@@ -79,7 +80,7 @@ function LoginForm() {
                     <input 
                         value={password} 
                         onChange={(e) => setPassword(e.target.value)} 
-                        type="password" id="password" name="password" 
+                        type="password"
                         required
                     />
                 </label>

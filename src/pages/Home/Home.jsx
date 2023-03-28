@@ -23,7 +23,8 @@ export default function Home() {
     event.preventDefault(); // Prevent default form submission behavior
     const options = {
         method: 'GET',
-        url: '/api/users', // Use the /api prefix
+        url: 'https://postoffice-api.herokuapp.com/api/users',
+        // url: '/api/users', // Use the /api prefix FOR DEV
         headers: {'Content-Type': 'application/json'}
       };
       
@@ -50,7 +51,7 @@ export default function Home() {
       <div>
         {result && (
           <div>
-            API response:
+            Data:
             <pre>{JSON.stringify(result, null, 2)}</pre>
           </div>
         )}
