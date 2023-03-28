@@ -12,7 +12,7 @@
     width: 70%;
 }
 button{
-    cursor:crosshair;
+    cursor:pointer;
     margin-left: 1rem;
     width: 5rem;
 }

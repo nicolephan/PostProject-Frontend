@@ -110,6 +110,12 @@ import Navbar from './components/Navbar/Navbar';
 import * as Pages from './pages';
 import './App.css';
 
+const USER_TYPES = {
+  PUBLIC: 'Public',
+  CUSTOMER_USER: 'Customer',
+  ADMIN_USER: 'Admin'
+}
+
 export default function App(){
 
   return(
@@ -118,17 +124,17 @@ export default function App(){
       <div className="container">
         <Routes>
           {/* PUBLIC ROUTES */}
-          <Route path="/" element={<Pages.Home />}></Route>
-          <Route path="/ship" element={<Pages.Ship />}></Route>
-          <Route path="/about" element={<Pages.About />}></Route>
-          <Route path="/login" element={<Pages.Login />}></Route>
+          <Route exact path="/" element={<Pages.Home />}></Route>
+          <Route exact path="/ship" element={<Pages.Ship />}></Route>
+          <Route exact path="/about" element={<Pages.About />}></Route>
+          <Route exact path="/login" element={<Pages.Login />}></Route>
 
           {/* ADMIN ROUTES */}
-          <Route path="/admin" element={<Pages.Admin />}></Route>
+          <Route exact path="/admin" element={<Pages.Admin />}></Route>
 
           {/* CUSTOMER ROUTE */}
-          <Route path="/customer" element={<Pages.Customer />}></Route>
-          <Route path="/track" element={<Pages.Track />}></Route>
+          <Route exact path="/customer" element={<Pages.Customer />}></Route>
+          <Route exact path="/track" element={<Pages.Track />}></Route>
         </Routes>
       </div>
     </>

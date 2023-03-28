@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, {useState, useRef, useEffect} from "react";
 // import ReactDOM from "react-dom";
 import "./Login.css"
@@ -101,12 +102,17 @@ export default function Login(){
 
 //LOGIN REGISTER FORM 2.0
 const LoginForm = () =>{
-    const [email, setEmail] = useState('');
-    const [password, setPass] = useState('');
+    const [email, setEmail] = useState();
+    const [password, setPass] = useState();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(email);
+
+        // console.log(email);
+        axios.post("http://localhost:3000/login", {email, password})
+        .then(response => {
+            console.log(response) //handles response
+        })
     }
 
     return(
