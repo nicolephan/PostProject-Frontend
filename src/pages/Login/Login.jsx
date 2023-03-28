@@ -48,8 +48,8 @@ function LoginForm() {
             axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('access_token')}`;
 
             //FIXME: remove for prod
-            // console.log(token);
-            // console.log(role);
+            console.log(token);
+            console.log(role);
 
             if (role === 'admin') {
                 navigate('/admin');
