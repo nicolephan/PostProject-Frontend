@@ -139,6 +139,7 @@ const LoginForm = () =>{
 const RegisterForm = () =>{
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [address, setAddress] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPass] = useState('');
 
@@ -174,6 +175,15 @@ const RegisterForm = () =>{
                         value={email} 
                         onChange={(e) => setEmail(e.target.value)} 
                         type="email" id="email" name="email" 
+                        required
+                    />
+                </label>
+                <label htmlFor="address">
+                    Address:
+                    <input 
+                        value={address} 
+                        onChange={(e) => setAddress(e.target.value)} 
+                        type="text" id="address" name="address" 
                         required
                     />
                 </label>
