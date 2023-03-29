@@ -15,7 +15,7 @@ export default function Navbar(){
                     {/* ADMIN */}
                     {/* <CustomLink to="/admin">Admin</CustomLink> */}
                     {/* CUSTOMER */}
-                    {/* <CustomLink to="/customer">Customer</CustomLink> */}
+                    <CustomLink to="/customer">Customer</CustomLink>
                 </ul>
             </nav>
         </div>
