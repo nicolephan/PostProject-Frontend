@@ -4,7 +4,7 @@
 
 // const USER_TYPES = {
 //   PUBLIC: 'Public User',
-//   NORMAL_USER:"Normal User", 
+//   NORMAL_USER:"Normal User",
 //   ADMIN_USER:"Admin User"
 // }
 // const CURRENT_USER_TYPE = USER_TYPES.PUBLIC
@@ -12,13 +12,13 @@
 // function App(){
 //   return(
 //     <div>
-//       <div style={{ 
-//         display: "flex", 
-//         gap:12, 
+//       <div style={{
+//         display: "flex",
+//         gap:12,
 //         padding: 8,
 //         backgroundColor: "rgb(110, 110, 210)",
-//         borderBottom: "1px solid red", 
-//         color: "white:", 
+//         borderBottom: "1px solid red",
+//         color: "white:",
 //         maginBottom: 8,
 //         }}
 //       >
@@ -26,7 +26,7 @@
 //           Home
 //         </Link>
 
-//         {CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER || 
+//         {CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER ||
 //           CURRENT_USER_TYPE === USER_TYPES.NORMAL_USER?(<>
 //           <Link style={{color:"white"}} to={"/user"}>
 //             User
@@ -42,7 +42,7 @@
 //           <Link style={{color:"white"}} to={"/admin"}>Admin</Link>
 //         </>
 //         ) : null}
-        
+
 //         <div>You are Logged in as: {CURRENT_USER_TYPE}</div>
 //       </div>
 //       <AppRoutes />
@@ -54,8 +54,8 @@
 //   return (
 //     <div>
 //       <Routes>
-//         <Route 
-//           path="/" 
+//         <Route
+//           path="/"
 //           element={
 //             <PublicElement>
 //               <Home />
@@ -104,20 +104,23 @@
 
 // export default App;
 
-import React, {useState} from 'react';
-import Navbar from './components/Navbar/Navbar';
-import Home from './pages/Home/Home';
-import Ship from './pages/Ship';
-import About from './pages/About/About';
-import Login from './pages/Login/Login';
-import Admin from './pages/AdminPage';
-import Customer from './pages/CustomerPage';
-import Track from './pages/IDTrack/IDTracking';
+import React, { useState } from "react";
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./pages/Home/Home";
+import Ship from "./pages/Ship";
+import About from "./pages/About/About";
+import Login from "./pages/Login/Login";
+import Admin from "./pages/AdminPage";
+//import Customer from './pages/CustomerPage';
+import Track from "./pages/IDTrack/IDTracking";
+
+import CustomerLayout from "./layouts/Customer";
+import ShippingForm from "./pages/Customer/ShippingForm";
+
 import { Route, Routes } from "react-router-dom";
 
-export default function App(){
-
-  return(
+export default function App() {
+  return (
     <>
       <Navbar />
       <div className="container">
@@ -132,8 +135,10 @@ export default function App(){
           <Route path="/admin" element={<Admin />}></Route>
 
           {/* CUSTOMER ROUTE */}
-          <Route path="/customer" element={<Customer />}></Route>
-          <Route path="/track" element={<Track />}></Route>
+          <Route path="/customer" element={<CustomerLayout />}>
+            <Route path="track" element={<Track />}></Route>
+            <Route path="neworder" element={<ShippingForm />}></Route>
+          </Route>
         </Routes>
       </div>
     </>
