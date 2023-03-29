@@ -9,11 +9,8 @@ export default function About(){
                     alt="Profile"
                 />
                 <div className="description-txt">
-                    <h3>Name</h3>
-                    <p>hi feafeafeafeafea grsigjrios jisrjgiojioa feaf afefea
-                        feafeafeafeafeagaa ag dsad a ifjiajfeai fjeiafjeioaw jijafe
-                        faifejaiofejaioea fejaifjeaiofjeaifa feafewa feaf
-                        feiafjeaiofjeaiofjeaiofeioawf fajfi jfieajfio feawf 
+                    <h3>Maximillian Chalitsios</h3>
+                    <p>[Description]
                     </p>
                 </div>
             </div>
@@ -22,8 +19,8 @@ export default function About(){
                     alt="Profile"
                 />
                 <div className="description-txt">
-                    <h3>Name</h3>
-                    <p>hi</p>
+                    <h3>Noah Morton</h3>
+                    <p>[Description]</p>
                 </div>
             </div> 
             <div className='team-members'>
@@ -31,8 +28,8 @@ export default function About(){
                     alt="Profile"
                 />
                 <div className="description-txt">
-                    <h3>Name</h3>
-                    <p>hi</p>
+                    <h3>Anh Nhu Nhan Nguyen</h3>
+                    <p>[Description]</p>
                 </div>
             </div> 
             <div className='team-members'>
@@ -40,8 +37,8 @@ export default function About(){
                     alt="Profile"
                 />
                 <div className="description-txt">
-                    <h3>Name</h3>
-                    <p>hi</p>
+                    <h3>Nicole Phan</h3>
+                    <p>[Description]</p>
                 </div>
             </div>      
         </div>
