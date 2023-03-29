@@ -5,6 +5,9 @@ import * as Pages from "./pages";
 import "./App.css";
 import ProtectedRoutes from "./components/protectedRoutes";
 
+import CustomerLayout from "./layouts/Customer";
+import ShippingForm from "./pages/Customer/ShippingForm";
+
 export default function App() {
   return (
     <>
@@ -24,7 +27,7 @@ export default function App() {
 
           {/* CUSTOMER ROUTE */}
           <Route path="/customer" element={<CustomerLayout />}>
-            <Route path="track" element={<Track />}></Route>
+            <Route path="track" element={<Pages.Track />}></Route>
             <Route path="neworder" element={<ShippingForm />}></Route>
           </Route>
         </Routes>
