@@ -3,6 +3,13 @@ import axios from 'axios';
 
 
 
+  
+
+const ProtectedRoutes = () => {
+  
+  const role = localStorage.getItem('role');
+  //console.log(role);
+
   //TODO FIX PREFLIGHT REQUEST ON BACKEND SIDE
   const fetchData = async () => {
     
@@ -10,7 +17,7 @@ import axios from 'axios';
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     const options = {
       method: 'GET',
-      url: 'http://localhost:5000/admin', // Use the /api prefix
+      url: 'https://postoffice-api.herokuapp.com/api/admin', // Use the /api prefix
       headers: {'Content-Type': 'application/json', Authorization: `Bearer ${token}`,}
     };
 
@@ -21,14 +28,9 @@ import axios from 'axios';
       console.log(error); // handle the error
     }
   };
-
-const ProtectedRoutes = () => {
-  
-  const role = localStorage.getItem('role');
-  console.log(role);
   
   
-
+  console.log('here');
   fetchData();
 
   if (role === 'admin')
