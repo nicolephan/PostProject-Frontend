@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './IDTracking.css';
 
 export default function Track(){
+    //define progress (useState)
+    //define state (useState)
+    //define ID (useState)
+    const [progress, setProgress] = useState('');
+    
+    
     return (
         <div className="container-track">
             <h2>Package ID: [INSERT ID#]</h2>

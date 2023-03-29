@@ -1,0 +1,24 @@
+
+.container-customer{
+    font-family: var(--font-family);
+    list-style: none;
+    margin: 1rem;
+}
+.header-customer{
+    padding: 1rem;
+}
+.info-details{
+    /* padding: 1rem; */
+    padding-left: 1rem;
+}
+.customerInfo{
+    background-color: #DCDCDD;
+    height: 8rem;
+    border-radius: 8px;
+}
+.container-title{
+    font-weight: bold;
+    background-color: #c2c2c2;
+    padding: 1rem;
+    border-radius: 8px 8px 0px 0px;
+}

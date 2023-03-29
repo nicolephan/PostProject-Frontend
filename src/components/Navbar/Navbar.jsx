@@ -5,7 +5,7 @@ export default function Navbar(){
     return(
         <div className="page-container">
             <nav className="nav">
-                <Link to="/" className="home-title">HOME</Link>
+                <Link to="/" className="home-title">QuickShip</Link>
                 <ul>
                     <CustomLink to="/ship">Ship</CustomLink>
                     <CustomLink to="/about">About</CustomLink>
