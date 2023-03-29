@@ -23,8 +23,8 @@ export default function Home() {
     event.preventDefault(); // Prevent default form submission behavior
     const options = {
         method: 'GET',
-        // url: 'https://postoffice-api.herokuapp.com/api/users',
-        url: '/api/users', // Use the /api prefix FOR DEV
+        url: 'https://postoffice-api.herokuapp.com/api/users',
+        // url: '/api/users', // Use the /api prefix FOR DEV
         headers: {'Content-Type': 'application/json'}
       };
       

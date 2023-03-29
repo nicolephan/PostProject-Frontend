@@ -31,8 +31,8 @@ function LoginForm() {
     
         const options = {
           method: "POST",
-        //   url: 'https://postoffice-api.herokuapp.com/api/login',
-          url: "/api/login", // for dev
+          url: 'https://postoffice-api.herokuapp.com/api/login',
+        //   url: "/api/login", // for dev
           headers: {
             "Content-Type": "application/json",
           },
@@ -49,10 +49,9 @@ function LoginForm() {
             axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('access_token')}`;
 
             //FIXME: remove for prod
-            console.log(token);
-            console.log(role);
-
             if (role === 'admin') {
+                console.log(token);
+                console.log(role);
                 navigate('/admin');
             } else {
                 navigate('/');
