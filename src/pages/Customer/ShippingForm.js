@@ -16,8 +16,25 @@ const ShippingForm = () => {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    try {
+      let res = await fetch("https://postoffice-api.herokuapp.com/api/post", {
+        method: "POST",
+        body: JSON.stringify({
+          firstname: form.firstname,
+          lastname: form.lastname,
+        }),
+      });
+      let resJson = await res.json();
+      if (res.status == 200) {
+        setForm({});
+        alert("Submitted successfully");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+
     alert(form.firstname + " " + form.lastname + " " + form.address);
   };
 
