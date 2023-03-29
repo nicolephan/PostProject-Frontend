@@ -1,11 +1,11 @@
-import "./Navbar.css"
-import {Link, useMatch, useResolvedPath} from "react-router-dom"
+import "./Navbar.css";
+import {Link, useMatch, useResolvedPath} from "react-router-dom";
 
 export default function Navbar(){
     return(
         <div className="page-container">
             <nav className="nav">
-                <Link to="/" className="home-title">HOME</Link>
+                <Link to="/" className="home-title">QuickShip</Link>
                 <ul>
                     <CustomLink to="/ship">Ship</CustomLink>
                     <CustomLink to="/about">About</CustomLink>
@@ -13,9 +13,9 @@ export default function Navbar(){
                     {/* PUBLIC */}
                     <CustomLink to="/login">Sign In</CustomLink>
                     {/* ADMIN */}
-                    <CustomLink to="/admin">Profile</CustomLink>
+                    {/* <CustomLink to="/admin">Admin</CustomLink> */}
                     {/* CUSTOMER */}
-                    <CustomLink to="/customer">Profile</CustomLink>
+                    {/* <CustomLink to="/customer">Customer</CustomLink> */}
                 </ul>
             </nav>
         </div>

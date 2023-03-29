@@ -1,10 +1,12 @@
+import axios from "axios";
 import React, {useState, useRef, useEffect} from "react";
+import { useNavigate } from 'react-router-dom';
 // import ReactDOM from "react-dom";
 import "./Login.css"
 
 export default function Login(){
     return(
-        <div className="container-signin">
+        <div className="container-forms">
             <div className="login">
                 <h2>Login</h2>
                 <LoginForm />
@@ -17,99 +19,48 @@ export default function Login(){
     );
 }
 
-//LOGIN REGISTER FORM 3.0
-// const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
-// const PWD_REGEX = />(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8-24}$/;
-
-// const LoginForm = () =>{
-//     return(
-//         <div>Login</div>
-//     );
-// }
-// const RegisterForm = () => {
-//     const userRef = useRef();
-//     const errRef = useRef();
-
-//     const [firstName, setFirstName] = useState('');
-//     const [validFName, setValidFName] = useState(false);
-//     const [fNameFocus, setFNameFocus] = useState(false);
-//     const [lastName, setLastName] = useState('');
-//     const [validLName, setValidLName] = useState(false);
-//     const [lNameFocus, setLNameFocus] = useState(false);
-//     const [email, setEmail] = useState('');
-//     const [validEmail, setValidEmail] = useState(false);
-//     const [emailFocus, setEmailFocus] = useState(false);
-//     const [password, setPass] = useState('');
-//     const [validpass, setValidPass] = useState(false);
-//     const [passFocus, setPassFocus] = useState(false);
-
-//     const [matchPass, setMatchPass] = useState('');
-//     const [validMatch, setValidMatch] = useState(false);
-//     const [matchFocus, setMatchFocus] = useState(false);
-
-//     const [errMsg, setErrMsg] = useState('');
-//     const [success, setSuccess] = useState(false);
-
-//     useEffect(() => {
-//         userRef.current.focus();
-//     })
-//     useEffect(() => {
-//         setErrMsg('');
-//     }, [firstName, password, matchPass])
-//     useEffect(() =>{
-//         const result = USER_REGEX.text(firstName);
-//         console.log(result);
-//         console.log(firstName);
-//         setValidFName(result);
-//     }, [firstName])
-//     useEffect(() =>{
-//         const result = PWD_REGEX.text(password);
-//         console.log(result);
-//         console.log(password);
-//         setValidPass(result);
-//         const match = password === matchPass;
-//         setValidMatch(match);
-//     }, [password, matchPass])
-
-//     return(
-//         <section>
-//             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}
-//                 aria-live="assertive">{errMsg}</p>
-//             <h1>Register</h1>
-//             <form>
-//                 <label htmlFor="firstname">First Name: </label>
-//                 <input
-//                     type="text"
-//                     id="username"
-//                     ref={userRef}
-//                     autoComplete="off"
-//                     onChange={(e) => setFirstName(e.target.value)}
-//                     required
-//                     aria-invalid={validFName ? "false" : "true"}
-//                     aria-describedby="uidnote"
-//                     onFocus={() => setFNameFocus(true)}
-//                     onBlur={() => setFNameFocus(false)}
-//                 />
-//                 <p id="uidnote" className={fNameFocus && firstName && !validFName ? "instructions" : "offscreen"}>
-//                     4 to 24 characters.
-//                 </p>
-//             </form>
-//         </section>
-//     );
-// }
-
 
 //LOGIN REGISTER FORM 2.0
-const LoginForm = () =>{
-    const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
-const PWD_REGEX = />(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8-24}$/;
+function LoginForm() {
     const [email, setEmail] = useState('');
-    const [password, setPass] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+  
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+    
+        const options = {
+          method: "POST",
+          url: 'https://postoffice-api.herokuapp.com/api/login',
+        //   url: "/api/login", // for dev
+          headers: {
+            "Content-Type": "application/json",
+          },
+          data: { email, password },
+        };
+    
+        try {
+            const response = await axios.request(options);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(email);
-    }
+            const { token, role } = response.data;
+            //Save JWT to local storage
+            localStorage.setItem('access_token', token);
+            localStorage.setItem('role', role);
+            axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('access_token')}`;
+
+            //FIXME: remove for prod
+            if (role === 'admin') {
+                console.log(token);
+                console.log(role);
+                navigate('/admin');
+            } else {
+                navigate('/');
+            }
+
+          } catch (error) {
+            console.error(error);
+          }
+      };
 
     return(
         <div className="container-login">
@@ -119,7 +70,7 @@ const PWD_REGEX = />(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8-24}$/;
                     <input 
                         value={email} 
                         onChange={(e) => setEmail(e.target.value)} 
-                        type="email" id="email" name="email" 
+                        type="email"
                         required
                     />
                 </label>
@@ -127,8 +78,8 @@ const PWD_REGEX = />(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8-24}$/;
                     Password:
                     <input 
                         value={password} 
-                        onChange={(e) => setPass(e.target.value)} 
-                        type="password" id="password" name="password" 
+                        onChange={(e) => setPassword(e.target.value)} 
+                        type="password"
                         required
                     />
                 </label>
@@ -141,6 +92,7 @@ const PWD_REGEX = />(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8-24}$/;
 const RegisterForm = () =>{
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [address, setAddress] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPass] = useState('');
 
@@ -176,6 +128,15 @@ const RegisterForm = () =>{
                         value={email} 
                         onChange={(e) => setEmail(e.target.value)} 
                         type="email" id="email" name="email" 
+                        required
+                    />
+                </label>
+                <label htmlFor="address">
+                    Address:
+                    <input 
+                        value={address} 
+                        onChange={(e) => setAddress(e.target.value)} 
+                        type="text" id="address" name="address" 
                         required
                     />
                 </label>
