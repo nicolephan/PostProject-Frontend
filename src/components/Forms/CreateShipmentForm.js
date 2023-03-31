@@ -27,6 +27,7 @@ const CreateShipmentForm = () => {
         "https://postoffice-api.herokuapp.com/api/create-shipment",
         {
           method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             tracking_id: form.tracking_id,
             creation_date: currentDate,
