@@ -20,6 +20,7 @@ export default function App() {
           <Route exact path="/about" element={<Pages.About />}></Route>
           <Route exact path="/login" element={<Pages.Login />}></Route>
 
+          {/* ADMIN PROTECTED ROUTES */}
           <Route element={<ProtectedRoutes />}>
             <Route element={<Pages.Home />} path="/" exact />
             <Route element={<Pages.Admin />} path="/admin" />
@@ -37,7 +38,6 @@ export default function App() {
             <Route path="neworder" element={<ShippingForm />}></Route>
           </Route>
         </Routes>
-        {/* ADMIN ROUTES */}
       </div>
     </>
   );
