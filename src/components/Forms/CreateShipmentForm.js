@@ -1,15 +1,18 @@
 import React from "react";
 
-// Shipping form
+// Create Shipment form
 
 const CreateShipmentForm = () => {
+  // Set default values
+  let currentDate = new Date().toJSON().slice(0, 10); // Auto set current date
+
   const [form, setForm] = React.useState({
-    firstname: "",
-    lastname: "",
-    address: "",
+    shipment_status: "Labeling",
+    region: "North America",
+    creation_date: currentDate,
   });
 
-  // Save change to input
+  // Save input to variable
   const handleChange = (event) => {
     setForm({
       ...form,
@@ -19,18 +22,20 @@ const CreateShipmentForm = () => {
 
   // Action on submission
   const handleSubmit = async (event) => {
-    let currentDate = new Date().toJSON().slice(0, 10); // Auto set current date
-
     event.preventDefault();
     try {
       let res = await fetch(
         "https://postoffice-api.herokuapp.com/api/create-shipment",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          // Body from form data
           body: JSON.stringify({
             tracking_id: form.tracking_id,
-            creation_date: currentDate,
+            creation_date: form.creation_date,
             current_location: form.current_location,
             shipment_status: form.shipment_status,
             num_packages: form.num_packages,
@@ -38,17 +43,29 @@ const CreateShipmentForm = () => {
           }),
         }
       );
-      let resJson = await res.json();
+      let resJson = await res.json(); // Response code
+
+      // Check successful status
+      // Doesnt work for now
       if (res.status == 200) {
-        setForm({});
-        alert("Submitted successfully");
+        setForm({}); // Reset form
+        console.log("Submitted successfully");
+      } else {
+        console.log("Status: " + resJson);
       }
     } catch (err) {
       console.log(err);
     }
 
     // Alert values test
-    //alert(form.tracking_id + " " + form.shipment_status + " " + currentDate);
+    alert(
+      "Temporary Submit Message: " +
+        form.tracking_id +
+        " " +
+        form.shipment_status +
+        " " +
+        currentDate
+    );
   };
 
   return (
@@ -88,10 +105,11 @@ const CreateShipmentForm = () => {
           />
           <label htmlFor="region">Region</label>
           <select id="region" value={form.region} onChange={handleChange}>
-            <option value="North">North America</option>
+            <option value="North America">North America</option>
             <option value="Asia">Asia</option>
             <option value="Europe">Europe</option>
           </select>
+          <h2>{form.region}</h2>
         </div>
         <button type="submit">Submit</button>
       </form>
