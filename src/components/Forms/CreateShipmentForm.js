@@ -46,7 +46,7 @@ const CreateShipmentForm = () => {
       let resJson = await res.json(); // Response code
 
       // Check successful status
-      // Doesnt work for now
+      // Doesnt currently work for localhost
       if (res.status == 200) {
         setForm({}); // Reset form
         console.log("Submitted successfully");
