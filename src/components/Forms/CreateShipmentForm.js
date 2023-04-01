@@ -3,16 +3,16 @@ import React from "react";
 // Create Shipment form
 
 const CreateShipmentForm = () => {
-  // Set default values
-  let currentDate = new Date().toJSON().slice(0, 10); // Auto set current date
+  let currentDate = new Date().toJSON().slice(0, 10); // Get current date in format yyyy-mm-dd
 
+  // Set default values
   const [form, setForm] = React.useState({
     shipment_status: "Labeling",
     region: "North America",
     creation_date: currentDate,
   });
 
-  // Save input to variable
+  // Save form input to variable
   const handleChange = (event) => {
     setForm({
       ...form,
@@ -32,7 +32,7 @@ const CreateShipmentForm = () => {
             "Content-Type": "application/json",
           },
 
-          // Body from form data
+          // Body to be sent to DB from form input
           body: JSON.stringify({
             tracking_id: form.tracking_id,
             creation_date: form.creation_date,
@@ -110,7 +110,6 @@ const CreateShipmentForm = () => {
             <option value="Asia">Asia</option>
             <option value="Europe">Europe</option>
           </select>
-          <h2>{form.region}</h2>
         </div>
         <button type="submit">Submit</button>
       </form>
