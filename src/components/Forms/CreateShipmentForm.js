@@ -48,7 +48,7 @@ const CreateShipmentForm = () => {
       // Check successful status
       // Doesnt currently work
       // Waiting to debug CORS issue
-      if (res.status == 200) {
+      if (res.status === 200) {
         setForm({}); // Reset form
         console.log("Submitted successfully");
       } else {
