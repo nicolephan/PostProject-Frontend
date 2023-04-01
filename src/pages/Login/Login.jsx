@@ -42,6 +42,8 @@ function LoginForm() {
         try {
             const response = await axios.request(options);
 
+            //TODO get user email back in response
+            
             const { token, role } = response.data;
             //Save JWT to local storage
             localStorage.setItem('access_token', token);
