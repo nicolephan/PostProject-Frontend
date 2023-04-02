@@ -33,9 +33,12 @@ const ProtectedRoutes = () => {
   // console.log('here');
   // fetchData();
 
+
+  //TODO: route to other roles employee and customer.
+
   if (role === 'admin')
   {
-    return <Outlet />;
+    return <Outlet />; //returns to child property page
   } else {
     return <Navigate to="/" />; //TODO: navigate to a 403 page with a back button
   }
