@@ -15,7 +15,7 @@ import axios from 'axios';
 import './Home.css';
 
 export default function Home() {
-  const [inputValue, setInputValue] = useState('');
+  const [tracking_id, setTrackingID] = useState('');
   const [result, setResult] = useState(null);
   const inputRef = useRef();
 
@@ -23,28 +23,40 @@ export default function Home() {
   const handleFormSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
     const options = {
-        method: 'GET',
-        url: 'https://postoffice-api.herokuapp.com/api/tracks',
+        method: 'POST',
+        url: 'https://postoffice-api.herokuapp.com/api/shipment',
         // url: '/api/users', // Use the /api prefix FOR DEV
-        headers: {'Content-Type': 'application/json'}
+        headers: {'Content-Type': 'application/json'},
+        data: { tracking_id },
       };
       
+      //Handle the response data
       try {
         const response = await axios.request(options);
-        setResult(response.data);
+        var shipment = response.data;
+        const formattedDate = new Date(response.data.creation_date).toLocaleDateString('en-US');
+        shipment.creation_date = formattedDate;
+        setResult(shipment);
         console.log(response.data);
       } catch (error) {
         console.error(error);
+        setResult(`Shipment with tracking ID: ${tracking_id} not found!`);
       }
   };
 
   return (
     <div className="hTrackPackage">
-      <h1>Track A Package</h1>
+      <h1>Track A Shipment</h1>
 
       <form onSubmit={handleFormSubmit}>
         <div className='input-group'>
-          <input type="text" ref={inputRef} />
+          <input 
+            type="text" 
+            ref={inputRef}
+            onChange={(e) => setTrackingID(e.target.value)} 
+            required
+          />
+            
           <button type="submit">Submit</button>
         </div>
       </form>
