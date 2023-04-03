@@ -48,19 +48,32 @@ function LoginForm() {
             //Save JWT to local storage
             localStorage.setItem('access_token', token);
             localStorage.setItem('role', role);
+            localStorage.setItem('email', email);
             axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('access_token')}`;
 
             //FIXME: remove for prod
-            if (role === 'admin') {
-                console.log(token);
-                console.log(role);
+            // console.log(token);
+            console.log(role);
+            if (role === 'admin') 
+            {
                 navigate('/admin');
-            } else {
+            } 
+            else if (role === 'customer')
+            {
+                navigate('/customer');
+            }
+            else if (role === 'employee')
+            {
+                navigate('/employee');
+            }
+            else 
+            {
                 navigate('/');
             }
 
           } catch (error) {
             console.error(error);
+            console.log("FORBIDDEN");
           }
       };
 
