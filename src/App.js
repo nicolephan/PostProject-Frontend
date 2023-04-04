@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import * as Pages from "./pages";
 import "./App.css";
-import ProtectedRoutes from "./components/protectedRoutes";
-
-import CustomerLayout from "./layouts/Customer";
-import ShippingForm from "./components/Forms/CreateShipmentForm";
+import AdminRoute from "./components/adminRoute";
+import CustomerRoute from "./components/customerRoute";
+import EmployeeRoute from "./components/employeeRoute";
 import AllShipment from "./pages/Employee/AllShipment";
 
 export default function App() {
@@ -22,19 +21,24 @@ export default function App() {
           <Route exact path="/login" element={<Pages.Login />}></Route>
 
           {/* ADMIN PROTECTED ROUTES */}
-          <Route element={<ProtectedRoutes />}>
+          <Route element={<AdminRoute />}>
             <Route element={<Pages.Home />} path="/" exact />
             <Route element={<Pages.Admin />} path="/admin" />
           </Route>
 
           {/* CUSTOMER ROUTE */}
-          <Route path="/customer" element={<CustomerLayout />}>
-            <Route path="track" element={<Pages.Track />}></Route>
-            <Route path="neworder" element={<ShippingForm />}></Route>
+          <Route element={<CustomerRoute />}>
+            <Route element={<Pages.Home />} path="/" exact />
+            <Route element={<Pages.Customer />} path="/customer" />
           </Route>
 
           {/* EMPLOYEE ROUTE */}
-          <Route path="/employee" element={<CustomerLayout />}>
+          <Route element={<EmployeeRoute />}>
+            <Route element={<Pages.Home />} path="/" exact />
+            <Route element={<Pages.Employee />} path="/employee" />
+          </Route>
+
+          <Route path="/dev" element={<CustomerLayout />}>
             <Route path="track" element={<Pages.Track />}></Route>
             <Route path="neworder" element={<ShippingForm />}></Route>
             <Route path="all-shipment" element={<AllShipment />}></Route>

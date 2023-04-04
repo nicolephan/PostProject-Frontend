@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, {useState, useRef, useEffect} from "react";
+import React, {useState} from "react";
 import { useNavigate } from 'react-router-dom';
 // import ReactDOM from "react-dom";
 import "./Login.css"
@@ -42,23 +42,38 @@ function LoginForm() {
         try {
             const response = await axios.request(options);
 
+            //TODO get user email back in response
+            
             const { token, role } = response.data;
             //Save JWT to local storage
             localStorage.setItem('access_token', token);
             localStorage.setItem('role', role);
+            localStorage.setItem('email', email);
             axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('access_token')}`;
 
             //FIXME: remove for prod
-            if (role === 'admin') {
-                console.log(token);
-                console.log(role);
+            // console.log(token);
+            console.log(role);
+            if (role === 'admin') 
+            {
                 navigate('/admin');
-            } else {
+            } 
+            else if (role === 'customer')
+            {
+                navigate('/customer');
+            }
+            else if (role === 'employee')
+            {
+                navigate('/employee');
+            }
+            else 
+            {
                 navigate('/');
             }
 
           } catch (error) {
             console.error(error);
+            console.log("FORBIDDEN");
           }
       };
 

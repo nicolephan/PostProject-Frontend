@@ -7,6 +7,9 @@ export default function Customer(){
     const [customerInfo, setCustomerInfo] = useState('');
     const [tracks, setTracks] = useState('');
 
+    const current_user = localStorage.getItem('email');
+    //TODO: use current_user (email) to query into database
+
     const getCustomerInfo = () => {
         // url: "https://postoffice-api.herokuapp.com/api/users"
         axios.get("/api/users")
@@ -31,7 +34,7 @@ export default function Customer(){
 
     return (
         <div className="container-customer">
-            <h2 className="header-customer">Hello {customerInfo.first_name},</h2>
+            <h2 className="header-customer">Hello {current_user}</h2>
             <div>
                 <li className="customerInfo">
                     <div className="container-title">User Info <br/></div>
