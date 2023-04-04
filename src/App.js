@@ -38,6 +38,7 @@ export default function App() {
             <Route element={<Pages.Employee />} path="/employee" />
           </Route>
 
+          {/*DEVELOPMENT ROUTE*/}
           <Route path="/dev" element={<CustomerLayout />}>
             <Route path="track" element={<Pages.Track />}></Route>
             <Route path="neworder" element={<ShippingForm />}></Route>
