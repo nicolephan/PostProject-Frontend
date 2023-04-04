@@ -7,6 +7,7 @@ import ProtectedRoutes from "./components/protectedRoutes";
 
 import CustomerLayout from "./layouts/Customer";
 import ShippingForm from "./components/Forms/CreateShipmentForm";
+import AllShipment from "./pages/Employee/AllShipment";
 
 export default function App() {
   return (
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="/employee" element={<CustomerLayout />}>
             <Route path="track" element={<Pages.Track />}></Route>
             <Route path="neworder" element={<ShippingForm />}></Route>
+            <Route path="all-shipment" element={<AllShipment />}></Route>
           </Route>
         </Routes>
       </div>
