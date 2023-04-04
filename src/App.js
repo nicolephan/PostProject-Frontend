@@ -6,6 +6,9 @@ import "./App.css";
 import AdminRoute from "./components/adminRoute";
 import CustomerRoute from "./components/customerRoute";
 import EmployeeRoute from "./components/employeeRoute";
+
+import CustomerLayout from "./layouts/Customer";
+import ShippingForm from "./components/Forms/CreateShipmentForm";
 import AllShipment from "./pages/Employee/AllShipment";
 
 export default function App() {
