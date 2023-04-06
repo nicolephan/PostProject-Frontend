@@ -126,7 +126,12 @@ const RegisterForm = () =>{
         try {
             const response = await axios.request(options);
             console.log(response);
-            
+            if (response.status === 201)
+            {
+                console.log("Customer Created");
+                alert(`Customer profile created for: ${first_name} ${last_name}.`);
+                
+            }
 
 
 
