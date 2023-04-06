@@ -130,7 +130,7 @@ const RegisterForm = () =>{
             {
                 console.log("Customer Created");
                 alert(`Customer profile created for: ${first_name} ${last_name}.`);
-                
+
             }
 
 
@@ -138,6 +138,7 @@ const RegisterForm = () =>{
         } catch (error) {
             console.error(error);
             console.log("Failed to create customer user");
+            alert("Failed to register customer user")
         }
 
     }
