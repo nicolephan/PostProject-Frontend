@@ -1,7 +1,10 @@
+import AdminNav from "../../components/AdminNav/AdminNav";
 
 
 export default function Admin(){
     return (
+        <>
+        <AdminNav />
         <div>
             <h2>ADMIN</h2>
             <p>
@@ -14,5 +17,6 @@ export default function Admin(){
                 <br/>all of which takes info from the db
             </p>
         </div>
+        </>
     );
 }

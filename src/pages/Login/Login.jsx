@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, {useState} from "react";
 import { useNavigate } from 'react-router-dom';
-// import ReactDOM from "react-dom";
+import Navbar from "../../components/Navbar/Navbar";
 import "./Login.css"
 
 export default function Login(){
     return(
+        <>
+        <Navbar />
         <div className="container-forms">
             <div className="login">
                 <h2>Login</h2>
@@ -16,6 +18,7 @@ export default function Login(){
                 <RegisterForm />
             </div>
         </div>
+        </>
     );
 }
 
@@ -41,8 +44,6 @@ function LoginForm() {
     
         try {
             const response = await axios.request(options);
-
-            //TODO get user email back in response
             
             const { token, role } = response.data;
             //Save JWT to local storage
@@ -105,15 +106,44 @@ function LoginForm() {
 }
 
 const RegisterForm = () =>{
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [address, setAddress] = useState('');
+    const [first_name, setFirstName] = useState('');
+    const [last_name, setLastName] = useState('');
+    const [home_address, setAddress] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPass] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(email);
+        //console.log(email, password, home_address);
+
+        const options = {
+            method: "POST",
+            url: 'https://postoffice-api.herokuapp.com/api/register-customer',
+          //   url: "/api/login", // for dev
+            headers: {
+              "Content-Type": "application/json",
+            },
+            data: { email, password, first_name, last_name, home_address },
+          };
+
+        try {
+            const response = await axios.request(options);
+            console.log(response);
+            if (response.status === 201)
+            {
+                console.log("Customer Created");
+                alert(`Customer profile created for: ${first_name} ${last_name}.`);
+
+            }
+
+
+
+        } catch (error) {
+            console.error(error);
+            console.log("Failed to create customer user");
+            alert("Failed to register customer user")
+        }
+
     }
 
     return(
@@ -122,7 +152,7 @@ const RegisterForm = () =>{
                 <label htmlFor="fName">
                     First Name:
                     <input 
-                        value={firstName} 
+                        value={first_name} 
                         onChange={(e) => setFirstName(e.target.value)} 
                         type="text" id="fname" name="fname" 
                         required
@@ -131,7 +161,7 @@ const RegisterForm = () =>{
                 <label htmlFor="lName">
                     Last Name:
                     <input 
-                        value={lastName} 
+                        value={last_name} 
                         onChange={(e) => setLastName(e.target.value)} 
                         type="text" id="lname" name="lname" 
                         required
@@ -149,7 +179,7 @@ const RegisterForm = () =>{
                 <label htmlFor="address">
                     Address:
                     <input 
-                        value={address} 
+                        value={home_address} 
                         onChange={(e) => setAddress(e.target.value)} 
                         type="text" id="address" name="address" 
                         required
