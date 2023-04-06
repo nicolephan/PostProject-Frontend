@@ -1,7 +1,10 @@
 import './About.css';
+import Navbar from '../../components/Navbar/Navbar';
 
 export default function About(){
     return(
+        <>
+        <Navbar />
         <div className="container-about">
             <h1>About the Team</h1>
             <div className='team-members'>
@@ -42,5 +45,6 @@ export default function About(){
                 </div>
             </div>      
         </div>
+        </>
     );
 }

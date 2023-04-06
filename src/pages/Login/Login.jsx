@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, {useState} from "react";
 import { useNavigate } from 'react-router-dom';
-// import ReactDOM from "react-dom";
+import Navbar from "../../components/Navbar/Navbar";
 import "./Login.css"
 
 export default function Login(){
     return(
+        <>
+        <Navbar />
         <div className="container-forms">
             <div className="login">
                 <h2>Login</h2>
@@ -16,6 +18,7 @@ export default function Login(){
                 <RegisterForm />
             </div>
         </div>
+        </>
     );
 }
 
