@@ -1,9 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/Navbar/Navbar";
+import Navbar from "./Navbar/Navbar";
 
-// Front page layout with components:
-// Navbar
+// Dev route (to be deleted)
 
 export default function Public() {
   return (
