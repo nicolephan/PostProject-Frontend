@@ -7,7 +7,7 @@ import AdminRoute from "./components/adminRoute";
 import CustomerRoute from "./components/customerRoute";
 import EmployeeRoute from "./components/employeeRoute";
 
-import CustomerLayout from "./layouts/Customer";
+import DevLayout from "./components/devRoute";
 import ShippingForm from "./components/Forms/CreateShipmentForm";
 import AllShipment from "./pages/Employee/AllShipment";
 
@@ -41,8 +41,8 @@ export default function App() {
             <Route element={<Pages.Employee />} path="/employee" />
           </Route>
 
-          {/*DEVELOPMENT ROUTE*/}
-          <Route path="/dev" element={<CustomerLayout />}>
+          {/*DEVELOPMENT ROUTE (TO BE DELETED)*/}
+          <Route path="/dev" element={<DevLayout />}>
             <Route path="track" element={<Pages.Track />}></Route>
             <Route path="neworder" element={<ShippingForm />}></Route>
             <Route path="all-shipment" element={<AllShipment />}></Route>
