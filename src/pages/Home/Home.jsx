@@ -51,7 +51,7 @@ export default function Home() {
     
     <div className="hTrackPackage">
       
-      <h1>Track A Shipment</h1>
+      <h1>Track a Shipment</h1>
 
       <form onSubmit={handleFormSubmit}>
         <div className='input-group'>
