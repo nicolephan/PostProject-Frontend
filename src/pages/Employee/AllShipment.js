@@ -26,6 +26,7 @@ const AllShipment = () => {
             <th>Location</th>
             <th>Shipment status</th>
             <th>Number of packages</th>
+            <th>Edit</th>
           </tr>
         </thead>
         <tbody>
@@ -35,10 +36,11 @@ const AllShipment = () => {
             return (
               <tr>
                 <th>{shipment.tracking_id}</th>
-                <th>{shipment.creation_date}</th>
+                <th>{shipment.creation_date.slice(0,10)}</th>
                 <th>{shipment.current_location}</th>
                 <th>{shipment.shipment_status}</th>
                 <th>{shipment.num_packages}</th>
+                <th>Edit BTN</th>
               </tr>
             );
           })}
