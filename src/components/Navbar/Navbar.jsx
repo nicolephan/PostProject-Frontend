@@ -7,7 +7,7 @@ export default function Navbar(){
             <nav className="nav">
                 <Link to="/" className="home-title">QuickShip</Link>
                 <ul>
-                    <CustomLink to="/ship">Ship</CustomLink>
+                    {/* <CustomLink to="/ship">Ship</CustomLink> */}
                     <CustomLink to="/about">About</CustomLink>
 
                     {/* PUBLIC */}

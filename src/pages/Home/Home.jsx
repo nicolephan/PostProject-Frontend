@@ -12,6 +12,7 @@
 
 import React, { useRef, useState } from 'react';
 import axios from 'axios';
+import Navbar from '../../components/Navbar/Navbar';
 import './Home.css';
 
 export default function Home() {
@@ -45,8 +46,12 @@ export default function Home() {
   };
 
   return (
+    <>
+    <Navbar />
+    
     <div className="hTrackPackage">
-      <h1>Track A Shipment</h1>
+      
+      <h1>Track a Shipment</h1>
 
       <form onSubmit={handleFormSubmit}>
         <div className='input-group'>
@@ -70,6 +75,7 @@ export default function Home() {
         )}
       </div>
     </div>
+    </>
   );
 }
 

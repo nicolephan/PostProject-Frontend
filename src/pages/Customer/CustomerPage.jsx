@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios'
+import UserNav from '../../components/UserNav/UserNav';
 import './Customer.css'
 
 export default function Customer(){
@@ -33,6 +34,9 @@ export default function Customer(){
     useEffect(() => getTracks(), []);
 
     return (
+        <>
+        {/* TODO: Display customer navbar here: home, logout(upon logout, delete localstorage vars)*/}
+        <UserNav />
         <div className="container-customer">
             <h2 className="header-customer">Hello {current_user}</h2>
             <div>
@@ -51,5 +55,6 @@ export default function Customer(){
             </div>
             <Link to='/track'>Track Package</Link>
         </div>
+        </>
     );
 }

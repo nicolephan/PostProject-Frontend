@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar";
 import * as Pages from "./pages";
 import "./App.css";
 import AdminRoute from "./components/adminRoute";
@@ -14,7 +13,6 @@ import AllShipment from "./pages/Employee/AllShipment";
 export default function App() {
   return (
     <>
-      <Navbar />
       <div className="container">
         <Routes>
           {/* PUBLIC ROUTES */}
