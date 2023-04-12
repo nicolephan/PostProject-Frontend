@@ -20,7 +20,7 @@ export default function Home() {
   const [result, setResult] = useState(null);
   const inputRef = useRef();
 
-  //GET REQUEST FORM HANDLER
+  //POST REQUEST FORM HANDLER
   const handleFormSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
     const options = {
