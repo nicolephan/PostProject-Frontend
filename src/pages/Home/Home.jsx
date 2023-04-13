@@ -1,24 +1,27 @@
-// import REACT, {useRef} from 'react';
-// import "./Home.css";
-
-// export default function Home(){
-//     return(
-//         <div className="hTrackPackage">
-//             <h1>Track A Package</h1>
-//             <SearchBar />
-//         </div>
-//     );
-// }
-
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../../components/Navbar/Navbar';
 import './Home.css';
+import UserNav from '../../components/UserNav/UserNav';
 
 export default function Home() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [tracking_id, setTrackingID] = useState('');
   const [result, setResult] = useState(null);
   const inputRef = useRef();
+
+  useEffect(() => {
+    // for (let key in localStorage) {
+    //   if (localStorage.hasOwnProperty(key)) {
+    //     const value = localStorage.getItem(key);
+    //     console.log(`${key}: ${value}`);
+    //   }
+    // }
+    const accessToken = localStorage.getItem('access_token');
+    if (accessToken) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   //POST REQUEST FORM HANDLER
   const handleFormSubmit = async (event) => {
@@ -47,7 +50,8 @@ export default function Home() {
 
   return (
     <>
-    <Navbar />
+    {isLoggedIn ? <UserNav/> : <Navbar /> }
+    
     
     <div className="hTrackPackage">
       
