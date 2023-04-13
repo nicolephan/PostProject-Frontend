@@ -25,6 +25,15 @@
     border: 1px solid black;
 }
 th{
+    font-size: 0.75rem;
     padding: 0.5rem;
     border: 1px solid black;
+}
+.button-pass{
+    padding: 0.25rem;
+}
+.container-pass{
+    padding: 0;
+    margin: 0;
+    margin-left: 5rem;
 }

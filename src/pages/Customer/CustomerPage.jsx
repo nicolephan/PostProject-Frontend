@@ -6,6 +6,7 @@ import './Customer.css'
 export default function Customer(){
     const [customerInfo, setCustomerInfo] = useState([]);
     const [trackInfo, setTrackInfo] = useState([]);
+    const [showPass, setShowPass] = useState(false);
 
     const current_user = localStorage.getItem('email');
     //TODO: use current_user (email) to query into database
@@ -20,8 +21,8 @@ export default function Customer(){
                 };
         const getCustomerInfo = async () => {
             try{
-                const response = await axios.request(option);
-                const data = response.data;
+                const responseC = await axios.request(option);
+                const data = responseC.data;
                 setCustomerInfo(data);
                 console.log(data);
 
@@ -34,25 +35,32 @@ export default function Customer(){
 
     useEffect(() => {
         const option = {
-                    headers: {'Content-Type': 'application/json'},
-                    method: 'POST',
-                    // url: '/api/user-shipments',
-                    url: 'https://postoffice-api.herokuapp.com/api/user-shipments',
-                    data: {'email': current_user}
-                };
+            headers: {'Content-Type': 'application/json'},
+            method: 'POST',
+            // url: '/api/user-shipments',
+            url: 'https://postoffice-api.herokuapp.com/api/user-shipments',
+            data: {'email': current_user}
+        };
+
         const getTracks = async () => {
             try{
-                const response = await axios.request(option);
-                const data = response.data;
-                setTrackInfo(data);
-                console.log(data);
-
+                const responseT = await axios.request(option);
+                // var result = responseT.data;
+                const tracks = responseT.data.map((track) => {
+                    const standardDate = new Date(track.est_delivery_date).toLocaleDateString('en-US');
+                    return {...track, est_delivery_date: standardDate};
+                  });
+                setTrackInfo(tracks);
+                console.log(responseT.data);
             } catch (error) {
                 console.log(error);
             }
         }
         getTracks();
     }, [current_user]); 
+
+    const completed = trackInfo.filter((item) => item.tracking_status === 4);
+    const inProgress = trackInfo.filter((item) => item.tracking_status < 4);
 
     return (
         <>
@@ -71,14 +79,18 @@ export default function Customer(){
 
                         <br/>User Type: {customerInfo.type}
                         <br/>Username: {customerInfo.username}
-                        <br/>Password: {customerInfo.password}
+                        <br/>Password: <button className="button-pass" onClick={() => setShowPass(prevState => !prevState)}>
+                        {showPass ? 'Hide Password' : 'Show Password'}
+                        </button>
+                        {showPass && <p className="container-pass">{customerInfo.password}</p>}
                     </div>
                 </li>
+
 
                 <li className="customer-shipments">
                     <div>
                         {/* <br/><button onClick={handleClick}>Shipment History</button> */}
-                        <br/><table className='container-table'>
+                        <br/>Shipments in Progress<table className='container-table'>
                             <tr>
                                 <th>Tracking ID</th>
                                 <th>Shipment Status</th>
@@ -86,11 +98,37 @@ export default function Customer(){
                                 <th>Number of Packages</th>
                                 <th>Estimated Delivery Date</th>
                             </tr>
-                        {/* {trackInfo && (
-                            trackInfo.map((item) => (
-                                
-                            ) */}
-                        {/* ))} */}
+                        {trackInfo && (
+                            inProgress.map((item) => (
+                                <tr>
+                                    <td>{item.shipment_tracking_id}</td>
+                                    <td>{item.shipment_status}</td>
+                                    <td>{item.tracking_status}</td>
+                                    <td>{item.num_packages}</td>
+                                    <td>{item.est_delivery_date}</td>
+                                </tr>
+                            )
+                        ))}
+                        </table>
+                        <br/>Completed Shipments<table className='container-table'>
+                            <tr>
+                                <th>Tracking ID</th>
+                                <th>Shipment Status</th>
+                                <th>Tracking Status</th>
+                                <th>Number of Packages</th>
+                                <th>Estimated Delivery Date</th>
+                            </tr>
+                        {trackInfo && (
+                            completed.map((item) => (
+                                <tr>
+                                    <td>{item.shipment_tracking_id}</td>
+                                    <td>{item.shipment_status}</td>
+                                    <td>{item.tracking_status}</td>
+                                    <td>{item.num_packages}</td>
+                                    <td>{item.est_delivery_date}</td>
+                                </tr>
+                            )
+                        ))}
                         </table>
                     </div>
                 </li>
