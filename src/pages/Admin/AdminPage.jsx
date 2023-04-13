@@ -1,4 +1,4 @@
-import AdminNav from "../../components/AdminNav/AdminNav";
+import UserNav from "../../components/UserNav/UserNav";
 import ShippingModal from "../../components/Modal/ShippingModal";
 
 export default function Admin(){
@@ -6,7 +6,7 @@ export default function Admin(){
 
     return (
         <>
-            <AdminNav />
+            <UserNav />
             <h1>ADMIN ({x})</h1>
             {/* <p>
                 Contains <br />
