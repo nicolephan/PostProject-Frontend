@@ -1,3 +1,7 @@
+//TODO (4/13/2023)
+// pull creation date (curr_date), tracking status, est_delivery_date in data
+// display tracking bar based on tracking status (1 2 3 or 4).
+
 import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../../components/Navbar/Navbar';
@@ -83,25 +87,3 @@ export default function Home() {
   );
 }
 
-// function SearchBar(props){
-//     const query = useRef();
-
-//     const handleSearch =(e) => {
-//         e.preventDefault();
-//         const queryVal = query.current.value;
-//         props.fetchID(queryVal.trim());
-//     };
-
-//     return(
-//         <form action="/" method="get">
-//             <label htmlFor="header-search"></label>
-//             <input
-//                 type="text"
-//                 id="header-search"
-//                 placeholder="Package #ID"
-//                 name="s"
-//             />
-//             <button type="submit" onSubmit={handleSearch}>Enter</button>
-//         </form>
-//     );
-// }
