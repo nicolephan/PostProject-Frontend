@@ -18,6 +18,13 @@ export default function Admin(){
                 <br/>all of which takes info from the db
             </p> */}
             <ShippingModal />
+            {
+                /* TODO:
+                    - add update tracking status (1 2 3 or 4) -> sends email
+                    - display tracking history for all customers
+                    - display employee data
+                */
+            }
 
 
         </>
