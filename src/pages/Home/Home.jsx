@@ -1,26 +1,33 @@
-// import REACT, {useRef} from 'react';
-// import "./Home.css";
+//TODO (4/13/2023)
+// pull creation date (curr_date), tracking status, est_delivery_date in data
+// display tracking bar based on tracking status (1 2 3 or 4).
 
-// export default function Home(){
-//     return(
-//         <div className="hTrackPackage">
-//             <h1>Track A Package</h1>
-//             <SearchBar />
-//         </div>
-//     );
-// }
-
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../../components/Navbar/Navbar';
 import './Home.css';
+import UserNav from '../../components/UserNav/UserNav';
 
 export default function Home() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [tracking_id, setTrackingID] = useState('');
   const [result, setResult] = useState(null);
   const inputRef = useRef();
 
-  //GET REQUEST FORM HANDLER
+  useEffect(() => {
+    // for (let key in localStorage) {
+    //   if (localStorage.hasOwnProperty(key)) {
+    //     const value = localStorage.getItem(key);
+    //     console.log(`${key}: ${value}`);
+    //   }
+    // }
+    const accessToken = localStorage.getItem('access_token');
+    if (accessToken) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  //POST REQUEST FORM HANDLER
   const handleFormSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
     const options = {
@@ -47,7 +54,8 @@ export default function Home() {
 
   return (
     <>
-    <Navbar />
+    {isLoggedIn ? <UserNav/> : <Navbar /> }
+    
     
     <div className="hTrackPackage">
       
@@ -79,25 +87,3 @@ export default function Home() {
   );
 }
 
-// function SearchBar(props){
-//     const query = useRef();
-
-//     const handleSearch =(e) => {
-//         e.preventDefault();
-//         const queryVal = query.current.value;
-//         props.fetchID(queryVal.trim());
-//     };
-
-//     return(
-//         <form action="/" method="get">
-//             <label htmlFor="header-search"></label>
-//             <input
-//                 type="text"
-//                 id="header-search"
-//                 placeholder="Package #ID"
-//                 name="s"
-//             />
-//             <button type="submit" onSubmit={handleSearch}>Enter</button>
-//         </form>
-//     );
-// }

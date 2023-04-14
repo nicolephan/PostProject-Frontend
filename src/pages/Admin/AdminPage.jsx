@@ -1,23 +1,49 @@
-import AdminNav from "../../components/AdminNav/AdminNav";
-import ShippingModal from "../../components/Modal/ShippingModal";
+import UserNav from "../../components/UserNav/UserNav";
+import ShippingModal from "../../components/Modals/CreateShipmentModal";
+import ReadShipmentModal from "../../components/Modals/ReadShipmentModal";
+import UpdateShipmentModal from "../../components/Modals/UpdateShipmentModal";
 
 export default function Admin(){
     var x = localStorage.getItem("email");
 
     return (
         <>
-            <AdminNav />
-            <h1>ADMIN ({x})</h1>
-            {/* <p>
-                Contains <br />
-                <li>employee information  </li>
-                <li>info about current shipments out</li>
-                <li>info about pending shipments (in store)</li>
-                <li>info about all PO boxes (avaliable and otherwise)</li>
-                <li>form to update shipping information</li>
-                <br/>all of which takes info from the db
-            </p> */}
-            <ShippingModal />
+            <UserNav />
+            <h1>Hello ADMIN: ({x})</h1>
+            {/* 
+                Contains:
+                -employee information
+                -info about current shipments out
+                -info about pending shipments (in store)
+                -info about all PO boxes (avaliable and otherwise)
+                -form to update shipping information
+                -all of which takes info from the db
+            */}
+
+            <div className="">
+                <ShippingModal />
+            </div>
+            
+            <div className="">
+                <ReadShipmentModal />
+            </div>
+
+            <div className="">
+                <UpdateShipmentModal />
+            </div>
+
+            <div className="">
+                Delete Shipment
+            </div>
+            
+
+            {
+                /* TODO:
+                    - add update tracking status (1 2 3 or 4) -> sends email
+                    - display tracking history for all customers
+                    - display employee data
+                */
+            }
 
 
         </>

@@ -3,15 +3,17 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 400px;
+    width: 500px;
     background-color: white;
     padding: 20px;
     border-radius: 4px;
     outline: none;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    
   }
   
   .overlay {
+    
     position: fixed;
     top: 0;
     left: 0;
@@ -33,4 +35,34 @@
     font-size: 20px;
     font-weight: bold;
     color: black;
+  }
+
+  select {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    width: auto;
+    max-width: 300px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    text-align: center;
+    
+  }
+  
+  select:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+
+  .label {
+    font-size: 0.85rem;
+    font-weight: bold;
+    font-family: var(--font-family);
+  }
+
+  .radio {
+    display: flex;
   }
