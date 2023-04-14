@@ -7,6 +7,9 @@ Modal.setAppElement('#root'); // Set the app root element for accessibility
 const ReadShipmentModal = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [result, setResult] = useState(null);
+    const [emailresult, setEmailResult] = useState(null);
+
+    const [resultIsShown, setResultShown] = useState(null);
     const [email, setEmail] = useState('');
     const [shipmentType, setShipmentType] = useState('');
 
@@ -51,23 +54,26 @@ const ReadShipmentModal = () => {
             
             const response = await axios.request(options);
             console.log(response.data);
-
+            setEmailResult(response.data);
             
         } catch (error) {
             console.error(error);
             setResult(`error`);
             alert(result);
         }
+      
     }
 
     
 
     console.log(`Submitted`);
-    setIsOpen(false);
+    setIsOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsOpen(false);
+    setResult(null);
+    setEmailResult(null);
   };
 
   useEffect(() => {
@@ -109,6 +115,74 @@ const ReadShipmentModal = () => {
             <button type="submit" disabled={!validateForm()}>Submit</button>
         </form>
 
+        {
+          emailresult && (
+        <>
+          <h1>Email Shipment</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Tracking ID</th>
+                <th>Tracking status</th>
+                <th>Estimate Delivery Date</th>
+                <th>Shipment Status</th>
+                <th>Number of packages</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/*Iterate through shipment json data 
+              and render to front end*/}
+              {emailresult?.map((shipment) => {
+                return (
+                  <tr>
+                    <th>{shipment.shipment_tracking_id}</th>
+                    <th>{shipment.tracking_status}</th>
+                    <th>{shipment.est_delivery_date.slice(0,10)}</th>
+                    <th>{shipment.shipment_status}</th>
+                    <th>{shipment.num_packages}</th>
+                  </tr>
+                );
+              })}
+
+            </tbody>
+          </table>
+        </>
+          )}
+
+        {
+          result && (
+        <>
+          <h1>All Shipment</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Tracking ID</th>
+                <th>Creation date</th>
+                <th>Location</th>
+                <th>Shipment status</th>
+                <th>Number of packages</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/*Iterate through shipment json data 
+              and render to front end*/}
+              {result?.map((shipment) => {
+                return (
+                  <tr>
+                    <th>{shipment.tracking_id}</th>
+                    <th>{shipment.creation_date.slice(0,10)}</th>
+                    <th>{shipment.current_location}</th>
+                    <th>{shipment.shipment_status}</th>
+                    <th>{shipment.num_packages}</th>
+                  </tr>
+                );
+              })}
+              
+            </tbody>
+          </table>
+        </>
+        )
+        }
       </Modal>
     </>
   )
