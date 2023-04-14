@@ -17,19 +17,15 @@
     font-weight: bold;
 }
 .customerInfo{
-    background-color: #DCDCDD;
+    background-color: rgb(244, 244, 244);
     border-radius: 8px;
 }
 .customer-shipments{
-    /* display: flex;
-    flex-direction: column; */
-    /* align-items: center;
-    align-content: center; */
     align-self: center;
 }
 .container-title{
     font-weight: bold;
-    background-color: #c2c2c2;
+    background-color: #DCDCDD;
     padding: 1rem;
     border-radius: 8px 8px 0px 0px;
 }

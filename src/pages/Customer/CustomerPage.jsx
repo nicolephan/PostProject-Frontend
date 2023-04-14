@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios'
 import UserNav from '../../components/UserNav/UserNav';
 import UserInfo from '../../components/Fetch/UserInfo';
+// import { inProgressIcon } from '../../components/SVGs/inProgressIcon';
 import './Customer.css'
 
 export default function Customer(){
-    // const [customerInfo, setCustomerInfo] = useState([]);
     const [trackInfo, setTrackInfo] = useState([]);
     const [poBox, setPoBox] = useState([]);
     const [showPass, setShowPass] = useState(false);
@@ -15,13 +15,6 @@ export default function Customer(){
     //TODO: use current_user (email) to query into database
 
     useEffect(() => {
-        // const optionUser = {
-        //     headers: {'Content-Type': 'application/json'},
-        //     method: 'POST',
-        //     // url: '/api/userinfo',
-        //     url: 'https://postoffice-api.herokuapp.com/api/userinfo',
-        //     data: {'email': current_user}
-        // };
         const optionShip = {
             headers: {'Content-Type': 'application/json'},
             method: 'POST',
@@ -38,11 +31,6 @@ export default function Customer(){
         };
         const getCustomerInfo = async () => {
             try{
-                // const responseC = await axios.request(optionUser);
-                // const data = responseC.data;
-                // setCustomerInfo(data);
-                // console.log(data);
-
                 const responseT = await axios.request(optionShip);
                 const tracks = responseT.data.map((track) => {
                     const standardDate = new Date(track.est_delivery_date).toLocaleDateString('en-US');
@@ -92,9 +80,10 @@ export default function Customer(){
                     {showPass && <p className="container-pass">{customerInfo.password}</p>}
                 </div>
             </li>
-
+            
             <li className="customer-shipments">
                 <br/>
+                
                 <p className="info-titles">Shipments in Progress</p>
                 {inProgress.length > 0 ? (
                 <table className='container-table'>
