@@ -3,13 +3,18 @@
     font-family: var(--font-family);
     list-style: none;
     margin: 1rem;
+    display:flex;
+    flex-direction: column;
 }
 .header-customer{
     padding: 1rem;
 }
-.info-details{
+.container-customer-info{
     padding-left: 1rem;
     padding-bottom: 1rem;
+}
+.info-titles{
+    font-weight: bold;
 }
 .customerInfo{
     background-color: #DCDCDD;
@@ -25,6 +30,15 @@
     border: 1px solid black;
 }
 th{
+    font-size: 0.75rem;
     padding: 0.5rem;
     border: 1px solid black;
+}
+.button-pass{
+    padding: 0.25rem;
+}
+.container-pass{
+    padding: 0;
+    margin: 0;
+    margin-left: 5rem;
 }
