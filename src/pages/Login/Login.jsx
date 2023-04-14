@@ -14,7 +14,7 @@ export default function Login(){
                 <LoginForm />
             </div>
             <div className="register">
-                <h2>Register</h2>
+                <h2>Register Customer</h2>
                 <RegisterForm />
             </div>
         </div>

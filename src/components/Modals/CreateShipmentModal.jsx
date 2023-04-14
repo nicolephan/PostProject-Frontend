@@ -55,9 +55,12 @@ const ShippingModal = () => {
       // shipment.creation_date = formattedDate;
 
       console.log(response.data);
+      setResult(response.data);
+      alert('Shipment Created')
     } catch (error) {
       console.error(error);
       setResult(`error`);
+      alert(result);
     }
 
 
