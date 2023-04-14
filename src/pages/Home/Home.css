@@ -1,23 +1,22 @@
-.hTrackPackage{
+.hTrackPackage{ /*WHOLE PAGE*/
     font-family: var(--font-family);
     margin: 2rem;
     display:flex;
-    align-items: center;
     flex-direction: column;
+}
+.trackTitle{
+    /* padding: 0; */
+    margin: 0;
+}
+/* button{
+    cursor:pointer;
+    margin-left: 1rem;
+    width: 5rem;
+} */
+.track-bar{ /*SEARCH BAR*/
+    align-items: center;
     text-align: center;
 }
-.container-search{
-
-    display:flex;
-    flex-direction: row;
-    width: 70%;
-}
-button{
-    cursor:pointer;
-    /* margin-left: 1rem;
-    width: 5rem; */
-}
-
 /* input[type="text"] {
     padding: 8px 12px;
     margin-right: 0;
@@ -69,4 +68,25 @@ button{
     box-sizing: border-box;
     align-self: baseline;
     margin-top: 5px;
+    cursor:pointer;
+}
+.container-trackShipment{
+    padding: 1rem;
+    margin: 1rem;
+    background-color: white;
+    /* align-self: center; */
+}
+.track-status{
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+.data-titling{
+    border-top: 1px solid rgb(144, 144, 144);
+    margin-bottom: 0;
+    font-weight: bold;
+}
+.data-info{
+    margin-top: 0;
+    font-weight: 300;
 }

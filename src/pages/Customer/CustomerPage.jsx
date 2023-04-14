@@ -1,25 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
 import UserNav from '../../components/UserNav/UserNav';
+import UserInfo from '../../components/Fetch/UserInfo';
+// import { inProgressIcon } from '../../components/SVGs/inProgressIcon';
 import './Customer.css'
 
 export default function Customer(){
-    const [customerInfo, setCustomerInfo] = useState([]);
     const [trackInfo, setTrackInfo] = useState([]);
     const [poBox, setPoBox] = useState([]);
     const [showPass, setShowPass] = useState(false);
 
     const current_user = localStorage.getItem('email');
+    const customerInfo = UserInfo(current_user)
     //TODO: use current_user (email) to query into database
 
     useEffect(() => {
-        const optionUser = {
-            headers: {'Content-Type': 'application/json'},
-            method: 'POST',
-            // url: '/api/userinfo',
-            url: 'https://postoffice-api.herokuapp.com/api/userinfo',
-            data: {'email': current_user}
-        };
         const optionShip = {
             headers: {'Content-Type': 'application/json'},
             method: 'POST',
@@ -36,11 +31,6 @@ export default function Customer(){
         };
         const getCustomerInfo = async () => {
             try{
-                const responseC = await axios.request(optionUser);
-                const data = responseC.data;
-                setCustomerInfo(data);
-                console.log(data);
-
                 const responseT = await axios.request(optionShip);
                 const tracks = responseT.data.map((track) => {
                     const standardDate = new Date(track.est_delivery_date).toLocaleDateString('en-US');
@@ -63,6 +53,10 @@ export default function Customer(){
     const completed = trackInfo.filter((item) => item.tracking_status === 4);
     const inProgress = trackInfo.filter((item) => item.tracking_status < 4);
 
+    const totalPackages = inProgress.reduce((total, item) => {
+        return total + item.num_packages;
+      }, 0);
+    
     return (
         <>
         {/* TODO: Display customer navbar here: home, logout(upon logout, delete localstorage vars)*/}
@@ -86,10 +80,12 @@ export default function Customer(){
                     {showPass && <p className="container-pass">{customerInfo.password}</p>}
                 </div>
             </li>
-
+            
             <li className="customer-shipments">
                 <br/>
+                
                 <p className="info-titles">Shipments in Progress</p>
+                {inProgress.length > 0 ? (
                 <table className='container-table'>
                     <tr>
                         <th>Tracking ID</th>
@@ -110,28 +106,35 @@ export default function Customer(){
                         )
                     ))}
                 </table>
-
+                ) : (
+                    <p>No Shipments Out for Delivery</p>
+                )}
+                <p>Total Packages Out For Delivery: {totalPackages}</p>
                 <br/> <p className="info-titles">Completed Shipments</p>
-                <table className='container-table'>
-                    <tr>
-                        <th>Tracking ID</th>
-                        <th>Shipment Status</th>
-                        <th>Tracking Status</th>
-                        <th>Number of Packages</th>
-                        <th>Estimated Delivery Date</th>
-                    </tr>
-                {trackInfo && (
-                    completed.map((item) => (
+                {completed.length > 0 ? (
+                    <table className='container-table'>
                         <tr>
-                            <td>{item.shipment_tracking_id}</td>
-                            <td>{item.shipment_status}</td>
-                            <td>{item.tracking_status}</td>
-                            <td>{item.num_packages}</td>
-                            <td>{item.est_delivery_date}</td>
+                            <th>Tracking ID</th>
+                            <th>Shipment Status</th>
+                            <th>Tracking Status</th>
+                            <th>Number of Packages</th>
+                            <th>Estimated Delivery Date</th>
                         </tr>
-                    )
-                ))}
-                </table>
+                    {trackInfo && (
+                        completed.map((item) => (
+                            <tr>
+                                <td>{item.shipment_tracking_id}</td>
+                                <td>{item.shipment_status}</td>
+                                <td>{item.tracking_status}</td>
+                                <td>{item.num_packages}</td>
+                                <td>{item.est_delivery_date}</td>
+                            </tr>
+                        )
+                    ))}
+                    </table>
+                ) : (
+                    <p>No Completed Shipments</p>
+                )}
             </li>
 
             <div className="container-poBox">

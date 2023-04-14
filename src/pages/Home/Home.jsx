@@ -5,8 +5,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../../components/Navbar/Navbar';
-import './Home.css';
 import UserNav from '../../components/UserNav/UserNav';
+import { PackageIcon } from '../../components/SVGs/Package';
+import './Home.css';
 
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -58,30 +59,35 @@ export default function Home() {
     
     
     <div className="hTrackPackage">
-      
-      <h1>Track a Shipment</h1>
+      <div className="track-bar">
+        <PackageIcon/>
+        <h1 className="trackTitle">Track a Shipment</h1>
 
-      <form onSubmit={handleFormSubmit}>
-        <div className='input-group'>
-          <input 
-            type="text" 
-            ref={inputRef}
-            onChange={(e) => setTrackingID(e.target.value)} 
-            required
-          />
-            
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-
-      <div>
+        <form onSubmit={handleFormSubmit}>
+          <div className='input-group'>
+            <input 
+              type="text" 
+              ref={inputRef}
+              onChange={(e) => setTrackingID(e.target.value)} 
+              required
+            />
+              
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
         {result && (
-          <div>
-            Data:
-            <pre>{JSON.stringify(result, null, 2)}</pre>
+          <div className="container-trackShipment">
+            {/* <pre>{JSON.stringify(result, null, 2)}</pre> */}
+            <h2 className="track-status">{result.shipment_status}</h2>
+            <p className="data-info"> Current Location: {result.current_location}</p>
+            
+            <p className="data-titling">Tracking ID#</p>
+            <p className="data-info">{result.tracking_id}</p>
+            <p className="data-titling">Number of Packages</p>
+            <p className="data-info">{result.num_packages}</p>
           </div>
         )}
-      </div>
     </div>
     </>
   );
