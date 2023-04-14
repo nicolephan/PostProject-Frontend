@@ -114,7 +114,8 @@ const ReadShipmentModal = () => {
 
             <button type="submit" disabled={!validateForm()}>Submit</button>
         </form>
-
+        
+        {/*Conditional Rendering*/}
         {
           emailresult && (
         <>
