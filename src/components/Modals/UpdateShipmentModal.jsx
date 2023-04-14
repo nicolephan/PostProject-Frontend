@@ -9,19 +9,54 @@ const UpdateShipmentModal = () => {
         const [isOpen, setIsOpen] = useState(false);
         const [result, setResult] = useState(null);
         const [tracking_id, setTrackingID] = useState('');
-        const [shipment_status, setShipmentStatus] = useState('1');
+        const [status, setShipmentStatus] = useState('1');
 
         const handleSubmit = async (event) => {
             event.preventDefault();
             //Handle the response data
 
             console.log(tracking_id);
+            console.log(status);
+
+            //HTTP PUT request to update status
+            // api/update-status : PUT
+            const options = {
+                method: 'PUT',
+                url: 'https://postoffice-api.herokuapp.com/api/update-status',
+                headers: {'Content-Type': 'application/json'},
+                data: { 
+                        tracking_id,
+                        status,
+                      },
+              };
+          
+              //Handle the response data
+              try {
+                const response = await axios.request(options);
+          
+                // const formattedDate = new Date(response.data.creation_date).toLocaleDateString('en-US');
+                // shipment.creation_date = formattedDate;
+          
+                console.log(response.data);
+                setResult(response.data);
+                alert('Shipment Updated')
+              } catch (error) {
+                console.error(error);
+                setResult(`error`);
+                alert(result);
+              }
+          
+          
+              console.log(`PUT Submitted`);
+              setIsOpen(false);
+
+
         }
 
         const handleCloseModal = () => {
             setIsOpen(false);
             setTrackingID('');
-            setShipmentStatus('1');
+            setShipmentStatus('Labeling');
         };
 
     return (
@@ -49,11 +84,11 @@ const UpdateShipmentModal = () => {
             />
 
             <label className="label">Shipment Status:</label>
-            <select value={shipment_status} onChange={(event) => setShipmentStatus(event.target.value)}>
-                <option value="1">Labeling</option>
-                <option value="2">In Transit</option>
-                <option value="3">Delivered</option>
-                <option value="4">Stopped</option>
+            <select value={status} onChange={(event) => setShipmentStatus(event.target.value)}>
+                <option value="Labeling">Labeling</option>
+                <option value="In Transit">In Transit</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Stopped">Stopped</option>
             </select>
             
             <button type="submit">Submit</button>
