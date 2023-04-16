@@ -35,9 +35,6 @@ const Employee = () => {
               <UpdateShipmentModal />
           </div>
           <div className="">
-              Delete Shipment
-          </div>
-          <div className="">
               <SelfReportModal/>
           </div>
 
