@@ -1,17 +1,26 @@
 
-.container-customer{
+.container-customer{ /*WHOLE PAGE*/
     font-family: var(--font-family);
     list-style: none;
     margin: 1rem;
     display:flex;
     flex-direction: column;
+    align-items: center;
 }
 .header-customer{
     padding: 1rem;
 }
+.container-title{
+    font-weight: bold;
+    background-color: #DCDCDD;
+    padding: 1rem;
+    border-radius: 8px 8px 0px 0px;
+}
 .container-customer-info{
-    padding-left: 1rem;
-    padding-bottom: 1rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-top: 0;
+    padding-bottom: 2rem;
 }
 .info-titles{
     font-weight: bold;
@@ -22,12 +31,6 @@
 }
 .customer-shipments{
     align-self: center;
-}
-.container-title{
-    font-weight: bold;
-    background-color: #DCDCDD;
-    padding: 1rem;
-    border-radius: 8px 8px 0px 0px;
 }
 .container-table{
     border: 1px solid black;
