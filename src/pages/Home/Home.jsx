@@ -100,8 +100,8 @@ export default function Home() {
           <div className={`progress-point ${result.shipment_status <= 'Labeling' ? 'active' : ''}`}>
             <span className='progress-bar-text'>Labeling</span>
           </div>
-          <div className={`progress-bar-line ${result.shipment_status <= 'Delivering' ? 'active' : ''}`}></div>
-          <div className={`progress-point ${result.shipment_status <= 'Delivering' ? 'active' : ''}`}>
+          <div className={`progress-bar-line ${result.shipment_status <= 'In Transit' ? 'active' : ''}`}></div>
+          <div className={`progress-point ${result.shipment_status <= 'In Transit' ? 'active' : ''}`}>
             <span className='progress-bar-text'>In Progress</span>
           </div>
           <div className={`progress-bar-line ${result.shipment_status <= 'Delivered' ? 'active' : ''}`}></div>
