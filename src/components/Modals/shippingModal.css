@@ -66,3 +66,18 @@
   .radio {
     display: flex;
   }
+
+.update-dds {
+  display: flex;
+}
+
+.update-dds label {
+  display: flex;
+  margin-left: 0rem;
+}
+
+.update-dds select {
+  display: flex;
+  margin-right: 2rem;
+  margin-top: 8px;
+}
