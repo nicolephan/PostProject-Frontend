@@ -1,11 +1,13 @@
+/* 3 NEW BG OPTIONS, CAN BE DELETED LATER */
+
 .hTrackPackage{ /*WHOLE PAGE*/
     font-family: var(--font-family);
-    margin: 2rem;
+    /* margin: 2rem; */
     display:flex;
     flex-direction: column;
+
 }
-.trackTitle{
-    /* padding: 0; */
+.trackTitle{ /* "Track a Shipment" */
     margin: 0;
 }
 /* button{
@@ -14,8 +16,19 @@
     width: 5rem;
 } */
 .track-bar{ /*SEARCH BAR*/
-    align-items: center;
     text-align: center;
+    align-self: center;
+    margin-top:2rem;
+    padding-top:1rem;
+    padding-bottom:1rem;
+    
+    /*BG3*/
+    /* width: 100%;
+    background-color: #c6d8e4; */
+ 
+    /* FOR BG1*/
+    /* position: absolute; */
+
 }
 /* input[type="text"] {
     padding: 8px 12px;
@@ -70,16 +83,57 @@
     margin-top: 5px;
     cursor:pointer;
 }
-.container-trackShipment{
+.container-trackShipment{ /*TRACKING INFO*/
     padding: 1rem;
-    margin: 1rem;
+    margin: 1rem 10rem 1rem 10rem;
+
+    /* BG1 */
+    /* background-color: #dde8fe; */
+    /* ORIGINAL BG & BG2 */
     background-color: white;
-    /* align-self: center; */
+    /* BG3 */
+    /* border: 3px solid #c6d8e4; */
+}
+.package-found-icon{
+    position: absolute;
+    right: 12rem;
 }
 .track-status{
     padding: 0;
     margin: 0;
     text-align: left;
+}
+.track-progress{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 2rem;
+}
+.progress-point{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: grey;
+    margin: 0 auto;
+    transition: background-color 0.3s ease;
+}
+.progress-point.active{
+    background-color: green;
+}
+.progress-bar-line{
+    width: 2px;
+    height: 50px;
+    background-color: grey;
+    margin: 0 auto;
+}
+.progress-bar-line.active{
+    background-color: green;
+}
+.progress-bar-text{
+    display: inline-block;
+    
+    text-align: center;
+    margin-left: 1rem;
 }
 .data-titling{
     border-top: 1px solid rgb(144, 144, 144);
@@ -90,3 +144,28 @@
     margin-top: 0;
     font-weight: 300;
 }
+
+
+
+.background{ /* BG 1 */
+    background-repeat: no-repeat;
+    background-size:contain;
+    background-position:center;
+    height: 50vh;
+    position:relative;
+}
+.bar{ /* BG 2*/
+    padding:0;
+    margin:0;
+  position: absolute;
+  height: 100%;
+  width: 3rem;
+  background-color: white;
+}
+.left {
+    left: 0;
+  }
+  
+  .right {
+    right: 0;
+  }

@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios'
 import UserNav from '../../components/UserNav/UserNav';
 import UserInfo from '../../components/Fetch/UserInfo';
-// import { inProgressIcon } from '../../components/SVGs/inProgressIcon';
 import './Customer.css'
 
 export default function Customer(){
@@ -26,7 +25,7 @@ export default function Customer(){
             headers: {'Content-Type': 'application/json'},
             method: 'POST',
             // url: '/api/po-boxes',
-            url: 'https://postoffice-api.herokuapp.com/api/po-boxes',
+            url: 'https://postoffice-api.herokuapp.com/api/userbox',
             data: {'email': current_user}
         };
         const getCustomerInfo = async () => {
@@ -50,8 +49,12 @@ export default function Customer(){
         getCustomerInfo();
     }, [current_user]); 
 
-    const completed = trackInfo.filter((item) => item.tracking_status === 4);
-    const inProgress = trackInfo.filter((item) => item.tracking_status < 4);
+    const completed = trackInfo
+        .filter((item) => item.shipment_status === 'Delivered')
+        .filter((item) => !item.mark_deletion);
+    const inProgress = trackInfo
+        .filter((item) => item.shipment_status !== 'Delivered')
+        .filter((item) => !item.mark_deletion);;
 
     const totalPackages = inProgress.reduce((total, item) => {
         return total + item.num_packages;
@@ -83,40 +86,42 @@ export default function Customer(){
             
             <li className="customer-shipments">
                 <br/>
-                
                 <p className="info-titles">Shipments in Progress</p>
                 {inProgress.length > 0 ? (
-                <table className='container-table'>
-                    <tr>
-                        <th>Tracking ID</th>
-                        <th>Shipment Status</th>
-                        <th>Tracking Status</th>
-                        <th>Number of Packages</th>
-                        <th>Estimated Delivery Date</th>
-                    </tr>
-                    {trackInfo && (
-                        inProgress.map((item) => (
-                            <tr>
-                                <td>{item.shipment_tracking_id}</td>
-                                <td>{item.shipment_status}</td>
-                                <td>{item.tracking_status}</td>
-                                <td>{item.num_packages}</td>
-                                <td>{item.est_delivery_date}</td>
-                            </tr>
-                        )
-                    ))}
-                </table>
+                <div>
+                    <table className='container-table'>
+                        <tr>
+                            <th>Tracking ID</th>
+                            <th>Shipment Status</th>
+                            {/* <th>Tracking Status</th> */}
+                            <th>Number of Packages</th>
+                            <th>Estimated Delivery Date</th>
+                        </tr>
+                        {trackInfo && (
+                            inProgress.map((item) => (
+                                <tr>
+                                    <td>{item.shipment_tracking_id}</td>
+                                    <td>{item.shipment_status}</td>
+                                    {/* <td>{item.tracking_status}</td> */}
+                                    <td>{item.num_packages}</td>
+                                    <td>{item.est_delivery_date}</td>
+                                </tr>
+                            )
+                        ))
+                        }
+                    </table>
+                    <p>Total Packages Out For Delivery: {totalPackages}</p>
+                </div>
                 ) : (
                     <p>No Shipments Out for Delivery</p>
                 )}
-                <p>Total Packages Out For Delivery: {totalPackages}</p>
                 <br/> <p className="info-titles">Completed Shipments</p>
                 {completed.length > 0 ? (
                     <table className='container-table'>
                         <tr>
                             <th>Tracking ID</th>
                             <th>Shipment Status</th>
-                            <th>Tracking Status</th>
+                            {/* <th>Tracking Status</th> */}
                             <th>Number of Packages</th>
                             <th>Estimated Delivery Date</th>
                         </tr>
@@ -125,7 +130,7 @@ export default function Customer(){
                             <tr>
                                 <td>{item.shipment_tracking_id}</td>
                                 <td>{item.shipment_status}</td>
-                                <td>{item.tracking_status}</td>
+                                {/* <td>{item.tracking_status}</td> */}
                                 <td>{item.num_packages}</td>
                                 <td>{item.est_delivery_date}</td>
                             </tr>
