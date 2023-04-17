@@ -27,7 +27,7 @@ export default function UserNav(){
     return(
         <div className="page-container">
             <nav className="nav">
-                <Link to="/" className="home-title">QuickShip</Link>
+                <Link to="/" className="home-title">QuickShip [{userRole}]</Link>
                 <ul>
                     {profileLink}
                     <Link to="/login" onClick={handleLogout}>Logout</Link>

@@ -1,8 +1,11 @@
 import UserNav from "../../components/UserNav/UserNav";
-import ShippingModal from "../../components/Modals/CreateShipmentModal";
-import ReadShipmentModal from "../../components/Modals/ReadShipmentModal";
-import UpdateShipmentModal from "../../components/Modals/UpdateShipmentModal";
-import DeleteShipmentModal from "../../components/Modals/DeleteShipmentModal";
+import { 
+        CreateShipmentModal, 
+        ReadShipmentModal, 
+        UpdateShipmentModal, 
+        DeleteShipmentModal,
+        
+    } from "../../components/Modals";
 
 export default function Admin(){
     var x = localStorage.getItem("email");
@@ -22,7 +25,7 @@ export default function Admin(){
             */}
 
             <div className="">
-                <ShippingModal />
+                <CreateShipmentModal />
             </div>
             
             <div className="">

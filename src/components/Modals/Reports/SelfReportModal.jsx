@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
-import './shippingModal.css';
+import '../shippingModal.css';
 Modal.setAppElement('#root'); // Set the app root element for accessibility
 
 const SelfReportModal = () => {

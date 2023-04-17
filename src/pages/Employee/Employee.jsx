@@ -1,9 +1,9 @@
 import React from 'react';
 import UserNav from "../../components/UserNav/UserNav";
-import ShippingModal from "../../components/Modals/CreateShipmentModal";
-import ReadShipmentModal from "../../components/Modals/ReadShipmentModal";
-import UpdateShipmentModal from "../../components/Modals/UpdateShipmentModal";
-import SelfReportModal from "../../components/Modals/SelfReportModal";
+import ShippingModal from "../../components/Modals/ShipmentCRUD/CreateShipmentModal";
+import ReadShipmentModal from "../../components/Modals/ShipmentCRUD/ReadShipmentModal";
+import UpdateShipmentModal from "../../components/Modals/ShipmentCRUD/UpdateShipmentModal";
+import SelfReportModal from "../../components/Modals/Reports/SelfReportModal";
 import './Employee.css';
 
 const Employee = () => {
