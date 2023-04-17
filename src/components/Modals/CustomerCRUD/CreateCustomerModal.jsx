@@ -1,6 +1,7 @@
-import { React, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
+import '../shippingModal.css';
 
 const CreateCustomerModal = () => {
   const [isOpen, setIsOpen] = useState(false);
