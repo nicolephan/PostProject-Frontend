@@ -2,10 +2,6 @@
 // pull creation date (curr_date), tracking status, est_delivery_date in data
 // display tracking bar based on tracking status (1 2 3 or 4).
 
-//TODO (4/16/2023)
-//prevent data w/ mark_deletion=true from showing
-//FIX: result data outline shows up even if result.tracking_id doesnt exist
-
 import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../../components/Navbar/Navbar';
@@ -93,7 +89,7 @@ export default function Home() {
         </form>
       </div>
     </div>
-    {result && location && (
+    {result && location && !result.mark_deletion && (
       <div className="container-trackShipment">
         {/* <pre>{JSON.stringify(result, null, 2)}</pre> */}
         <h2 className="track-status">{result.shipment_status} <PackageFound className="package-found-icon" width='30' height='30'/></h2>
@@ -101,11 +97,11 @@ export default function Home() {
         
         <div className="track-progress">
           <div className={`progress-point ${result.shipment_status <= 'Labeling' ? 'active' : ''} ${result.shipment_status === 'Stopped' ? 'stopped' : ''}`}>
-            <span className='progress-bar-text'>Labeling</span>
+            <span className='progress-bar-text'>Ordered</span>
           </div>
           <div className={`progress-bar-line ${result.shipment_status <= 'In Transit' ? 'active' : ''} ${result.shipment_status === 'Stopped' ? 'stopped' : ''}`}></div>
           <div className={`progress-point ${result.shipment_status <= 'In Transit' ? 'active' : ''} ${result.shipment_status === 'Stopped' ? 'stopped' : ''}`}>
-            <span className='progress-bar-text'>In Progress</span>
+            <span className='progress-bar-text'>In Transit</span>
           </div>
           <div className={`progress-bar-line ${result.shipment_status <= 'Delivered' ? 'active' : ''} ${result.shipment_status === 'Stopped' ? 'stopped' : ''}`}></div>
           <div className={`progress-point ${result.shipment_status <= 'Delivered' ? 'active' : ''} ${result.shipment_status === 'Stopped' ? 'stopped' : ''}`}>

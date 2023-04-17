@@ -2,6 +2,9 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios'
 import UserNav from '../../components/UserNav/UserNav';
 import UserInfo from '../../components/Fetch/UserInfo';
+
+import TrashCanSvg from '../../components/SVGs/TrashCan';
+
 import './Customer.css'
 
 export default function Customer(){
@@ -12,6 +15,10 @@ export default function Customer(){
     const current_user = localStorage.getItem('email');
     const customerInfo = UserInfo(current_user)
     //TODO: use current_user (email) to query into database
+
+    const handleDeleteRow = () => {
+        console.log('Button Pressed');
+    }
 
     useEffect(() => {
         const optionShip = {
@@ -88,30 +95,35 @@ export default function Customer(){
                 <br/>
                 <p className="info-titles">Shipments in Progress</p>
                 {inProgress.length > 0 ? (
-                <div>
-                    <table className='container-table'>
-                        <tr>
-                            <th>Tracking ID</th>
-                            <th>Shipment Status</th>
-                            {/* <th>Tracking Status</th> */}
-                            <th>Number of Packages</th>
-                            <th>Estimated Delivery Date</th>
-                        </tr>
-                        {trackInfo && (
-                            inProgress.map((item) => (
+                    <div>
+                        <table className='container-table'>
                                 <tr>
-                                    <td>{item.shipment_tracking_id}</td>
-                                    <td>{item.shipment_status}</td>
-                                    {/* <td>{item.tracking_status}</td> */}
-                                    <td>{item.num_packages}</td>
-                                    <td>{item.est_delivery_date}</td>
+                                    <th>Tracking ID</th>
+                                    <th>Shipment Status</th>
+                                    {/* <th>Tracking Status</th> */}
+                                    <th>Number of Packages</th>
+                                    <th>Estimated Delivery Date</th>
                                 </tr>
-                            )
-                        ))
-                        }
-                    </table>
-                    <p>Total Packages Out For Delivery: {totalPackages}</p>
-                </div>
+                                {trackInfo && (
+                                    inProgress.map((item) => (
+                                        <tr>
+                                            <td>{item.shipment_tracking_id}</td>
+                                            <td>{item.shipment_status}</td>
+                                            {/* <td>{item.tracking_status}</td> */}
+                                            <td>{item.num_packages}</td>
+                                            <td>{item.est_delivery_date}</td>
+                                            <td>
+                                                <span style={{ float: 'right' }}>
+                                                    <TrashCanSvg onClick={() => handleDeleteRow(item)}  width='20px' height='20px' />
+                                                </span>
+                                            </td>
+                                        </tr>   
+                                    )
+                                ))
+                                }
+                            </table>
+                        <p className="package-total">Total Packages Out For Delivery: {totalPackages}</p>
+                    </div>
                 ) : (
                     <p>No Shipments Out for Delivery</p>
                 )}

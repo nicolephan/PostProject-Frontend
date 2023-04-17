@@ -4,7 +4,6 @@
     font-family: var(--font-family);
     display:flex;
     flex-direction: column;
-
 }
 .trackTitle{ /* "Track a Shipment" */
     margin: 0;
@@ -93,16 +92,15 @@
 }
 .track-progress{
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
     margin: 2rem;
 }
 .progress-point{
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     background-color: grey;
-    margin: 0 auto;
     transition: background-color 0.3s ease;
 }
 .progress-point.stopped, .progress-bar-line.stopped{
@@ -112,16 +110,14 @@
     background-color: #49d789;
 }
 .progress-bar-line{
-    width: 2px;
-    height: 50px;
+    width: 150px;
+    height: 3px;
     background-color: grey;
-    margin: 0 auto;
 }
 .progress-bar-text{
-    display: inline-block;
-    
-    text-align: center;
-    margin-left: 1rem;
+    position: absolute;
+    top: 27.7rem;
+    font-size: 15px;
 }
 .data-titling{
     border-top: 1px solid rgb(144, 144, 144);

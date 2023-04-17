@@ -34,8 +34,13 @@
 .customer-shipments{
     align-self: center;
 }
-.container-table{
+
+/* .container-table{
     border: 1px solid black;
+} */
+.container-table td:last-child{
+    border: none;
+    padding-right:0;
 }
 th{
     font-size: 0.75rem;
