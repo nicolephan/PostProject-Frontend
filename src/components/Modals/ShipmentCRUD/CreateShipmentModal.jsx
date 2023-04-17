@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
-import './shippingModal.css';
+import '../shippingModal.css';
 
 Modal.setAppElement('#root'); // Set the app root element for accessibility
 
-const ShippingModal = () => {
+const CreateShipmentModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [result, setResult] = useState(null);
 
@@ -140,4 +140,4 @@ const ShippingModal = () => {
   );
 };
 
-export default ShippingModal;
+export default CreateShipmentModal;

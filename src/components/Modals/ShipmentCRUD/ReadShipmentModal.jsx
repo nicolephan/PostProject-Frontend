@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
-import './shippingModal.css';
+import '../shippingModal.css';
 Modal.setAppElement('#root'); // Set the app root element for accessibility
 
 const ReadShipmentModal = () => {
@@ -114,19 +114,19 @@ const ReadShipmentModal = () => {
 
             <button type="submit" disabled={!validateForm()}>Submit</button>
         </form>
-        
+
         {/*Conditional Rendering*/}
         {
           emailresult && (
         <>
-          <h1>Email Shipment</h1>
+          <h4>All shipments from <br/>Email: {email}</h4>
           <table>
             <thead>
               <tr>
                 <th>Tracking ID</th>
                 <th>Tracking status</th>
-                <th>Estimate Delivery Date</th>
-                <th>Shipment Status</th>
+                <th>Estimate delivery date</th>
+                <th>Shipment status</th>
                 <th>Number of packages</th>
               </tr>
             </thead>
@@ -137,7 +137,7 @@ const ReadShipmentModal = () => {
                 return (
                   <tr>
                     <th>{shipment.shipment_tracking_id}</th>
-                    <th>{shipment.tracking_status}</th>
+                    <th>{String(shipment.tracking_status)}</th>
                     <th>{shipment.est_delivery_date.slice(0,10)}</th>
                     <th>{shipment.shipment_status}</th>
                     <th>{shipment.num_packages}</th>
@@ -153,13 +153,14 @@ const ReadShipmentModal = () => {
         {
           result && (
         <>
-          <h1>All Shipment</h1>
+          <h4>All Shipment</h4>
           <table>
             <thead>
               <tr>
                 <th>Tracking ID</th>
+                <th>Tracking status</th>
                 <th>Creation date</th>
-                <th>Location</th>
+                <th>Current location</th>
                 <th>Shipment status</th>
                 <th>Number of packages</th>
               </tr>
@@ -171,6 +172,7 @@ const ReadShipmentModal = () => {
                 return (
                   <tr>
                     <th>{shipment.tracking_id}</th>
+                    <th>{String(shipment.tracking_status)}</th>
                     <th>{shipment.creation_date.slice(0,10)}</th>
                     <th>{shipment.current_location}</th>
                     <th>{shipment.shipment_status}</th>

@@ -2,7 +2,6 @@
 
 .hTrackPackage{ /*WHOLE PAGE*/
     font-family: var(--font-family);
-    /* margin: 2rem; */
     display:flex;
     flex-direction: column;
 
@@ -21,13 +20,7 @@
     margin-top:2rem;
     padding-top:1rem;
     padding-bottom:1rem;
-    
-    /*BG3*/
-    /* width: 100%;
-    background-color: #c6d8e4; */
- 
-    /* FOR BG1*/
-    /* position: absolute; */
+    position: absolute;
 
 }
 /* input[type="text"] {
@@ -86,13 +79,8 @@
 .container-trackShipment{ /*TRACKING INFO*/
     padding: 1rem;
     margin: 1rem 10rem 1rem 10rem;
-
-    /* BG1 */
-    /* background-color: #dde8fe; */
-    /* ORIGINAL BG & BG2 */
-    background-color: white;
-    /* BG3 */
-    /* border: 3px solid #c6d8e4; */
+    background-color: #dde8fe;
+    border-radius: 5px;
 }
 .package-found-icon{
     position: absolute;
@@ -117,17 +105,17 @@
     margin: 0 auto;
     transition: background-color 0.3s ease;
 }
-.progress-point.active{
-    background-color: green;
+.progress-point.stopped, .progress-bar-line.stopped{
+    background-color: #fa6058;
+  }
+.progress-point.active, .progress-bar-line.active{
+    background-color: #49d789;
 }
 .progress-bar-line{
     width: 2px;
     height: 50px;
     background-color: grey;
     margin: 0 auto;
-}
-.progress-bar-line.active{
-    background-color: green;
 }
 .progress-bar-text{
     display: inline-block;
@@ -154,18 +142,3 @@
     height: 50vh;
     position:relative;
 }
-.bar{ /* BG 2*/
-    padding:0;
-    margin:0;
-  position: absolute;
-  height: 100%;
-  width: 3rem;
-  background-color: white;
-}
-.left {
-    left: 0;
-  }
-  
-  .right {
-    right: 0;
-  }

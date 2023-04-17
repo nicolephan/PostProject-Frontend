@@ -12,7 +12,8 @@
 }
 .container-title{
     font-weight: bold;
-    background-color: #DCDCDD;
+    /* background-color: #DCDCDD; */
+    background-color: rgb(244, 244, 244);
     padding: 1rem;
     border-radius: 8px 8px 0px 0px;
 }
@@ -26,7 +27,8 @@
     font-weight: bold;
 }
 .customerInfo{
-    background-color: rgb(244, 244, 244);
+    /* background-color: rgb(244, 244, 244); */
+    background-color: #dde8fe;
     border-radius: 8px;
 }
 .customer-shipments{
@@ -34,11 +36,13 @@
 }
 .container-table{
     border: 1px solid black;
+    border-radius: 5px;
 }
 th{
     font-size: 0.75rem;
     padding: 0.75rem;
     border: 1px solid black;
+    border-radius: 5px;
 }
 .button-pass{
     padding: 0.25rem;

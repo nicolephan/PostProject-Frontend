@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
-import './shippingModal.css';
+import '../shippingModal.css';
 
 Modal.setAppElement('#root'); // Set the app root element for accessibility
 
@@ -9,7 +9,8 @@ const UpdateShipmentModal = () => {
         const [isOpen, setIsOpen] = useState(false);
         const [result, setResult] = useState(null);
         const [tracking_id, setTrackingID] = useState('');
-        const [status, setShipmentStatus] = useState('1');
+        const [status, setShipmentStatus] = useState(null);
+        const [location, setLocation] = useState(null);
 
         const handleSubmit = async (event) => {
             event.preventDefault();
@@ -18,6 +19,7 @@ const UpdateShipmentModal = () => {
             console.log(tracking_id);
             console.log(status);
 
+//TODO add location to PUT request
             //HTTP PUT request to update status
             // api/update-status : PUT
             const options = {
@@ -27,6 +29,7 @@ const UpdateShipmentModal = () => {
                 data: { 
                         tracking_id,
                         status,
+                        location,
                       },
               };
           
@@ -57,6 +60,7 @@ const UpdateShipmentModal = () => {
             setIsOpen(false);
             setTrackingID('');
             setShipmentStatus('Labeling');
+            setLocation('Houston');
         };
 
     return (
@@ -83,13 +87,23 @@ const UpdateShipmentModal = () => {
                 onChange={(event) => setTrackingID(event.target.value)}
             />
 
-            <label className="label">Shipment Status:</label>
-            <select value={status} onChange={(event) => setShipmentStatus(event.target.value)}>
-                <option value="Labeling">Labeling</option>
-                <option value="In Transit">In Transit</option>
-                <option value="Delivered">Delivered</option>
-                <option value="Stopped">Stopped</option>
-            </select>
+            <div className='update-dds'>
+                <label className="label">Shipment Status:</label>
+                <select value={status} onChange={(event) => setShipmentStatus(event.target.value)}>
+                    <option value="Labeling">Labeling</option>
+                    <option value="In Transit">In Transit</option>
+                    <option value="Delivered">Delivered</option>
+                    <option value="Stopped">Stopped</option>
+                </select>
+
+                <label className="label">Current Location:</label>
+                <select value={location} onChange={(event) => setLocation(event.target.value)}>
+                    <option value="Houston">Houston</option>
+                    <option value="San Antonio">San Antonio</option>
+                    <option value="Dallas">Dallas</option>
+                    <option value="Austin">Austin</option>
+                </select>
+            </div>
             
             <button type="submit">Submit</button>
             </form>
