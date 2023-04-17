@@ -19,6 +19,7 @@ export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [tracking_id, setTrackingID] = useState('');
   const [result, setResult] = useState(null);
+  const [location, setLocation] = useState(null);
   const inputRef = useRef();
 
   useEffect(() => {
@@ -51,8 +52,16 @@ export default function Home() {
         var shipment = response.data;
         const formattedDate = new Date(response.data.creation_date).toLocaleDateString('en-US');
         shipment.creation_date = formattedDate;
+        const formattedEstDelivery = new Date(shipment.est_delivery_date).toLocaleDateString('en-US');
+        shipment.est_delivery_date = formattedEstDelivery;
         setResult(shipment);
         console.log(response.data);
+
+        if(shipment.shipment_status === 'Delivered'){
+          setLocation(shipment.home_address);
+        } else {
+          setLocation(shipment.current_location);
+        }
       } catch (error) {
         console.error(error);
         setResult(`Shipment with tracking ID: ${tracking_id} not found!`);
@@ -62,17 +71,11 @@ export default function Home() {
   return (
     <>
     {isLoggedIn ? <UserNav/> : <Navbar /> }
-    
-    {/* BG 2 */}
-    {/* <div className="bar left"></div>
-    <div className="bar right"></div> */}
-
+  
     <div className="hTrackPackage">
-
-      {/* BG1 */}
-      {/* <div className="background-overlay" style={{opacity:0.5}}>
+      <div className="background-overlay" style={{opacity:0.5}}>
         <div className="background" style={{backgroundImage: `url(${post_bg})`}}></div>
-      </div> */}
+      </div>
       
       <div className="track-bar">
         <PackageIcon/>
@@ -90,25 +93,26 @@ export default function Home() {
         </form>
       </div>
     </div>
-    {result && (
+    {result && location && (
       <div className="container-trackShipment">
         {/* <pre>{JSON.stringify(result, null, 2)}</pre> */}
         <h2 className="track-status">{result.shipment_status} <PackageFound className="package-found-icon" width='30' height='30'/></h2>
-        <p className="data-info"> Current Location: {result.current_location}</p>
+        <p className="data-info"> Current Location: {location}</p>
         
         <div className="track-progress">
-          <div className={`progress-point ${result.shipment_status <= 'Labeling' ? 'active' : ''}`}>
+          <div className={`progress-point ${result.shipment_status <= 'Labeling' ? 'active' : ''} ${result.shipment_status === 'Stopped' ? 'stopped' : ''}`}>
             <span className='progress-bar-text'>Labeling</span>
           </div>
-          <div className={`progress-bar-line ${result.shipment_status <= 'In Transit' ? 'active' : ''}`}></div>
-          <div className={`progress-point ${result.shipment_status <= 'In Transit' ? 'active' : ''}`}>
+          <div className={`progress-bar-line ${result.shipment_status <= 'In Transit' ? 'active' : ''} ${result.shipment_status === 'Stopped' ? 'stopped' : ''}`}></div>
+          <div className={`progress-point ${result.shipment_status <= 'In Transit' ? 'active' : ''} ${result.shipment_status === 'Stopped' ? 'stopped' : ''}`}>
             <span className='progress-bar-text'>In Progress</span>
           </div>
-          <div className={`progress-bar-line ${result.shipment_status <= 'Delivered' ? 'active' : ''}`}></div>
-          <div className={`progress-point ${result.shipment_status <= 'Delivered' ? 'active' : ''}`}>
+          <div className={`progress-bar-line ${result.shipment_status <= 'Delivered' ? 'active' : ''} ${result.shipment_status === 'Stopped' ? 'stopped' : ''}`}></div>
+          <div className={`progress-point ${result.shipment_status <= 'Delivered' ? 'active' : ''} ${result.shipment_status === 'Stopped' ? 'stopped' : ''}`}>
             <span className='progress-bar-text'>Delivered</span>
           </div>
         </div>
+        <p>Expected Delivery Date: {result.est_delivery_date}</p>
 
         <p className="data-titling">Tracking ID#</p>
         <p className="data-info">{result.tracking_id}</p>
