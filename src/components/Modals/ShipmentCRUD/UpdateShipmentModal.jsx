@@ -9,8 +9,8 @@ const UpdateShipmentModal = () => {
         const [isOpen, setIsOpen] = useState(false);
         const [result, setResult] = useState(null);
         const [tracking_id, setTrackingID] = useState('');
-        const [status, setShipmentStatus] = useState(null);
-        const [location, setLocation] = useState(null);
+        const [status, setShipmentStatus] = useState('Labeling');
+        const [location, setLocation] = useState('Houston');
 
         const handleSubmit = async (event) => {
             event.preventDefault();
