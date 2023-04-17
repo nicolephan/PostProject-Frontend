@@ -4,6 +4,9 @@ import UserNav from '../../components/UserNav/UserNav';
 import UserInfo from '../../components/Fetch/UserInfo';
 
 import TrashCanSvg from '../../components/SVGs/TrashCan';
+import DeliveryTruckSVG from '../../components/SVGs/DeliveryTruck';
+import AtdoorSVG from '../../components/SVGs/AtDoor';
+import SafeBoxSVG from '../../components/SVGs/SafeBox';
 
 import './Customer.css'
 
@@ -16,8 +19,17 @@ export default function Customer(){
     const customerInfo = UserInfo(current_user)
     //TODO: use current_user (email) to query into database
 
-    const handleDeleteRow = () => {
-        console.log('Button Pressed');
+    const handleDeleteRow = (item) => {
+        const confirmed = window.confirm("Are you sure you want to delete this item?");
+        if(confirmed){
+            const options = {
+                headers: {'Content-Type': 'application/json'},
+                method: 'PUT',
+                url: 'https://postoffice-api.herokuapp.com/api/delete-shipment',
+                
+            }
+            console.log(item);
+        }
     }
 
     useEffect(() => {
@@ -93,7 +105,10 @@ export default function Customer(){
             
             <li className="customer-shipments">
                 <br/>
-                <p className="info-titles">Shipments in Progress</p>
+                <p className="info-titles">
+                    <span className='title-descriptor'>Shipments in Progress </span>
+                    <DeliveryTruckSVG width='50px' height='50px'/> 
+                </p>
                 {inProgress.length > 0 ? (
                     <div>
                         <table className='container-table'>
@@ -113,7 +128,7 @@ export default function Customer(){
                                             <td>{item.num_packages}</td>
                                             <td>{item.est_delivery_date}</td>
                                             <td>
-                                                <span style={{ float: 'right' }}>
+                                                <span style={{ float: 'right', padding: '0.5rem'}}>
                                                     <TrashCanSvg onClick={() => handleDeleteRow(item)}  width='20px' height='20px' />
                                                 </span>
                                             </td>
@@ -127,7 +142,11 @@ export default function Customer(){
                 ) : (
                     <p>No Shipments Out for Delivery</p>
                 )}
-                <br/> <p className="info-titles">Completed Shipments</p>
+                <br/> 
+                <p className="info-titles">
+                    <span className='title-descriptor'>Completed Shipments </span>
+                    <AtdoorSVG width='50px' height='50px'/>
+                </p>
                 {completed.length > 0 ? (
                     <table className='container-table'>
                         <tr>
@@ -152,24 +171,28 @@ export default function Customer(){
                 ) : (
                     <p>No Completed Shipments</p>
                 )}
-            </li>
+            {/* </li> */}
 
             <div className="container-poBox">
-                <br/> <p className="info-titles">Registered Po-Boxes</p>
+                <br/> 
+                <p className="info-titles">
+                    <span className='title-descriptor'>Registered Po-Boxes </span>
+                    <SafeBoxSVG width='50px' height='50px'/>
+                </p>
                 {poBox.length > 0 ? (
                 <ul>
                     {poBox.map(item => (
-                        <>
+                        <div className="po-Info">
                             <p>Box Number: {item.box_num}</p>
                             <p>Located on {item.branch_address}</p>
-                            <br/>
-                        </>
+                        </div>
                     ))}
                 </ul>
                 ) : (
                     <p>No Registered Po-Boxes</p>
                 )}
             </div>
+            </li>
         </div>
         </>
     );

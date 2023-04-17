@@ -74,7 +74,7 @@ export default function Home() {
       </div>
       
       <div className="track-bar">
-        <PackageIcon/>
+        <PackageIcon />
         <h1 className="trackTitle">Track a Shipment</h1>
         <form onSubmit={handleFormSubmit}>
           <div className='input-group'>
@@ -92,7 +92,7 @@ export default function Home() {
     {result && location && !result.mark_deletion && (
       <div className="container-trackShipment">
         {/* <pre>{JSON.stringify(result, null, 2)}</pre> */}
-        <h2 className="track-status">{result.shipment_status} <PackageFound className="package-found-icon" width='30' height='30'/></h2>
+        <h2 className="track-status">{result.shipment_status} <PackageFound className="package-found-icon" width='40' height='40'/></h2>
         <p className="data-info"> Current Location: {location}</p>
         
         <div className="track-progress">
