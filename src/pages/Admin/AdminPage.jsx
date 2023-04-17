@@ -72,7 +72,11 @@ export default function Admin(){
             </div>
             <hr className="fade-hr" />
             <div>
-                REPORTS HERE
+                TODO: REPORTS HERE
+            </div>
+            
+            <div>
+                TODO: TRACKING HISTORY HERE
             </div>
 
             {

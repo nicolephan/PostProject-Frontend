@@ -36,13 +36,11 @@
 }
 .container-table{
     border: 1px solid black;
-    border-radius: 5px;
 }
 th{
     font-size: 0.75rem;
     padding: 0.75rem;
-    border: 1px solid black;
-    border-radius: 5px;
+    border: 2px solid black;
 }
 .button-pass{
     padding: 0.25rem;
