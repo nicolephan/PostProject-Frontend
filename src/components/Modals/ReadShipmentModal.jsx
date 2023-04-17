@@ -125,8 +125,8 @@ const ReadShipmentModal = () => {
               <tr>
                 <th>Tracking ID</th>
                 <th>Tracking status</th>
-                <th>Estimate Delivery Date</th>
-                <th>Shipment Status</th>
+                <th>Estimate delivery date</th>
+                <th>Shipment status</th>
                 <th>Number of packages</th>
               </tr>
             </thead>
@@ -158,6 +158,7 @@ const ReadShipmentModal = () => {
             <thead>
               <tr>
                 <th>Tracking ID</th>
+                <th>Tracking status</th>
                 <th>Creation date</th>
                 <th>Current location</th>
                 <th>Shipment status</th>
@@ -171,6 +172,7 @@ const ReadShipmentModal = () => {
                 return (
                   <tr>
                     <th>{shipment.tracking_id}</th>
+                    <th>{String(shipment.tracking_status)}</th>
                     <th>{shipment.creation_date.slice(0,10)}</th>
                     <th>{shipment.current_location}</th>
                     <th>{shipment.shipment_status}</th>
