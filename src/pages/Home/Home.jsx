@@ -16,6 +16,7 @@ export default function Home() {
   const [tracking_id, setTrackingID] = useState('');
   const [result, setResult] = useState(null);
   const [location, setLocation] = useState(null);
+  const [error, setError] = useState(false);
   const inputRef = useRef();
 
   useEffect(() => {
@@ -60,7 +61,8 @@ export default function Home() {
         }
       } catch (error) {
         console.error(error);
-        setResult(`Shipment with tracking ID: ${tracking_id} not found!`);
+        setError(true);
+        // setResult(`Shipment with tracking ID: ${tracking_id} not found!`);
       }
   };
 
@@ -86,27 +88,34 @@ export default function Home() {
             />
             <button type="submit">Submit</button>
           </div>
+          {error && <p className="error-message">Tracking ID not found.</p>}
         </form>
       </div>
     </div>
-    {result && location && !result.mark_deletion && (
+    {result && location && !result.mark_deletion && !error &&  (
       <div className="container-trackShipment">
         {/* <pre>{JSON.stringify(result, null, 2)}</pre> */}
         <h2 className="track-status">{result.shipment_status} <PackageFound className="package-found-icon" width='40' height='40'/></h2>
         <p className="data-info"> Current Location: {location}</p>
         
         <div className="track-progress">
+
           <div className={`progress-point ${result.shipment_status <= 'Labeling' ? 'active' : ''} ${result.shipment_status === 'Stopped' ? 'stopped' : ''}`}>
             <span className='progress-bar-text'>Ordered</span>
           </div>
+
           <div className={`progress-bar-line ${result.shipment_status <= 'In Transit' ? 'active' : ''} ${result.shipment_status === 'Stopped' ? 'stopped' : ''}`}></div>
           <div className={`progress-point ${result.shipment_status <= 'In Transit' ? 'active' : ''} ${result.shipment_status === 'Stopped' ? 'stopped' : ''}`}>
-            <span className='progress-bar-text'>In Transit</span>
+            <div className='progress-bar-text'>
+            <span className='progress-bar-text-word'>In</span><span className='progress-bar-text-word'> Transit</span>
+            </div>
           </div>
+
           <div className={`progress-bar-line ${result.shipment_status <= 'Delivered' ? 'active' : ''} ${result.shipment_status === 'Stopped' ? 'stopped' : ''}`}></div>
           <div className={`progress-point ${result.shipment_status <= 'Delivered' ? 'active' : ''} ${result.shipment_status === 'Stopped' ? 'stopped' : ''}`}>
             <span className='progress-bar-text'>Delivered</span>
           </div>
+
         </div>
         <p>Expected Delivery Date: {result.est_delivery_date}</p>
 

@@ -92,11 +92,11 @@
 }
 .track-progress{
     display: flex;
-    flex-direction: row;
     align-items: center;
     margin: 2rem;
 }
 .progress-point{
+    position: relative;
     width: 15px;
     height: 15px;
     border-radius: 50%;
@@ -116,8 +116,16 @@
 }
 .progress-bar-text{
     position: absolute;
-    top: 27.7rem;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-size: 15px;
+    display: flex;
+    flex-direction: row;
+}
+.progress-bar-text-word{
+    display: inline-block;
+    margin-left: 5px;
 }
 .data-titling{
     border-top: 1px solid rgb(144, 144, 144);
@@ -129,12 +137,14 @@
     font-weight: 300;
 }
 
-
-
 .background{ /* BG 1 */
     background-repeat: no-repeat;
     background-size:contain;
     background-position:center;
     height: 50vh;
     position:relative;
+}
+
+.error-message{
+    padding: 2rem;
 }
