@@ -59,8 +59,8 @@ const CreateCustomerModal = () => {
   };
   return (
     <>
-      <div className="SVG-button">
-        <CreateCustomerSVG onClick={() => setIsOpen(true)} width='50' height='50'/>
+      <div className="SVG-button" onClick={() => setIsOpen(true)}>
+        <CreateCustomerSVG width='50' height='50'/>
         <p className="button-text">Create Customer</p>
       </div>
       {/* <button onClick={() => setIsOpen(true)}>Create Customer</button> */}

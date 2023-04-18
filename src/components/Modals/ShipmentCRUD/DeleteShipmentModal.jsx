@@ -70,8 +70,8 @@ const DeleteShipmentModal = () => {
 
     return (
         <>
-        <div className="SVG-button">
-            <DeleteShipSVG onClick={() => setIsOpen(true)} width='50' height='50'/>
+        <div className="SVG-button" onClick={() => setIsOpen(true)}>
+            <DeleteShipSVG width='50' height='50'/>
             <p className="button-text">Delete Shipment</p>
         </div>
         {/* <button onClick={() => setIsOpen(true)}>Delete Shipment</button> */}

@@ -19,12 +19,46 @@ export default function Customer(){
     const customerInfo = UserInfo(current_user)
     //TODO: use current_user (email) to query into database
 
-    const handleDeleteRow = (item) => {
+    const handleDeleteRow = async (item) => {
         const confirmed = window.confirm("Are you sure you want to delete this item?");
         if(confirmed){
             //THIS HIDES INFO TEMPORARILY, DATA WILL COME BACK IF YOU REFRESH
-            setTrackInfo(prevTrackInfo => prevTrackInfo.filter(track => track !== item));
+            // setTrackInfo(prevTrackInfo => prevTrackInfo.filter(track => track !== item));
             console.log(item);
+            console.log(item.shipment_tracking_id);
+            console.log(item.shipment_status);
+            
+            const optionStatus = {
+                headers: {'Content-Type': 'application/json'},
+                method: 'PUT',
+                url: 'https://postoffice-api.herokuapp.com/api/update-shipment',
+                // url: '/api/update-status',
+                data: {
+                    "tracking_id": item.shipment_tracking_id,
+                    "key": "shipment_status",
+                    "new_value": 'Stopped',
+                }
+            };
+            const optionDeletion = {
+                headers: {'Content-Type': 'application/json'},
+                method: 'PUT',
+                url: 'https://postoffice-api.herokuapp.com/api/delete-shipment',
+                // url: '/api/delete-shipment',
+                data: {
+                    "tracking_id": item.shipment_tracking_id,
+                    "mark_deletion": '1',
+                }
+            };
+            try{
+                const responseStatus = await axios.request(optionStatus);
+                const responseDelete = await axios.request(optionDeletion);
+                // console.log('>:(');
+                if(responseStatus.status === 200 && responseDelete.status === 200){
+                    console.log('Successful Update');
+                }
+            } catch(error){
+                console.error(error);
+            }
         }
     }
 
@@ -107,7 +141,7 @@ export default function Customer(){
                 </p>
                 {inProgress.length > 0 ? (
                     <div>
-                        <table className='container-table'>
+                        <table className='container-progress-table'>
                                 <tr>
                                     <th>Tracking ID</th>
                                     <th>Shipment Status</th>
@@ -144,7 +178,7 @@ export default function Customer(){
                     <AtdoorSVG width='50px' height='50px'/>
                 </p>
                 {completed.length > 0 ? (
-                    <table className='container-table'>
+                    <table className='container-completed-table'>
                         <tr>
                             <th>Tracking ID</th>
                             <th>Shipment Status</th>

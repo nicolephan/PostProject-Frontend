@@ -11,6 +11,7 @@ const CreateShipmentModal = () => {
   const [result, setResult] = useState(null);
 
   //Generates random tracking ID of (3 digits)
+  //FIXME: This could collide with existing ID, look into proper UUID later
   const tracking_id = Math.floor(Math.random()*(999-100+1)+100);
   const [current_location, setCurrentLoc] = useState('');
   const shipment_status = "Labeling";
@@ -18,7 +19,7 @@ const CreateShipmentModal = () => {
   const region = "South";
   const [customer_email, setCustomerEmail] = useState('');
   const [employee_email, setEmpEmail] = useState('');
-  var todayDate = new Date(); todayDate.setMinutes(todayDate.getMinutes() - todayDate.getTimezoneOffset()); 
+  var todayDate = new Date(); todayDate.setMinutes(todayDate.getMinutes() - todayDate.getTimezoneOffset());
   var creation_date = todayDate.toISOString().slice(0,10);
 
   const handleSubmit = async (event) => {
@@ -75,8 +76,8 @@ const CreateShipmentModal = () => {
 
   return (
     <>
-      <div className="SVG-button">
-        <CreateShipSVG onClick={() => setIsOpen(true)} width='50' height='50'/>
+      <div className="SVG-button" onClick={() => setIsOpen(true)}>
+        <CreateShipSVG  width='50' height='50'/>
         <p className="button-text">Create Shipment</p>
       </div>
       {/* <button onClick={() => setIsOpen(true)}>Create Shipment</button> */}
@@ -117,7 +118,7 @@ const CreateShipmentModal = () => {
             id="numPackages"
             min = "0"
             step = "1"
-            style={{ 
+            style={{
               width: "90px",
               textAlign: "left",
               paddingRight: "10px",

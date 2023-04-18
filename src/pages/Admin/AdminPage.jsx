@@ -20,6 +20,8 @@ import {
         UpdateJobModal,
         DeleteJobModal,
         
+        ShipmentReportModal,
+        EmployeeReportModal,
     } from "../../components/Modals";
 
 import './admin.css';
@@ -72,7 +74,8 @@ export default function Admin(){
             </div>
             <hr className="fade-hr" />
             <div>
-                TODO: REPORTS HERE
+              <ShipmentReportModal />
+              <EmployeeReportModal />
             </div>
             
             <div>

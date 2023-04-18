@@ -106,8 +106,8 @@ const SelfReportModal = () => {
         <form onSubmit={handleSubmit}>
           <label htmlFor="start_date">Start date:</label>
           <input type="date" id="start_date" value={form.start_date} onChange={handleChange} />
-          <label htmlFor="start_date">End date:</label>
-          <input type="date" id="start_date" value={form.end_date} onChange={handleChange} />
+          <label htmlFor="end_date">End date:</label>
+          <input type="date" id="end_date" value={form.end_date} onChange={handleChange} />
           <label htmlFor="include_total_pay">Include total pay</label>
           <input type="checkbox" id="enable_pay" name="enable_pay" value="true" checked={istotalPay} onChange={handleBoolChange}/>
           <label htmlFor="include_total_pay">Include total hrs</label>
