@@ -15,6 +15,7 @@ export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [tracking_id, setTrackingID] = useState('');
   const [result, setResult] = useState(null);
+  const [histResult, setHistResult] = useState(null);
   const [location, setLocation] = useState(null);
   const [error, setError] = useState(false);
   const inputRef = useRef();
@@ -64,6 +65,27 @@ export default function Home() {
         setError(true);
         // setResult(`Shipment with tracking ID: ${tracking_id} not found!`);
       }
+      console.log(options)
+
+      const options2 = {
+        method: 'POST',
+        url: 'http://localhost:5000/api/loc-history-id',
+        headers: {'Content-Type': 'application/json'},
+        data: {
+            tracking_id: tracking_id
+        }
+      };
+
+      try { //TODO format data in html
+          const response = await axios.request(options2);
+          console.log("Try");
+          console.log(response.data);
+          setHistResult(response.data);
+      } catch (error) {
+          console.error(error);
+          setResult(`error`);
+      }
+
   };
 
   return (
@@ -128,6 +150,37 @@ export default function Home() {
         <p className="data-info">{result.tracking_id}</p>
         <p className="data-titling">Number of Packages</p>
         <p className="data-info">{result.num_packages}</p>
+
+        {/*Conditional Rendering*/}
+        {
+          histResult && (
+        <>
+          <h4>Tracking History</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Region</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/*Iterate through shipment json data 
+              and render to front end*/}
+              {histResult?.map((shipment) => {
+                return (
+                  <tr>
+                    <th>{shipment.date_arrived.slice(0,10)}</th>
+                    <th>{shipment.location}</th>
+                    <th>{shipment.region}</th>
+                  </tr>
+                );
+              })}
+
+            </tbody>
+          </table>
+        </>
+          )}
       </div>
     )}
     </>
