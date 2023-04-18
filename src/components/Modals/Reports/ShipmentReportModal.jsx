@@ -77,7 +77,7 @@ const ShipmentReportModal = () => {
     <>
     <div className="SVG-button" onClick={() => setIsOpen(true)}>
         <ShipmentHistSVG width='100' height='100'/>
-        <p className="button-text">Shipment History</p>
+        <p className="button-text">Shipment Report</p>
       </div>
       {/* <button onClick={() => setIsOpen(true)}>Shipment Report</button> */}
       <Modal

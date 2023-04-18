@@ -77,7 +77,7 @@ const EmployeeReportModal = () => {
     <>
       <div className="SVG-button" onClick={() => setIsOpen(true)}>
         <EmployeeHistSVG width='100' height='100'/>
-        <p className="button-text">Employee History</p>
+        <p className="button-text">Employee Report</p>
       </div>
       {/* <button onClick={() => setIsOpen(true)}>Employee Report</button> */}
       <Modal
