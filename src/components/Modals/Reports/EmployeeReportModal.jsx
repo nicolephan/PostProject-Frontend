@@ -116,7 +116,6 @@ const EmployeeReportModal = () => {
                 <th>Branch address</th>
                 <th>Phone number</th>
                 <th>Email</th>
-                <th>Start date</th>
                 <th>Currently employed?</th>
               </tr>
             </thead>
@@ -136,7 +135,6 @@ const EmployeeReportModal = () => {
                     <th>{job.branch_address}</th>
                     <th>{job.phone_number}</th>
                     <th>{job.email}</th>
-                    <th>{job.start_date}</th>
                     <th>{String(job.is_employed)}</th>
                   </tr>
                 );
