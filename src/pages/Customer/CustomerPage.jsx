@@ -25,16 +25,18 @@ export default function Customer(){
             //THIS HIDES INFO TEMPORARILY, DATA WILL COME BACK IF YOU REFRESH
             // setTrackInfo(prevTrackInfo => prevTrackInfo.filter(track => track !== item));
             console.log(item);
+            console.log(item.shipment_tracking_id);
+            console.log(item.shipment_status);
             
             const optionStatus = {
                 headers: {'Content-Type': 'application/json'},
                 method: 'PUT',
-                url: 'https://postoffice-api.herokuapp.com/api/update-status',
+                url: 'https://postoffice-api.herokuapp.com/api/update-shipment',
                 // url: '/api/update-status',
                 data: {
-                    "tracking_id": item.tracking_id,
-                    "shipment_status": 'Stopped',
-                    "current_location": item.current_location,
+                    "tracking_id": item.shipment_tracking_id,
+                    "key": "shipment_status",
+                    "new_value": 'Stopped',
                 }
             };
             const optionDeletion = {
@@ -43,13 +45,14 @@ export default function Customer(){
                 url: 'https://postoffice-api.herokuapp.com/api/delete-shipment',
                 // url: '/api/delete-shipment',
                 data: {
-                    tracking_id: item.tracking_id,
-                    mark_deletion: '1',
+                    "tracking_id": item.shipment_tracking_id,
+                    "mark_deletion": '1',
                 }
             };
             try{
                 const responseStatus = await axios.request(optionStatus);
                 const responseDelete = await axios.request(optionDeletion);
+                // console.log('>:(');
                 if(responseStatus.status === 200 && responseDelete.status === 200){
                     console.log('Successful Update');
                 }
