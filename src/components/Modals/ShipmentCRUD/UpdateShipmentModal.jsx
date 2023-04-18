@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
+import { SMTPClient } from 'emailjs';
 import '../shippingModal.css';
 import UpdateShipSVG from '../../SVGs/ShipModal/UpdateShip';
 
 Modal.setAppElement('#root'); // Set the app root element for accessibility
+
+//Create client to send emails
+const emailClient = new SMTPClient({
+    user: 'databasedemons',
+    password: process.env.EMAIL_PW,
+    host: 'smtp.gmail.com',
+    ssl: true,
+});
 
 const UpdateShipmentModal = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -50,11 +59,11 @@ const UpdateShipmentModal = () => {
             alert(result);
         }
 
+        //Send an email to the owning customer that their shipment was updated
+        await sendUpdateEmail(tracking_id, status, location);
 
         console.log(`PUT Submitted`);
         setIsOpen(false);
-
-
     }
 
     const handleCloseModal = () => {
@@ -116,6 +125,43 @@ const UpdateShipmentModal = () => {
         </>
 
     )
+}
+
+/**
+ * Sends an email to the customer that owns the shipment letting
+ * them know their package was updated.
+ * @param {string} id ID of the shipment being updated
+ * @param {string} status Status that the package was updated to
+ * @param {string} location Location of the package after update
+ */
+async function sendUpdateEmail(id, status, location) {
+    //Retrieve owner of shipment
+    const options = {
+        method: 'POST',
+        url: 'https://postoffice-api.herokuapp.com/api/shipment',
+        headers: { 'Content-Type': 'application/json' },
+        data: {
+            "tracking_id": id,
+        },
+    };
+
+    try {
+        const response = await axios.request(options);
+        const custEmail = response.customer_email;
+
+        const emailBody = `Your shipment (tracking ID: ${id})
+                        has been updated to a status of ${status}
+                        and is currently located in ${location}.`;
+        let message = await emailClient.sendAsync({
+            text: emailBody,
+            from: 'Quickship <databasedemons@gmail.com>',
+            to: custEmail,
+            subject: 'Shipment Update',
+        });
+        console.log(message);
+    } catch (err) {
+        console.log("Got error while sending email:" + err);
+    }
 }
 
 export default UpdateShipmentModal;
