@@ -35,6 +35,7 @@ const UpdateEmployeeModal = () => {
       setIsOpen(false);
       return;
     }
+    
 
     //Handle the response data
     try {
@@ -55,6 +56,8 @@ const UpdateEmployeeModal = () => {
 
   const handleCloseModal = () => {
     setIsOpen(false);
+    setNewValue('');
+    setEmailToUpdate('');
   };
 
   return (

@@ -40,7 +40,7 @@ const EmployeeReportModal = () => {
         //Handle the response data
         const options = {
             method: 'POST',
-            url: 'http://localhost:5000/api/employee-report',
+            url: 'https://postoffice-api.herokuapp.com/api/employee-report',
             headers: {'Content-Type': 'application/json'},
             data: {
                 start_date: form.start_date,
@@ -124,7 +124,7 @@ const EmployeeReportModal = () => {
               and render to front end*/}
               {result?.map((job) => {
                 //setSum({...form, total_pay: form.total_pay + job.pay});
-                if (job.first_name != undefined) {
+                if (job.first_name !== undefined) {
                 return (
                   <tr>
                     <th>{job.first_name}</th>
