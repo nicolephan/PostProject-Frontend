@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
-import '../employeeModal.css';
+import '../shippingModal.css';
 import CreateEmployeeSVG from '../../SVGs/EmployeeModal/CreateEmployee';
 
 Modal.setAppElement('#root'); // Set the app root element for accessibility
@@ -136,7 +136,7 @@ const CreateEmployeeModal = () => {
                 required
               />
             </label>
-            <label htmlFor="address">
+            <label htmlFor="branchAddress">
               Branch Address:
               <select value={branch_address} onChange={(event) => setBranchAddr(event.target.value)}>
                 <option value="123 Main St">123 Main St</option>
@@ -147,15 +147,13 @@ const CreateEmployeeModal = () => {
             <label htmlFor="employeeType">
               Employee Type:
               <select value={type} onChange={(event) => setEmployeeType(event.target.value)}>
-                <option value="Employee">Employee</option>
-                <option value="Admin">Admin</option>
+                <option value="employee">Employee</option>
+                <option value="admin">Admin</option>
               </select>
             </label>
             <button>Submit</button>
           </form>
         </div>
-
-
       </Modal>
     </>
   )
