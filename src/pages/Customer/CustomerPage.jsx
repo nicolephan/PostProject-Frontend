@@ -22,11 +22,7 @@ export default function Customer(){
     const handleDeleteRow = async (item) => {
         const confirmed = window.confirm("Are you sure you want to delete this item?");
         if(confirmed){
-            //THIS HIDES INFO TEMPORARILY, DATA WILL COME BACK IF YOU REFRESH
-            // setTrackInfo(prevTrackInfo => prevTrackInfo.filter(track => track !== item));
             console.log(item);
-            console.log(item.shipment_tracking_id);
-            console.log(item.shipment_status);
             
             const optionStatus = {
                 headers: {'Content-Type': 'application/json'},
@@ -52,8 +48,8 @@ export default function Customer(){
             try{
                 const responseStatus = await axios.request(optionStatus);
                 const responseDelete = await axios.request(optionDeletion);
-                // console.log('>:(');
                 if(responseStatus.status === 200 && responseDelete.status === 200){
+                    setTrackInfo(prevTrackInfo => prevTrackInfo.filter(track => track !== item));
                     console.log('Successful Update');
                 }
             } catch(error){
@@ -103,7 +99,7 @@ export default function Customer(){
         .filter((item) => !item.mark_deletion);
     const inProgress = trackInfo
         .filter((item) => item.shipment_status !== 'Delivered')
-        .filter((item) => !item.mark_deletion);;
+        .filter((item) => !item.mark_deletion);
 
     const totalPackages = inProgress.reduce((total, item) => {
         return total + item.num_packages;
