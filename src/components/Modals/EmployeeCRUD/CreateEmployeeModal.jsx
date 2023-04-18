@@ -10,10 +10,10 @@ const CreateEmployeeModal = () => {
   //variables/data needed for creation of an emp.
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [type, setEmployeeType] = useState('');
+  const [type, setEmployeeType] = useState('employee');
   const [first_name, setFirstName] = useState('');
   const [last_name, setLastName] = useState('');
-  const [branch_address, setBranchAddr] = useState('');
+  const [branch_address, setBranchAddr] = useState('123 Main St');
   const [phone_number, setPhoneNum] = useState('');
   const [start_date, setStartDate] = useState('');
 
@@ -65,8 +65,7 @@ const CreateEmployeeModal = () => {
   return (
     <>
       <div className="SVG-button">
-        <CreateEmployeeSVG width='50' height='50' />
-        {/* onClick={() => setIsOpen(true)} */}
+        <CreateEmployeeSVG width='50' height='50' onClick={() => setIsOpen(true)} />
         <p className="button-text">Create Employee</p>
       </div>
       <Modal
@@ -139,21 +138,18 @@ const CreateEmployeeModal = () => {
             </label>
             <label htmlFor="address">
               Branch Address:
-              <input
-                value={branch_address}
-                onChange={(e) => setBranchAddr(e.target.value)}
-                type="text" id="address" name="address"
-                required
-              />
+              <select value={branch_address} onChange={(event) => setBranchAddr(event.target.value)}>
+                <option value="123 Main St">123 Main St</option>
+                <option value="456 Elm St">456 Elm St</option>
+                <option value="789 Oak St">789 Oak St</option>
+              </select>
             </label>
             <label htmlFor="employeeType">
               Employee Type:
-              <input
-                value={type}
-                onChange={(e) => setEmployeeType(e.target.value)}
-                type="text" id="employeeType" name="type"
-                required
-              />
+              <select value={type} onChange={(event) => setEmployeeType(event.target.value)}>
+                <option value="Employee">Employee</option>
+                <option value="Admin">Admin</option>
+              </select>
             </label>
             <button>Submit</button>
           </form>
