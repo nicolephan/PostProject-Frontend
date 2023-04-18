@@ -68,7 +68,7 @@ const handleRadioChange = (event) => {
 
   return (
     <>
-    <div className="SVG-button">
+    <div className="SVG-button" onClick={() => setIsOpen(true)}>
       <DeleteCustomerSVG onClick={() => setIsOpen(true)} width='50' height='50'/>
       <p className="button-text">Delete Customer</p>
     </div>

@@ -64,7 +64,7 @@ const CreateEmployeeModal = () => {
 
   return (
     <>
-      <div className="SVG-button">
+      <div className="SVG-button" onClick={() => setIsOpen(true)}>
         <CreateEmployeeSVG width='50' height='50' onClick={() => setIsOpen(true)} />
         <p className="button-text">Create Employee</p>
       </div>
