@@ -62,6 +62,8 @@ const UpdateJobModal = () => {
 
   const handleCloseModal = () => {
     setIsOpen(false);
+    setIDToUpdate('');
+    setNewValue('');
   };
 
   return (

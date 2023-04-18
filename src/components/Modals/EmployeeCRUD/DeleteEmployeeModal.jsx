@@ -48,6 +48,7 @@ const DeleteEmployeeModal = () => {
 
   const handleCloseModal = () => {
     setIsOpen(false);
+    setEmailToUpdate('');
   };
 
   return (

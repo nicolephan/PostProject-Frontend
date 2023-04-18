@@ -49,6 +49,7 @@ const DeleteJobModal = () => {
 
   const handleCloseModal = () => {
     setIsOpen(false);
+    setIDToUpdate('');
   };
 
   return (
