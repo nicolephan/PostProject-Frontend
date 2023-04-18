@@ -6,6 +6,7 @@ import {
         DeleteShipmentModal,
         SelfReportModal,
         ShipmentReportModal,
+        AllLocHistoryModal,
     } from "../../components/Modals";
 
 
@@ -48,7 +49,7 @@ export default function Admin(){
             </div>
             
             <div>
-                TODO: TRACKING HISTORY HERE
+                <AllLocHistoryModal />
             </div>
 
             {
