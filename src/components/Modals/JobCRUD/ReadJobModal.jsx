@@ -9,30 +9,56 @@ Modal.setAppElement('#root'); // Set the app root element for accessibility
 const ReadJobModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [result, setResult] = useState(null);
-  const [emailresult, setEmailResult] = useState(null);
-
-  const [resultIsShown, setResultShown] = useState(null);
-  const [email, setEmail] = useState('');
-  const [shipmentType, setShipmentType] = useState('');
+  const [id, setWorkID] = useState('');
+  const [jobsResult, setJobsResult] = useState(null);
+  const [jobType, setJobType] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     //Handle the response data
 
+
+      if (jobType === 'all') 
+      {
         const options = {
-            method: 'GET',
-            url: 'https://postoffice-api.herokuapp.com/api/job',
-            headers: {'Content-Type': 'application/json'},
+          method: 'GET',
+          url: 'https://postoffice-api.herokuapp.com/api/job',
+          headers: {'Content-Type': 'application/json'},
         };
 
-        try { //TODO format data in html
+        try {
             const response = await axios.request(options);
             console.log(response.data);
             setResult(response.data);
+          } catch (error) {
+            console.error(error);
+            setResult(`error`);
+          }
+      }
+      else //handles individual query
+      {
+        //api/get-job-with-id
+        const options = {
+          method: 'POST',
+          url: 'https://postoffice-api.herokuapp.com/api/get-job-with-id',
+          headers: {'Content-Type': 'application/json'},
+          data : {
+              id,
+          }
+        };
+        try {
+            
+            const response = await axios.request(options);
+            //console.log(response.data);
+            setJobsResult(response.data);
+            //console.log(jobsResult);
+            
         } catch (error) {
             console.error(error);
             setResult(`error`);
+            alert(result);
         }
+      }        
 
       console.log(`Submitted`);
       setIsOpen(true);
@@ -41,18 +67,18 @@ const ReadJobModal = () => {
   const handleCloseModal = () => {
     setIsOpen(false);
     setResult(null);
-    setEmailResult(null);
+    setJobsResult(null);
   };
 
   useEffect(() => {
     if (!isOpen) {
-      setShipmentType('');
-      setEmail('');
+      setJobType('');
+      setWorkID('');
     }
   }, [isOpen]);
 
   const validateForm = () => {
-    return email !== '' || shipmentType !== '';
+    return id !== '' || jobType !== '';
   }
 
   return (
@@ -76,10 +102,53 @@ const ReadJobModal = () => {
         <h2>Read Jobs</h2>
 
         <form onSubmit={handleSubmit}>
-            <button type="submit" >Submit</button>
+        <label>Work ID:</label>
+          <input type="integer" value={id} onChange={(e) => setWorkID(e.target.value)} />
+
+          <div>
+            <input type="radio" name="job-type" value="all" checked={jobType === 'all'} onChange={(e) => setJobType(e.target.value)} />
+            <label htmlFor="all">All Jobs</label>
+          </div>
+
+            <button type="submit" disabled={!validateForm()}>Submit</button>
         </form>
 
+
+
         {/*Conditional Rendering*/}
+        {
+          jobsResult && (
+        <>
+          <h4>All Jobs</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>Work id</th>
+                <th>Work name</th>
+                <th>Employee email</th>
+                <th>Pay</th>
+                <th>Hours worked</th>
+                <th>On date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/*Iterate through shipment json data 
+              and render to front end*/}
+              <tr>
+                <th>{jobsResult.work_id}</th>
+                <th>{jobsResult.work_name}</th>
+                <th>{jobsResult.employee_email}</th>
+                <th>{jobsResult.pay}</th>
+                <th>{jobsResult.hours_worked}</th>
+                <th>{jobsResult.on_date.slice(0,10)}</th>
+              </tr>
+              
+            </tbody>
+          </table>
+        </>
+        )
+        }
+
         {
           result && (
         <>

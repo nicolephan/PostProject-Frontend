@@ -9,7 +9,7 @@ const ReadEmployeeModal = () => {
   const [result, setResult] = useState(null); //for ALL button
   const [emailresult, setEmailResult] = useState(null);
   const [email, setEmail] = useState('');
-  //FIXME change below naming
+  
   const [employeeType, setEmployeeType] = useState('');
 
   const handleSubmit = async (event) => {
@@ -39,7 +39,7 @@ const ReadEmployeeModal = () => {
     //Handles individual query of email input
     else 
     {
-        console.log(email)
+        //console.log(email)
         const options = {
             method: 'POST',
             url: 'https://postoffice-api.herokuapp.com/api/employee-info',
@@ -52,7 +52,7 @@ const ReadEmployeeModal = () => {
             
             
             const response = await axios.request(options);
-            console.log(response.data);
+            //console.log(response.data);
             setEmailResult(response.data);
             
         } catch (error) {
