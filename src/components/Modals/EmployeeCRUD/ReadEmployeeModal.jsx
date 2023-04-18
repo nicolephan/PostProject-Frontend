@@ -10,7 +10,7 @@ const ReadEmployeeModal = () => {
     <div className="SVG-button">
     <ReadEmployeeSVG width='50' height='50'/>
       {/* onClick={() => setIsOpen(true)} */}
-      <p className="button-text">Create Employee (not created)</p>
+      <p className="button-text">Read Employee (not created)</p>
     </div>
   )
 }
