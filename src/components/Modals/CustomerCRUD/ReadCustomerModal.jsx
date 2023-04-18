@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 import '../shippingModal.css';
+import ReadCustomerSVG from '../../SVGs/CustomerModal/ReadCust';
 
 Modal.setAppElement('#root');
 
@@ -91,7 +92,11 @@ const validateForm = () => {
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>Read Customers</button>
+      <div className="SVG-button">
+        <ReadCustomerSVG onClick={() => setIsOpen(true)} width='50' height='50'/>
+        <p className="button-text">Read Customer</p>
+      </div>
+      {/* <button onClick={() => setIsOpen(true)}>Read Customers</button> */}
       <Modal
         isOpen={isOpen}
         onRequestClose={handleCloseModal}

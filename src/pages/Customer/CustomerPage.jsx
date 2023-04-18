@@ -3,10 +3,10 @@ import axios from 'axios'
 import UserNav from '../../components/UserNav/UserNav';
 import UserInfo from '../../components/Fetch/UserInfo';
 
-import TrashCanSvg from '../../components/SVGs/TrashCan';
-import DeliveryTruckSVG from '../../components/SVGs/DeliveryTruck';
-import AtdoorSVG from '../../components/SVGs/AtDoor';
-import SafeBoxSVG from '../../components/SVGs/SafeBox';
+import TrashCanSvg from '../../components/SVGs/CustomerIcons/TrashCan';
+import DeliveryTruckSVG from '../../components/SVGs/CustomerIcons/DeliveryTruck';
+import AtdoorSVG from '../../components/SVGs/CustomerIcons/AtDoor';
+import SafeBoxSVG from '../../components/SVGs/CustomerIcons/SafeBox';
 
 import './Customer.css'
 
@@ -22,12 +22,8 @@ export default function Customer(){
     const handleDeleteRow = (item) => {
         const confirmed = window.confirm("Are you sure you want to delete this item?");
         if(confirmed){
-            const options = {
-                headers: {'Content-Type': 'application/json'},
-                method: 'PUT',
-                url: 'https://postoffice-api.herokuapp.com/api/delete-shipment',
-                
-            }
+            //THIS HIDES INFO TEMPORARILY, DATA WILL COME BACK IF YOU REFRESH
+            setTrackInfo(prevTrackInfo => prevTrackInfo.filter(track => track !== item));
             console.log(item);
         }
     }

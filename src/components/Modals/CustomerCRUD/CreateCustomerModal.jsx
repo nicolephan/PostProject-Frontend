@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 import '../shippingModal.css';
+import CreateCustomerSVG from '../../SVGs/CustomerModal/CreateCust';
 
 const CreateCustomerModal = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -58,7 +59,11 @@ const CreateCustomerModal = () => {
   };
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>Create Customer</button>
+      <div className="SVG-button">
+        <CreateCustomerSVG onClick={() => setIsOpen(true)} width='50' height='50'/>
+        <p className="button-text">Create Customer</p>
+      </div>
+      {/* <button onClick={() => setIsOpen(true)}>Create Customer</button> */}
       <Modal
         isOpen={isOpen}
         onRequestClose={handleCloseModal}

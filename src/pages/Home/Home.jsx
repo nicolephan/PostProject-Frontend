@@ -6,10 +6,10 @@ import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../../components/Navbar/Navbar';
 import UserNav from '../../components/UserNav/UserNav';
-import { PackageIcon } from '../../components/SVGs/Package';
-import PackageFound from '../../components/SVGs/PackageFound';
-import './Home.css';
+import { PackageIcon } from '../../components/SVGs/HomeIcons/Package';
+import PackageFound from '../../components/SVGs/HomeIcons/PackageFound';
 import post_bg from '../../components/post_queue.png';
+import './Home.css';
 
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -88,7 +88,12 @@ export default function Home() {
             />
             <button type="submit">Submit</button>
           </div>
-          {error && <p className="error-message">Tracking ID not found.</p>}
+          {error && 
+            <div className="error-message">
+              <p>Tracking ID not found.</p>
+              
+            </div>
+          }
         </form>
       </div>
     </div>
