@@ -40,7 +40,7 @@ const ShipmentReportModal = () => {
         //Handle the response data
         const options = {
             method: 'POST',
-            url: 'http://localhost:5000/api/shipment-report',
+            url: 'https://postoffice-api.herokuapp.com/api/shipment-report',
             headers: {'Content-Type': 'application/json'},
             data: {
                 start_date: form.start_date,
