@@ -136,3 +136,9 @@ tbody tr:hover {
   display: flex;
   justify-content: space-between;
 }
+
+/* Allow scroll */
+.ReactModal__Content--after-open {
+  overflow-y: scroll !important;
+  max-height: 90%;
+}
