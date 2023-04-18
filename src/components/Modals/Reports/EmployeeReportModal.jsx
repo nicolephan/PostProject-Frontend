@@ -124,6 +124,7 @@ const EmployeeReportModal = () => {
               and render to front end*/}
               {result?.map((job) => {
                 //setSum({...form, total_pay: form.total_pay + job.pay});
+                if (job.first_name != undefined) {
                 return (
                   <tr>
                     <th>{job.first_name}</th>
@@ -131,21 +132,22 @@ const EmployeeReportModal = () => {
                     <th>{job.work_name}</th>
                     <th>{job.pay}</th>
                     <th>{job.hours_worked}</th>
-                    <th>{job.on_date}</th>
+                    <th>{job.on_date.slice(0,10)}</th>
                     <th>{job.branch_address}</th>
                     <th>{job.phone_number}</th>
                     <th>{job.email}</th>
                     <th>{String(job.is_employed)}</th>
                   </tr>
                 );
-              })}
+              }})
+              }
              { istotalPay && (
               <tr>
                 <th>Total employee: {result[result.length - 1].employee_count}</th>
                 <th>Total works: {result[result.length - 1].total_job}</th>
                 <th>Total pay: ${result[result.length - 1].total_pay}</th>
                 <th>Total hours: {result[result.length - 1].total_hrs}</th>
-                <th>Avg wage: ${result[result.length - 1].total_pay / result[result.length - 1].total_hrs}/hr</th>
+                <th>Avg wage: ${(result[result.length - 1].total_pay / result[result.length - 1].total_hrs).toFixed(2)}/hr</th>
               </tr>
              )}
             </tbody>

@@ -123,6 +123,7 @@ const ShipmentReportModal = () => {
               and render to front end*/}
               {result?.map((job) => {
                 //setSum({...form, total_pay: form.total_pay + job.pay});
+                if (job.tracking_id != undefined) {
                 return (
                   <tr>
                     <th>{job.tracking_id}</th>
@@ -132,11 +133,12 @@ const ShipmentReportModal = () => {
                     <th>{job.shipment_status}</th>
                     <th>{job.num_packages}</th>
                     <th>{job.region}</th>
-                    <th>{job.creation_date}</th>
-                    <th>{job.est_delivery_date}</th>
+                    <th>{job.creation_date.slice(0,10)}</th>
+                    <th>{job.est_delivery_date.slice(0,10)}</th>
                   </tr>
                 );
-              })}
+                }})
+              }
              { istotalPay && (
               <tr>
                 <th>Total shipments: {result[result.length - 1].total_shipment}</th>
