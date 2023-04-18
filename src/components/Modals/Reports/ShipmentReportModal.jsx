@@ -110,12 +110,12 @@ const ShipmentReportModal = () => {
                 <th>Tracking ID</th>
                 <th>Customer LName</th>
                 <th>Email</th>
-                <th>current_location</th>
-                <th>shipment_status</th>
-                <th>num_packages</th>
-                <th>region</th>
-                <th>creation_date</th>
-                <th>est_delivery_date</th>
+                <th>Current location</th>
+                <th>Shipment status</th>
+                <th>Number of packages</th>
+                <th>Region</th>
+                <th>Creation date</th>
+                <th>Est delivery date</th>
               </tr>
             </thead>
             <tbody>
