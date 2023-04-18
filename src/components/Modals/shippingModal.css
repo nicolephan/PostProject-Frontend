@@ -128,3 +128,8 @@ tbody tr:hover {
   padding: 0;
   margin: 0;
 }
+
+.container-new-data {
+  display: flex;
+  justify-content: space-between;
+}

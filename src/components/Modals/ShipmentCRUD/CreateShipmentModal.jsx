@@ -75,8 +75,8 @@ const CreateShipmentModal = () => {
 
   return (
     <>
-      <div className="SVG-button">
-        <CreateShipSVG onClick={() => setIsOpen(true)} width='50' height='50'/>
+      <div className="SVG-button" onClick={() => setIsOpen(true)}>
+        <CreateShipSVG  width='50' height='50'/>
         <p className="button-text">Create Shipment</p>
       </div>
       {/* <button onClick={() => setIsOpen(true)}>Create Shipment</button> */}

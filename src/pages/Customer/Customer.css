@@ -47,7 +47,7 @@
 /* .container-table{
     border: 1px solid black;
 } */
-.container-table td:last-child{
+.container-progress-table td:last-child{
     border: none;
     padding: 0;
     background-color: #dde8fe;

@@ -92,8 +92,8 @@ const validateForm = () => {
 
   return (
     <>
-      <div className="SVG-button">
-        <ReadCustomerSVG onClick={() => setIsOpen(true)} width='50' height='50'/>
+      <div className="SVG-button" onClick={() => setIsOpen(true)}>
+        <ReadCustomerSVG width='50' height='50'/>
         <p className="button-text">Read Customer</p>
       </div>
       {/* <button onClick={() => setIsOpen(true)}>Read Customers</button> */}
