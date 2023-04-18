@@ -26,7 +26,7 @@ export default function Login(){
 //LOGIN REGISTER FORM 2.0
 function LoginForm() {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [password, setPassword] = useState('');    
     const navigate = useNavigate();
   
     const handleSubmit = async (event) => {
@@ -41,6 +41,32 @@ function LoginForm() {
           },
           data: { email, password },
         };
+
+        //Will not let customer login if marked deleted
+        const options2 = {
+            method: 'POST',
+            url: 'https://postoffice-api.herokuapp.com/api/userinfo',
+            headers: {'Content-Type': 'application/json'},
+            data : {
+                email,
+            }
+        };
+
+        try {
+            const response = await axios.request(options2);
+            console.log(response.data.is_active);
+            if (response.data.is_active === false)
+            {
+                console.log("CUSTOMER HAS BEEN DELETED, CONTACT ADMIN");
+                alert("RESTRICTED ACCOUNT, CONTACT ADMIN.")
+                return;
+            }
+            
+        //will throw errors for employee/admin logins (userinfo route needs to be fixed but its ok for now)
+        } catch (error) {
+            console.error(error);
+            console.log("Admin/Employee bypass")
+        }
     
         try {
             const response = await axios.request(options);
@@ -74,6 +100,7 @@ function LoginForm() {
 
           } catch (error) {
             console.error(error);
+            alert("FORBIDDEN");
             console.log("FORBIDDEN");
           }
       };
