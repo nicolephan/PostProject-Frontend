@@ -15,6 +15,14 @@
     margin: 1rem;
     border-radius: 5px;
   }
+  .grid-item:hover {
+    background-color: rgba(42, 79, 245, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    text-align: center;
+    margin: 1rem;
+    border-radius: 5px;
+  }
   .grid-title {
     grid-column: 1;
     font-size: 30px;
@@ -83,7 +91,7 @@
       opacity: 1;
     }
   }
-  
+
   @keyframes text-focus-in {
     0% {
       filter: blur(12px);
