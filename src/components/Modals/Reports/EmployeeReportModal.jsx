@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 import '../shippingModal.css';
+import EmployeeHistSVG from '../../SVGs/EmployeeIcons/EmployeeHist';
 Modal.setAppElement('#root'); // Set the app root element for accessibility
 
 const EmployeeReportModal = () => {
@@ -74,7 +75,11 @@ const EmployeeReportModal = () => {
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>Employee Report</button>
+      <div className="SVG-button" onClick={() => setIsOpen(true)}>
+        <EmployeeHistSVG width='100' height='100'/>
+        <p className="button-text">Employee History</p>
+      </div>
+      {/* <button onClick={() => setIsOpen(true)}>Employee Report</button> */}
       <Modal
         isOpen={isOpen}
         onRequestClose={handleCloseModal}

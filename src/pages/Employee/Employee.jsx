@@ -43,13 +43,17 @@ export default function Admin(){
             
             </div>
             <hr className="fade-hr" />
-            <div>
-              <SelfReportModal />
-              <ShipmentReportModal />
-            </div>
-            
-            <div>
-                <AllLocHistoryModal />
+            <div className="Report-buttons">
+                <div>
+                <SelfReportModal />
+                </div>
+                <div>
+                <ShipmentReportModal />
+                </div>
+                
+                <div>
+                    <AllLocHistoryModal />
+                </div>
             </div>
 
             {

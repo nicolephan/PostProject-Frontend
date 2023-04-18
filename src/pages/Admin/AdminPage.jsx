@@ -74,15 +74,18 @@ export default function Admin(){
             
             </div>
             <hr className="fade-hr" />
-            <div>
-              <ShipmentReportModal />
-              <EmployeeReportModal />
+            <div className="report-button">
+                <div>
+                <ShipmentReportModal />
+                </div>
+                <div>
+                <EmployeeReportModal />
+                </div>
+                
+                <div>
+                <AllLocHistoryModal />
+                </div>
             </div>
-            
-            <div>
-               <AllLocHistoryModal />
-            </div>
-
             {
                 /* TODO:
                     - add update tracking status (1 2 3 or 4) -> sends email

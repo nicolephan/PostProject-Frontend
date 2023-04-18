@@ -126,10 +126,14 @@ tbody tr:hover {
   border-radius: 5px;
   cursor: pointer;
 }
+.SVG-button:hover{
+  background-color: rgb(235, 235, 235);
+}
 
 .button-text{
   padding: 0;
   margin: 0;
+  text-align: center;
 }
 
 .container-new-data {

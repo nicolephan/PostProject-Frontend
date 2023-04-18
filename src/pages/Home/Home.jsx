@@ -112,7 +112,7 @@ export default function Home() {
           </div>
           {error && 
             <div className="error-message">
-              <p>Tracking ID not found.</p>
+              <p>Tracking ID not found. Please enter a valid ID.</p>
               
             </div>
           }

@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import axios from 'axios';
 import '../shippingModal.css';
 import ReadJobSVG from '../../SVGs/JobModal/ReadJob';
+import LocationSVG from '../../SVGs/EmployeeIcons/Location';
 
 Modal.setAppElement('#root'); // Set the app root element for accessibility
 
@@ -57,7 +58,11 @@ const AllLocHistoryModal = () => {
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>Location History</button>
+      <div className="SVG-button" onClick={() => setIsOpen(true)}>
+        <LocationSVG width='100' height='100'/>
+        <p className="button-text">Location History</p>
+      </div>
+      {/* <button onClick={() => setIsOpen(true)}>Location History</button> */}
       {/* <button onClick={() => setIsOpen(true)}>Read Shipment</button> */}
       <Modal
         isOpen={isOpen}
