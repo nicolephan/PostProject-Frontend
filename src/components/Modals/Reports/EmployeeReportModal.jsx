@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../shippingModal.css';
 Modal.setAppElement('#root'); // Set the app root element for accessibility
 
-const SelfReportModal = () => {
+const EmployeeReportModal = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [result, setResult] = useState(null);
     const [resultIsShown, setResultShown] = useState(null);
@@ -13,21 +13,7 @@ const SelfReportModal = () => {
     const [istotalPay, SetisTotalPay] = React.useState(false);
     const [istotalHrs, SetisTotalHrs] = React.useState(false);
 
-    //const [istotalPay, SetisTotalPay] = React.useState(false);
-
-    /*
-    const [sum, setSum] = useState({
-        enable_pay: false,
-        enable_hrs: false,
-        total_pay: 0,
-        total_hrs: 0
-    });
-    */
-
-    var x = localStorage.getItem("email");
-    // Set default values
     const [form, setForm] = React.useState({
-        employee_email: x,
         start_date: "2023-01-01",
         end_date: "2023-12-30"
     });
@@ -54,10 +40,9 @@ const SelfReportModal = () => {
         //Handle the response data
         const options = {
             method: 'POST',
-            url: 'https://postoffice-api.herokuapp.com/api/self-report',
+            url: 'http://localhost:5000/api/employee-report',
             headers: {'Content-Type': 'application/json'},
             data: {
-                employee_email: form.employee_email,
                 start_date: form.start_date,
                 end_date: form.end_date,
             }
@@ -89,7 +74,7 @@ const SelfReportModal = () => {
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>Payroll Report</button>
+      <button onClick={() => setIsOpen(true)}>Employee Report</button>
       <Modal
         isOpen={isOpen}
         onRequestClose={handleCloseModal}
@@ -101,17 +86,15 @@ const SelfReportModal = () => {
           <span className="close-icon">&times;</span>
         </button>
 
-        <h2>Payroll Report</h2>
+        <h2>Employee Work Report</h2>
 
         <form onSubmit={handleSubmit}>
           <label htmlFor="start_date">Start date:</label>
           <input type="date" id="start_date" value={form.start_date} onChange={handleChange} />
-          <label htmlFor="start_date">End date:</label>
-          <input type="date" id="start_date" value={form.end_date} onChange={handleChange} />
-          <label htmlFor="include_total_pay">Include total pay</label>
+          <label htmlFor="end_date">End date:</label>
+          <input type="date" id="end_date" value={form.end_date} onChange={handleChange} />
+          <label htmlFor="include_total_pay">Include total</label>
           <input type="checkbox" id="enable_pay" name="enable_pay" value="true" checked={istotalPay} onChange={handleBoolChange}/>
-          <label htmlFor="include_total_pay">Include total hrs</label>
-          <input type="checkbox" id="enable_pay" name="enable_pay" value="true" checked={istotalHrs} onChange={handleHrsBoolChange}/>
             <button type="submit">Submit</button>
         </form>
 
@@ -119,15 +102,21 @@ const SelfReportModal = () => {
         {
           result && (
         <>
-          <h4>Employee</h4>
+          <h4>Report</h4>
+          <p>From {form.start_date} to {form.end_date}</p>
           <table>
             <thead>
               <tr>
-                <th>Work name</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>work_name</th>
+                <th>pay</th>
+                <th>Hours worked</th>
                 <th>On date</th>
                 <th>Branch address</th>
-                <th>Pay</th>
-                <th>Hours worked</th>
+                <th>Phone number</th>
+                <th>Email</th>
+                <th>Currently employed?</th>
               </tr>
             </thead>
             <tbody>
@@ -135,27 +124,28 @@ const SelfReportModal = () => {
               and render to front end*/}
               {result?.map((job) => {
                 //setSum({...form, total_pay: form.total_pay + job.pay});
-                total_pay += job.pay;
-                total_hrs += job.hours_worked;
-
                 return (
                   <tr>
+                    <th>{job.first_name}</th>
+                    <th>{job.last_name}</th>
                     <th>{job.work_name}</th>
-                    <th>{job.on_date.slice(0,10)}</th>
-                    <th>{job.branch_address}</th>
-                    <th>${job.pay}</th>
+                    <th>{job.pay}</th>
                     <th>{job.hours_worked}</th>
+                    <th>{job.on_date}</th>
+                    <th>{job.branch_address}</th>
+                    <th>{job.phone_number}</th>
+                    <th>{job.email}</th>
+                    <th>{String(job.is_employed)}</th>
                   </tr>
                 );
               })}
              { istotalPay && (
               <tr>
-                <th>Total pay: ${total_pay}</th>
-              </tr>
-             )}
-             {istotalHrs && (
-              <tr>
-                <th>Total hours worked: {total_hrs}</th>
+                <th>Total employee: {result[result.length - 1].employee_count}</th>
+                <th>Total works: {result[result.length - 1].total_job}</th>
+                <th>Total pay: ${result[result.length - 1].total_pay}</th>
+                <th>Total hours: {result[result.length - 1].total_hrs}</th>
+                <th>Avg wage: ${result[result.length - 1].total_pay / result[result.length - 1].total_hrs}/hr</th>
               </tr>
              )}
             </tbody>
@@ -168,4 +158,4 @@ const SelfReportModal = () => {
   )
 }
 
-export default SelfReportModal;
+export default EmployeeReportModal;

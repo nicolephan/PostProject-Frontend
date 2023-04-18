@@ -25,3 +25,4 @@ export { default as DeleteJobModal } from './JobCRUD/DeleteJobModal';
 //REPORTS
 export { default as SelfReportModal } from './Reports/SelfReportModal';
 export { default as ShipmentReportModal } from './Reports/ShipmentReportModal';
+export { default as EmployeeReportModal } from './Reports/EmployeeReportModal';
