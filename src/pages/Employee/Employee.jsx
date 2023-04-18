@@ -20,7 +20,7 @@ export default function Admin(){
         <>
             <UserNav />
             <div className="title-admin">
-                <h1 className="tracking-in-expand one">Hello ADMIN: ({x})</h1>
+                <h1 className="tracking-in-expand one">Hello Employee: ({x})</h1>
             </div>
             
             {/* 

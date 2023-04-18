@@ -139,8 +139,8 @@ const ShipmentReportModal = () => {
               })}
              { istotalPay && (
               <tr>
-                <th>Total shipment: {result[result.length - 1].total_shipment}</th>
-                <th>Total customer: {result[result.length - 1].total_customer}</th>
+                <th>Total shipments: {result[result.length - 1].total_shipment}</th>
+                <th>Total customers: {result[result.length - 1].total_customer}</th>
                 <th>Total packages: {result[result.length - 1].total_packages}</th>
                 <th>Avg packages per customer: {result[result.length - 1].total_packages / result[result.length - 1].total_customer}</th>
               </tr>
