@@ -4,6 +4,7 @@ import {
         ReadShipmentModal, 
         UpdateShipmentModal, 
         DeleteShipmentModal,
+        AllLocHistoryModal,
 
         CreateEmployeeModal,
         ReadEmployeeModal,
@@ -79,7 +80,7 @@ export default function Admin(){
             </div>
             
             <div>
-                TODO: TRACKING HISTORY HERE
+               <AllLocHistoryModal />
             </div>
 
             {
