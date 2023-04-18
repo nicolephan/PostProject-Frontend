@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 import '../shippingModal.css';
+import UpdateShipSVG from '../../SVGs/ShipModal/UpdateShip';
 
 Modal.setAppElement('#root'); // Set the app root element for accessibility
 
@@ -65,7 +66,11 @@ const UpdateShipmentModal = () => {
 
     return (
         <>
-        <button onClick={() => setIsOpen(true)}>Update Shipment</button>
+        <div className="SVG-button">
+            <UpdateShipSVG onClick={() => setIsOpen(true)} width='50' height='50'/>
+            <p className="button-text">Update Shipment</p>
+        </div>
+        {/* <button onClick={() => setIsOpen(true)}>Update Shipment</button> */}
         <Modal
             isOpen={isOpen}
             onRequestClose={handleCloseModal}

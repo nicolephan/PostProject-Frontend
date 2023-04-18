@@ -2,6 +2,12 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios'
 import UserNav from '../../components/UserNav/UserNav';
 import UserInfo from '../../components/Fetch/UserInfo';
+
+import TrashCanSvg from '../../components/SVGs/CustomerIcons/TrashCan';
+import DeliveryTruckSVG from '../../components/SVGs/CustomerIcons/DeliveryTruck';
+import AtdoorSVG from '../../components/SVGs/CustomerIcons/AtDoor';
+import SafeBoxSVG from '../../components/SVGs/CustomerIcons/SafeBox';
+
 import './Customer.css'
 
 export default function Customer(){
@@ -12,6 +18,15 @@ export default function Customer(){
     const current_user = localStorage.getItem('email');
     const customerInfo = UserInfo(current_user)
     //TODO: use current_user (email) to query into database
+
+    const handleDeleteRow = (item) => {
+        const confirmed = window.confirm("Are you sure you want to delete this item?");
+        if(confirmed){
+            //THIS HIDES INFO TEMPORARILY, DATA WILL COME BACK IF YOU REFRESH
+            setTrackInfo(prevTrackInfo => prevTrackInfo.filter(track => track !== item));
+            console.log(item);
+        }
+    }
 
     useEffect(() => {
         const optionShip = {
@@ -86,36 +101,48 @@ export default function Customer(){
             
             <li className="customer-shipments">
                 <br/>
-                <p className="info-titles">Shipments in Progress</p>
+                <p className="info-titles">
+                    <span className='title-descriptor'>Shipments in Progress </span>
+                    <DeliveryTruckSVG width='50px' height='50px'/> 
+                </p>
                 {inProgress.length > 0 ? (
-                <div>
-                    <table className='container-table'>
-                        <tr>
-                            <th>Tracking ID</th>
-                            <th>Shipment Status</th>
-                            {/* <th>Tracking Status</th> */}
-                            <th>Number of Packages</th>
-                            <th>Estimated Delivery Date</th>
-                        </tr>
-                        {trackInfo && (
-                            inProgress.map((item) => (
+                    <div>
+                        <table className='container-table'>
                                 <tr>
-                                    <td>{item.shipment_tracking_id}</td>
-                                    <td>{item.shipment_status}</td>
-                                    {/* <td>{item.tracking_status}</td> */}
-                                    <td>{item.num_packages}</td>
-                                    <td>{item.est_delivery_date}</td>
+                                    <th>Tracking ID</th>
+                                    <th>Shipment Status</th>
+                                    {/* <th>Tracking Status</th> */}
+                                    <th>Number of Packages</th>
+                                    <th>Estimated Delivery Date</th>
                                 </tr>
-                            )
-                        ))
-                        }
-                    </table>
-                    <p>Total Packages Out For Delivery: {totalPackages}</p>
-                </div>
+                                {trackInfo && (
+                                    inProgress.map((item) => (
+                                        <tr>
+                                            <td>{item.shipment_tracking_id}</td>
+                                            <td>{item.shipment_status}</td>
+                                            {/* <td>{item.tracking_status}</td> */}
+                                            <td>{item.num_packages}</td>
+                                            <td>{item.est_delivery_date}</td>
+                                            <td>
+                                                <span style={{ float: 'right', padding: '0.5rem'}}>
+                                                    <TrashCanSvg onClick={() => handleDeleteRow(item)}  width='20px' height='20px' />
+                                                </span>
+                                            </td>
+                                        </tr>   
+                                    )
+                                ))
+                                }
+                            </table>
+                        <p className="package-total">Total Packages Out For Delivery: {totalPackages}</p>
+                    </div>
                 ) : (
                     <p>No Shipments Out for Delivery</p>
                 )}
-                <br/> <p className="info-titles">Completed Shipments</p>
+                <br/> 
+                <p className="info-titles">
+                    <span className='title-descriptor'>Completed Shipments </span>
+                    <AtdoorSVG width='50px' height='50px'/>
+                </p>
                 {completed.length > 0 ? (
                     <table className='container-table'>
                         <tr>
@@ -140,24 +167,28 @@ export default function Customer(){
                 ) : (
                     <p>No Completed Shipments</p>
                 )}
-            </li>
+            {/* </li> */}
 
             <div className="container-poBox">
-                <br/> <p className="info-titles">Registered Po-Boxes</p>
+                <br/> 
+                <p className="info-titles">
+                    <span className='title-descriptor'>Registered Po-Boxes </span>
+                    <SafeBoxSVG width='50px' height='50px'/>
+                </p>
                 {poBox.length > 0 ? (
                 <ul>
                     {poBox.map(item => (
-                        <>
+                        <div className="po-Info">
                             <p>Box Number: {item.box_num}</p>
                             <p>Located on {item.branch_address}</p>
-                            <br/>
-                        </>
+                        </div>
                     ))}
                 </ul>
                 ) : (
                     <p>No Registered Po-Boxes</p>
                 )}
             </div>
+            </li>
         </div>
         </>
     );

@@ -2,10 +2,11 @@
 .container-customer{ /*WHOLE PAGE*/
     font-family: var(--font-family);
     list-style: none;
-    margin: 1rem;
+    margin: 0 4rem 0 4rem;
     display:flex;
     flex-direction: column;
     align-items: center;
+    background-color: #dde8fe;
 }
 .header-customer{
     padding: 1rem;
@@ -25,22 +26,40 @@
 }
 .info-titles{
     font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 3rem;
+}
+.title-descriptor{
+    align-self: flex-end;
 }
 .customerInfo{
-    /* background-color: rgb(244, 244, 244); */
-    background-color: #dde8fe;
+    background-color: white;
     border-radius: 8px;
 }
 .customer-shipments{
     align-self: center;
+    padding: 0 0.5rem 0 0.5rem;
+    border-radius: 8px;
+    margin: 0.5rem;
 }
-.container-table{
+
+/* .container-table{
     border: 1px solid black;
+} */
+.container-table td:last-child{
+    border: none;
+    padding: 0;
+    background-color: #dde8fe;
 }
 th{
     font-size: 0.75rem;
     padding: 0.75rem;
     border: 2px solid black;
+
+}
+td{
+    background-color: white;
 }
 .button-pass{
     padding: 0.25rem;
@@ -49,4 +68,10 @@ th{
     padding: 0;
     margin: 0;
     margin-left: 5rem;
+}
+
+.po-Info{
+    background-color: white;
+    padding: 5px 50px 5px 10px;
+    border-radius: 8px;
 }

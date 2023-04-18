@@ -2,24 +2,22 @@
 // pull creation date (curr_date), tracking status, est_delivery_date in data
 // display tracking bar based on tracking status (1 2 3 or 4).
 
-//TODO (4/16/2023)
-//prevent data w/ mark_deletion=true from showing
-//FIX: result data outline shows up even if result.tracking_id doesnt exist
-
 import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../../components/Navbar/Navbar';
 import UserNav from '../../components/UserNav/UserNav';
-import { PackageIcon } from '../../components/SVGs/Package';
-import PackageFound from '../../components/SVGs/PackageFound';
-import './Home.css';
+import { PackageIcon } from '../../components/SVGs/HomeIcons/Package';
+import PackageFound from '../../components/SVGs/HomeIcons/PackageFound';
 import post_bg from '../../components/post_queue.png';
+import './Home.css';
 
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [tracking_id, setTrackingID] = useState('');
   const [result, setResult] = useState(null);
+  const [histResult, setHistResult] = useState(null);
   const [location, setLocation] = useState(null);
+  const [error, setError] = useState(false);
   const inputRef = useRef();
 
   useEffect(() => {
@@ -64,8 +62,30 @@ export default function Home() {
         }
       } catch (error) {
         console.error(error);
-        setResult(`Shipment with tracking ID: ${tracking_id} not found!`);
+        setError(true);
+        // setResult(`Shipment with tracking ID: ${tracking_id} not found!`);
       }
+      console.log(options)
+
+      const options2 = {
+        method: 'POST',
+        url: 'http://postoffice-api.herokuapp.com/api/loc-history-id',
+        headers: {'Content-Type': 'application/json'},
+        data: {
+            tracking_id: tracking_id
+        }
+      };
+
+      try { //TODO format data in html
+          const response = await axios.request(options2);
+          console.log("Try");
+          console.log(response.data);
+          setHistResult(response.data);
+      } catch (error) {
+          console.error(error);
+          setResult(`error`);
+      }
+
   };
 
   return (
@@ -78,7 +98,7 @@ export default function Home() {
       </div>
       
       <div className="track-bar">
-        <PackageIcon/>
+        <PackageIcon />
         <h1 className="trackTitle">Track a Shipment</h1>
         <form onSubmit={handleFormSubmit}>
           <div className='input-group'>
@@ -90,27 +110,39 @@ export default function Home() {
             />
             <button type="submit">Submit</button>
           </div>
+          {error && 
+            <div className="error-message">
+              <p>Tracking ID not found.</p>
+              
+            </div>
+          }
         </form>
       </div>
     </div>
-    {result && location && (
+    {result && location && !result.mark_deletion && !error &&  (
       <div className="container-trackShipment">
         {/* <pre>{JSON.stringify(result, null, 2)}</pre> */}
-        <h2 className="track-status">{result.shipment_status} <PackageFound className="package-found-icon" width='30' height='30'/></h2>
+        <h2 className="track-status">{result.shipment_status} <PackageFound className="package-found-icon" width='40' height='40'/></h2>
         <p className="data-info"> Current Location: {location}</p>
         
         <div className="track-progress">
+
           <div className={`progress-point ${result.shipment_status <= 'Labeling' ? 'active' : ''} ${result.shipment_status === 'Stopped' ? 'stopped' : ''}`}>
-            <span className='progress-bar-text'>Labeling</span>
+            <span className='progress-bar-text'>Ordered</span>
           </div>
+
           <div className={`progress-bar-line ${result.shipment_status <= 'In Transit' ? 'active' : ''} ${result.shipment_status === 'Stopped' ? 'stopped' : ''}`}></div>
           <div className={`progress-point ${result.shipment_status <= 'In Transit' ? 'active' : ''} ${result.shipment_status === 'Stopped' ? 'stopped' : ''}`}>
-            <span className='progress-bar-text'>In Progress</span>
+            <div className='progress-bar-text'>
+            <span className='progress-bar-text-word'>In</span><span className='progress-bar-text-word'> Transit</span>
+            </div>
           </div>
+
           <div className={`progress-bar-line ${result.shipment_status <= 'Delivered' ? 'active' : ''} ${result.shipment_status === 'Stopped' ? 'stopped' : ''}`}></div>
           <div className={`progress-point ${result.shipment_status <= 'Delivered' ? 'active' : ''} ${result.shipment_status === 'Stopped' ? 'stopped' : ''}`}>
             <span className='progress-bar-text'>Delivered</span>
           </div>
+
         </div>
         <p>Expected Delivery Date: {result.est_delivery_date}</p>
 
@@ -118,6 +150,37 @@ export default function Home() {
         <p className="data-info">{result.tracking_id}</p>
         <p className="data-titling">Number of Packages</p>
         <p className="data-info">{result.num_packages}</p>
+
+        {/*Conditional Rendering*/}
+        {
+          histResult && (
+        <>
+          <h4>Tracking History</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Region</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/*Iterate through shipment json data 
+              and render to front end*/}
+              {histResult?.map((shipment) => {
+                return (
+                  <tr>
+                    <th>{shipment.date_arrived.slice(0,10)}</th>
+                    <th>{shipment.location}</th>
+                    <th>{shipment.region}</th>
+                  </tr>
+                );
+              })}
+
+            </tbody>
+          </table>
+        </>
+          )}
       </div>
     )}
     </>
