@@ -100,7 +100,7 @@ const CreateJobModal = () => {
             value={form.pay}
             onChange={handleChange}
           />
-          <label htmlFor="hours_worked">hours_worked</label>
+          <label htmlFor="hours_worked">Hours worked</label>
           <input
             id="hours_worked"
             type="number"
