@@ -30,8 +30,15 @@ const UpdateJobModal = () => {
       },
     };
 
+    //Sanity checking
     if (key === "work_id") {
       alert('Cannot update the ID of the job entry.');
+      setIsOpen(false);
+      return;
+    }
+
+    if (key === "mark_deletion" && (new_value !== "0" && new_value !== "1")) {
+      alert("Deletion must be 0 or 1.");
       setIsOpen(false);
       return;
     }
@@ -94,6 +101,8 @@ const UpdateJobModal = () => {
                 <option value="pay">Pay</option>
                 <option value="on_date">Date</option>
                 <option value="hours_worked">Hours worked</option>
+                {/*FIXME: This should offer true/false instead of being required to type 1/0*/}
+                <option value="mark_deletion">Deleted</option>
               </select>
             </label>
             <label htmlFor="value">
