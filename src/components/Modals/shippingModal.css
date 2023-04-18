@@ -125,6 +125,7 @@ tbody tr:hover {
   padding: 1rem;
   border-radius: 5px;
   cursor: pointer;
+  text-align:center;
 }
 .SVG-button:hover{
   background-color: rgb(235, 235, 235);
