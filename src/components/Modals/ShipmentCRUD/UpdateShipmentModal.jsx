@@ -66,8 +66,8 @@ const UpdateShipmentModal = () => {
 
     return (
         <>
-        <div className="SVG-button">
-            <UpdateShipSVG onClick={() => setIsOpen(true)} width='50' height='50'/>
+        <div className="SVG-button" onClick={() => setIsOpen(true)}>
+            <UpdateShipSVG width='50' height='50'/>
             <p className="button-text">Update Shipment</p>
         </div>
         {/* <button onClick={() => setIsOpen(true)}>Update Shipment</button> */}

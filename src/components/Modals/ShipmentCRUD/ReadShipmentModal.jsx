@@ -91,8 +91,8 @@ const ReadShipmentModal = () => {
 
   return (
     <>
-      <div className="SVG-button">
-        <ReadShipSVG onClick={() => setIsOpen(true)} width='50' height='50'/>
+      <div className="SVG-button" onClick={() => setIsOpen(true)}>
+        <ReadShipSVG width='50' height='50'/>
         <p className="button-text">Read Shipment</p>
       </div>
       {/* <button onClick={() => setIsOpen(true)}>Read Shipment</button> */}
