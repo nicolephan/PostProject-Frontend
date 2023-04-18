@@ -125,14 +125,25 @@ tbody tr:hover {
   padding: 1rem;
   border-radius: 5px;
   cursor: pointer;
+  text-align:center;
+}
+.SVG-button:hover{
+  background-color: rgb(235, 235, 235);
 }
 
 .button-text{
   padding: 0;
   margin: 0;
+  text-align: center;
 }
 
 .container-new-data {
   display: flex;
   justify-content: space-between;
+}
+
+/* Allow scroll */
+.ReactModal__Content--after-open {
+  overflow-y: scroll !important;
+  max-height: 90%;
 }

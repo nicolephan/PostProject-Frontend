@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 import '../shippingModal.css';
+import ShipmentHistSVG from '../../SVGs/EmployeeIcons/ShipmentHist';
 Modal.setAppElement('#root'); // Set the app root element for accessibility
 
 const ShipmentReportModal = () => {
@@ -74,7 +75,11 @@ const ShipmentReportModal = () => {
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>Shipment Report</button>
+    <div className="SVG-button" onClick={() => setIsOpen(true)}>
+        <ShipmentHistSVG width='100' height='100'/>
+        <p className="button-text">Shipment Report</p>
+      </div>
+      {/* <button onClick={() => setIsOpen(true)}>Shipment Report</button> */}
       <Modal
         isOpen={isOpen}
         onRequestClose={handleCloseModal}
@@ -123,6 +128,7 @@ const ShipmentReportModal = () => {
               and render to front end*/}
               {result?.map((job) => {
                 //setSum({...form, total_pay: form.total_pay + job.pay});
+                if (job.tracking_id != undefined) {
                 return (
                   <tr>
                     <th>{job.tracking_id}</th>
@@ -132,11 +138,12 @@ const ShipmentReportModal = () => {
                     <th>{job.shipment_status}</th>
                     <th>{job.num_packages}</th>
                     <th>{job.region}</th>
-                    <th>{job.creation_date}</th>
-                    <th>{job.est_delivery_date}</th>
+                    <th>{job.creation_date.slice(0,10)}</th>
+                    <th>{job.est_delivery_date.slice(0,10)}</th>
                   </tr>
                 );
-              })}
+                }})
+              }
              { istotalPay && (
               <tr>
                 <th>Total shipments: {result[result.length - 1].total_shipment}</th>

@@ -6,6 +6,7 @@ import {
         DeleteShipmentModal,
         SelfReportModal,
         ShipmentReportModal,
+        AllLocHistoryModal,
     } from "../../components/Modals";
 
 
@@ -42,13 +43,17 @@ export default function Admin(){
             
             </div>
             <hr className="fade-hr" />
-            <div>
-              <SelfReportModal />
-              <ShipmentReportModal />
-            </div>
-            
-            <div>
-                TODO: TRACKING HISTORY HERE
+            <div className="Report-buttons">
+                <div>
+                <SelfReportModal />
+                </div>
+                <div>
+                <ShipmentReportModal />
+                </div>
+                
+                <div>
+                    <AllLocHistoryModal />
+                </div>
             </div>
 
             {

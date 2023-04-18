@@ -3,6 +3,8 @@ export { default as CreateShipmentModal } from './ShipmentCRUD/CreateShipmentMod
 export { default as ReadShipmentModal } from './ShipmentCRUD/ReadShipmentModal';
 export { default as UpdateShipmentModal } from './ShipmentCRUD/UpdateShipmentModal';
 export { default as DeleteShipmentModal } from './ShipmentCRUD/DeleteShipmentModal';
+export { default as AllLocHistoryModal } from './ShipmentCRUD/AllLocHistoryModal';
+
 
 //EMPLOYEE
 export { default as CreateEmployeeModal } from './EmployeeCRUD/CreateEmployeeModal';
