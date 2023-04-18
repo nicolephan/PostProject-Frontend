@@ -132,7 +132,7 @@ const EmployeeReportModal = () => {
                     <th>{job.work_name}</th>
                     <th>{job.pay}</th>
                     <th>{job.hours_worked}</th>
-                    <th>{job.on_date.slice(0,10)}</th>
+                    <th>{job.on_date}</th>
                     <th>{job.branch_address}</th>
                     <th>{job.phone_number}</th>
                     <th>{job.email}</th>
