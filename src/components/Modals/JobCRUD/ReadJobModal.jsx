@@ -57,7 +57,7 @@ const ReadJobModal = () => {
 
   return (
     <>
-      <div className="SVG-button">
+      <div className="SVG-button" onClick={() => setIsOpen(true)}>
         <ReadJobSVG onClick={() => setIsOpen(true)} width='50' height='50'/>
         <p className="button-text">Read Job</p>
       </div>
