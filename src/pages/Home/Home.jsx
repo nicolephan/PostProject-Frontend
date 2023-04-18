@@ -69,7 +69,7 @@ export default function Home() {
 
       const options2 = {
         method: 'POST',
-        url: 'http://postoffice-api.herokuapp.com/api/loc-history-id',
+        url: 'https://postoffice-api.herokuapp.com/api/loc-history-id',
         headers: {'Content-Type': 'application/json'},
         data: {
             tracking_id: tracking_id
