@@ -183,20 +183,26 @@ const ReadEmployeeModal = () => {
               {/*Iterate through info json data 
               and render to front end*/}
               {result?.map((result) => {
-                console.log(result);
-                return (
-                  <tr>
-                    <th>{result.first_name}</th>
-                    <th>{result.last_name}</th>
-                    <th>{result.start_date.slice(0,10)}</th>
-                    <th>{result.phone_number}</th>
-                    <th>{result.branch_address}</th>
-                    <th>{result.email}</th>
-                    <th>{result.password}</th>
-                    <th>{result.type}</th>
-                    <th>{String(result.is_employed)}</th>
-                  </tr>
-                );
+                if (result.includes("No user found")){
+                  return;
+                }
+                //console.log(result);
+                else {
+                  return (
+                    <tr>
+                      <th>{result.first_name}</th>
+                      <th>{result.last_name}</th>
+                      <th>{result.start_date.slice(0,10)}</th>
+                      <th>{result.phone_number}</th>
+                      <th>{result.branch_address}</th>
+                      <th>{result.email}</th>
+                      <th>{result.password}</th>
+                      <th>{result.type}</th>
+                      <th>{String(result.is_employed)}</th>
+                    </tr>
+                  );
+                }
+                
               })}
               
             </tbody>
