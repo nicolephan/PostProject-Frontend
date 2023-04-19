@@ -60,6 +60,9 @@ export default function Home() {
         } else {
           setLocation(shipment.current_location);
         }
+        if(shipment.mark_deletion === true){
+          setError(true);
+        }
       } catch (error) {
         console.error(error);
         setError(true);
