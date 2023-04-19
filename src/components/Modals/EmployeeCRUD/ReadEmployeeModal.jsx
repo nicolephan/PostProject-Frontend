@@ -58,7 +58,6 @@ const ReadEmployeeModal = () => {
         } catch (error) {
             console.error(error);
             setResult(`error`);
-            alert(result);
         }
       
     }
@@ -182,12 +181,9 @@ const ReadEmployeeModal = () => {
             <tbody>
               {/*Iterate through info json data 
               and render to front end*/}
-              {result?.map((result) => {
-                if (result.includes("No user found")){
-                  return;
-                }
-                //console.log(result);
-                else {
+              {
+                Array.isArray(result) ?
+                result?.map((result) => {
                   return (
                     <tr>
                       <th>{result.first_name}</th>
@@ -201,9 +197,10 @@ const ReadEmployeeModal = () => {
                       <th>{String(result.is_employed)}</th>
                     </tr>
                   );
-                }
-                
-              })}
+                })
+                :
+                <p>No results found.</p>
+              }
               
             </tbody>
           </table>
