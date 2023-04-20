@@ -13,7 +13,7 @@ export default function About(){
                 />
                 <div className="description-txt">
                     <h3>Maximillian Chalitsios</h3>
-                    <p>[Description]
+                    <p>Is a skilled full-stack web developer with expertise in building web applications in various contexts. He brings a wealth of experience to our team and is a valuable contributor to our post office project.
                     </p>
                 </div>
             </div>
