@@ -17,7 +17,6 @@ export default function Home() {
   const [result, setResult] = useState(null);
   const [histResult, setHistResult] = useState(null);
   const [location, setLocation] = useState(null);
-  const [error, setError] = useState(false);
   const inputRef = useRef();
 
   useEffect(() => {
@@ -61,12 +60,11 @@ export default function Home() {
           setLocation(shipment.current_location);
         }
         if(shipment.mark_deletion === true){
-          setError(true);
+          alert(`Shipment with tracking ID: ${tracking_id} not found!`);
         }
       } catch (error) {
         console.error(error);
-        setError(true);
-        // setResult(`Shipment with tracking ID: ${tracking_id} not found!`);
+        alert(`Shipment with tracking ID: ${tracking_id} not found!`);
       }
       console.log(options)
 
@@ -113,16 +111,10 @@ export default function Home() {
             />
             <button type="submit">Submit</button>
           </div>
-          {error && 
-            <div className="error-message">
-              <p>Tracking ID not found. Please enter a valid ID.</p>
-              
-            </div>
-          }
         </form>
       </div>
     </div>
-    {result && location && !result.mark_deletion && !error &&  (
+    {result && location && !result.mark_deletion &&  (
       <div className="container-trackShipment">
         {/* <pre>{JSON.stringify(result, null, 2)}</pre> */}
         <h2 className="track-status">{result.shipment_status} <PackageFound className="package-found-icon" width='40' height='40'/></h2>
